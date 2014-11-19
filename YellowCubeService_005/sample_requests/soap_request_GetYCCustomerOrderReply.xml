@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:WAR_Request>
+         <war:ControlReference>
+            <war:Type>WAR</war:Type>
+            <war:Sender>YCTest</war:Sender>
+            <war:Receiver>YELLOWCUBE</war:Receiver>
+            <war:Timestamp>20141001072741</war:Timestamp>
+            <war:OperatingMode>T</war:OperatingMode>
+            <war:Version>1.0</war:Version>
+            <!--Optional:-->
+            <war:CommType>SOAP</war:CommType>
+            <!--Optional:-->
+            <war:TransControlID UniqueFlag="0"/>
+            <!--Optional:-->
+         </war:ControlReference>
+		 <!-- Leave blank to receive all new WAR. -->
+		 <!-- Use a specific CustomerOrderNo to receive only this WAR (if available) -->
+		 <!-- There is a WAR for CustomerOrderNo 20186 on the system -->
+         <war:CustomerOrderNo></war:CustomerOrderNo>
+      </war:WAR_Request>
+   </soapenv:Body>
+</soapenv:Envelope>

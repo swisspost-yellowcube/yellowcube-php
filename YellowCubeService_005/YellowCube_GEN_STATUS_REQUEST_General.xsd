@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 	===========================================================	-->
+<!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
+<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***                                                                              -->
+<!--   ***   X002 Clean up from initial version                                         -->
+<!--   ***   X003 New URI Namespaces                                                    -->
+<!--   ***   X005 New Namespace                                                         -->
+<xs:schema xmlns:gen_s="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" elementFormDefault="qualified">
+	<xs:element name="GEN_STATUS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gen_s:ControlReference"/>
+				<xs:element ref="gen_s:Reference"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ControlReference">
+		<xs:annotation>
+			<xs:documentation>Kontroll-Datensatz für das Routing der Datei/Message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Type">
+					<xs:annotation>
+						<xs:documentation>Typ - [WAB|ART]</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="6"/>
+							<xs:enumeration value="WAB"/>
+							<xs:enumeration value="ART"/>
+							<!--xs:enumeration value="ZZZ"/-->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Sender">
+					<xs:annotation>
+						<xs:documentation>Absender</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Receiver">
+					<xs:annotation>
+						<xs:documentation>Empfänger YELLOWCUBE</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="10"/>
+							<xs:enumeration value="YELLOWCUBE"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Timestamp">
+					<xs:annotation>
+						<xs:documentation>Zeitstempel - JJJJMMTThhmmss</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedLong">
+							<xs:totalDigits value="14"/>
+							<xs:pattern value="((2[0-9][0-9][0-9])|(1[0-9][0-9][0-9]))((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))((0[0-9])|(1[0-9])|(2[0-3]))([0-5][0-9][0-5][0-9])"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OperatingMode">
+					<xs:annotation>
+						<xs:documentation>T=Test / P=Production</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="1"/>
+							<xs:enumeration value="T"/>
+							<xs:enumeration value="P"/>
+							<!-- Testsystem -->
+							<!-- Produktivsystem -->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Version">
+					<xs:annotation>
+						<xs:documentation>Schnittstellenversion</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="CommType" default="SOAP" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Kommunikationstyp SOAP|REST|HTTPS|FTP</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="5"/>
+							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:enumeration value="SOAP"/>
+							<xs:enumeration value="REST"/>
+							<xs:enumeration value="HTTPS"/>
+							<xs:enumeration value="FTP"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="TransControlID" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Reference der Transaktion (wird in der Response wieder verwendet)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="UniqueFlag" use="optional" default="0">
+							<xs:annotation>
+								<xs:documentation>Gibt an ob die TransContollID unique ist. Wenn nicht muss zum SAP eine Uniqe ID generiert werden</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:normalizedString">
+									<xs:minLength value="0"/>
+									<xs:maxLength value="1"/>
+									<xs:whiteSpace value="collapse"/>
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TransMaxWait" default="10" nillable="false" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Maximale Wartezeit bis Response erwünscht. Die Response kann eine Referenz sein (asynchron) ODER die Response kann vom SAP sein (synchron)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedInt">
+							<xs:minInclusive value="10" fixed="false"/>
+							<xs:maxInclusive value="3600" fixed="false"/>
+							<xs:totalDigits value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Reference">
+		<xs:simpleType>
+			<xs:restriction base="xs:normalizedString">
+				<xs:maxLength value="256"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

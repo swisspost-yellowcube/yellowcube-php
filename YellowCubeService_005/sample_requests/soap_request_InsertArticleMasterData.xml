@@ -1,0 +1,43 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:yel="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <yel:ART>
+         <yel:ControlReference>
+<yel:Type>ART</yel:Type>
+<yel:Sender>YCTest</yel:Sender>
+<yel:Receiver>YELLOWCUBE</yel:Receiver>
+<yel:Timestamp>20141002072741</yel:Timestamp>
+<yel:OperatingMode>T</yel:OperatingMode>
+<yel:Version>1.0</yel:Version>
+<yel:CommType>SOAP</yel:CommType>
+         </yel:ControlReference>
+         <yel:ArticleList>
+            <yel:Article>
+               <yel:ChangeFlag>I</yel:ChangeFlag>
+               <yel:DepositorNo>0000040750</yel:DepositorNo>
+               <yel:PlantID>Y012</yel:PlantID>
+               <yel:ArticleNo>47686-3009-35/38</yel:ArticleNo>
+               <!--Optional:-->
+               <yel:BaseUOM>PCE</yel:BaseUOM>
+               <!--Optional:-->
+               <yel:NetWeight ISO="KGM">0.042</yel:NetWeight>
+               <!--1 to 3 repetitions:-->
+               <yel:UnitsOfMeasure>
+                  <!--Optional:-->
+                  <yel:EAN EANType="HE"></yel:EAN>
+                  <yel:AlternateUnitISO>PCE</yel:AlternateUnitISO>
+                  <!--Optional:-->
+                  <yel:AltNumeratorUOM>1</yel:AltNumeratorUOM>
+                  <!--Optional:-->
+                  <yel:AltDenominatorUOM>1</yel:AltDenominatorUOM>
+
+               </yel:UnitsOfMeasure>
+               <yel:ArticleDescriptions>
+                  <!--1 to 4 repetitions:-->
+                  <yel:ArticleDescription ArticleDescriptionLC="de">Coton d'une douceur extrme.Pointe rema</yel:ArticleDescription>
+               </yel:ArticleDescriptions>
+            </yel:Article>
+         </yel:ArticleList>
+      </yel:ART>
+   </soapenv:Body>
+</soapenv:Envelope>

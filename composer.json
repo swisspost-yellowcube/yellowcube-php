@@ -1,0 +1,21 @@
+{
+    "name": "liip/yellowcube-php",
+    "authors": [
+        {
+            "name": "Adrian Philipp",
+            "email": "adrian.philipp@liip.ch"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "YellowCube\\": "./gen/YellowCube/",
+            "YellowCube\\Util\\": "./src/YellowCube/Util/"
+        }
+    },
+    "require": {
+        "ext-soap": "*",
+        "php": ">=5.3",
+        "wsdl2phpgenerator/wsdl2phpgenerator": "3.x"
+    },
+    "minimum-stability": "dev"
+}

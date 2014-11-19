@@ -1,0 +1,23 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gen="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gen:GEN_STATUS>
+         <gen:ControlReference>
+            <gen:Type>WAB</gen:Type>
+            <gen:Sender>YCTest</gen:Sender>
+            <gen:Receiver>YELLOWCUBE</gen:Receiver>
+            <gen:Timestamp>20141001072741</gen:Timestamp>
+            <gen:OperatingMode>T</gen:OperatingMode>
+            <gen:Version>1.0</gen:Version>
+            <!--Optional:-->
+            <gen:CommType>SOAP</gen:CommType>
+            <!--Optional:-->
+            <gen:TransControlID UniqueFlag="0"/>
+            <!--Optional:-->
+            <gen:TransMaxWait></gen:TransMaxWait>
+         </gen:ControlReference>
+		 <!--use the Reference you got in the response to your CreateYCCustomerOrder request-->
+         <gen:Reference>36</gen:Reference>
+      </gen:GEN_STATUS>
+   </soapenv:Body>
+</soapenv:Envelope>
