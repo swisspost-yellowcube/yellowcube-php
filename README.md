@@ -1,7 +1,7 @@
 YellowCube PHP client API
 =========================
 
-Connect to the SOAP based YellowCube Solutions.
+Connect to the SOAP based [YellowCube Solutions](http://yellowcube.ch/).
 
 Integrations
 ------------
