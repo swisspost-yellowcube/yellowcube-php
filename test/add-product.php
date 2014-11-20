@@ -10,7 +10,7 @@ use YellowCube\Art\UnitsOfMeasure\EANType;
 use YellowCube\Art\UnitsOfMeasure\ISO;
 
 $article = (new Article)
-    ->setChangeFlag('U')
+    ->setChangeFlag('I')
     ->setPlantID('Y012')
     ->setDepositorNo('0000040750')
     ->setArticleNo('47686-3009-35/38')
@@ -18,11 +18,13 @@ $article = (new Article)
     ->setNetWeight(new NetWeight(0.042, ISO::KGM))
     ->addUnitOfMeasure(new EAN('7501031311309', EANType::HE))
     ->addUnitOfMeasure(new AlternateUnitISO('PCE'))
-    ->addArticleDescription(new ArticleDescription('Coton d\'une douceur extrme.Pointe rema', 'fr'))
+    ->addArticleDescription(new ArticleDescription('Ich wars nicht.', 'de'))
+    ->addArticleDescription(new ArticleDescription('Je te jure! Je n’ai rien fait!', 'fr'))
+    ->addArticleDescription(new ArticleDescription('Non sono stato io!', 'it'))
+    ->addArticleDescription(new ArticleDescription('It wasn\'t me.', 'en'))
 ;
 
-$client = new YellowCube\Client();
-$client->insertArticleMasterData($article);
-
+$client = new YellowCube\Client(true);
+assert($client->insertArticleMasterData($article)->isSuccess() == true);
 
 
