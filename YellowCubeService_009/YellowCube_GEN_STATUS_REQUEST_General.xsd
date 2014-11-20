@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***   Version X009 19.11.2014                                                    -->
 <!--   ***                                                                              -->
 <!--   ***   X002 Clean up from initial version                                         -->
 <!--   ***   X003 New URI Namespaces                                                    -->
 <!--   ***   X005 New Namespace                                                         -->
+<!--   ***   X006 No changes in this document                                           -->
+<!--   ***   X007 No changes in this document                                           -->
+<!--   ***   X008 No changes in this document                                           -->
+<!--   ***   X009 No changes in this document                                           -->
 <xs:schema xmlns:gen_s="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" elementFormDefault="qualified">
 	<xs:element name="GEN_STATUS">
 		<xs:complexType>

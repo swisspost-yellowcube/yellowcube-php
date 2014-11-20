@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***   Version X009 19.11.2014                                                    -->
 <!--   ***                                                                              -->
 <!--   ***   X002 Clean up from initial version                                         -->
 <!--   ***   X003 New URI Namespaces                                                    -->
 <!--   ***   X005 New Namespace                                                         -->
+<!--   ***   X006 No changes in this document                                           -->
+<!--   ***   X007 Pattern/Enumerations for Control-Record: Sender,OperatingMode=D, etc.           -->
+<!--   ***   X008 Pattern für Fatale Fehler (F1) aus ArticleDescription und (F5) Floating-Point (Keine Minuswerte und nicht "trailing zeros" ) -->
+<!--   ***   X009 patterns etc.                                                         -->
 <xs:schema xmlns:art="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd" elementFormDefault="qualified">
 	<xs:element name="ART">
 		<xs:annotation>
@@ -47,23 +52,41 @@
 				<xs:element name="Sender">
 					<xs:annotation>
 						<xs:documentation>Absender</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Easyshop77"/>
+								<altova:example value="Testshop05"/>
+								<altova:example value="YCTest"/>
+								<altova:example value="YELLOWCUBE"/>
+								<altova:example value="LOGOS"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Receiver">
 					<xs:annotation>
 						<xs:documentation>Empfänger YELLOWCUBE</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="YELLOWCUBE"/>
+								<altova:example value="LOGOS"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)"/>
 							<xs:enumeration value="YELLOWCUBE"/>
+							<xs:enumeration value="LOGOS"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -80,7 +103,12 @@
 				</xs:element>
 				<xs:element name="OperatingMode">
 					<xs:annotation>
-						<xs:documentation>T=Test / P=Production</xs:documentation>
+						<xs:documentation>T=Test / P=Production / D=Development</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="T"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
@@ -88,6 +116,7 @@
 							<xs:maxLength value="1"/>
 							<xs:enumeration value="T"/>
 							<xs:enumeration value="P"/>
+							<xs:enumeration value="D"/>
 							<!-- Testsystem -->
 							<!-- Produktivsystem -->
 						</xs:restriction>
@@ -96,11 +125,21 @@
 				<xs:element name="Version">
 					<xs:annotation>
 						<xs:documentation>Schnittstellenversion</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="1.0"/>
+								<altova:example value="1.1"/>
+								<altova:example value="1.2"/>
+								<altova:example value="2.1"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="3"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([1-9]{1}[\.]{1}[0-9]{1})"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -125,20 +164,24 @@
 						<xs:documentation>Reference der Transaktion (wird in der Response wieder verwendet)</xs:documentation>
 					</xs:annotation>
 					<xs:complexType>
-						<xs:attribute name="UniqueFlag" use="optional" default="0">
-							<xs:annotation>
-								<xs:documentation>Gibt an ob die TransContollID unique ist. Wenn nicht muss zum SAP eine Uniqe ID generiert werden</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:normalizedString">
-									<xs:minLength value="0"/>
-									<xs:maxLength value="1"/>
-									<xs:whiteSpace value="collapse"/>
-									<xs:enumeration value="0"/>
-									<xs:enumeration value="1"/>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:attribute>
+						<xs:simpleContent>
+							<xs:extension base="xs:normalizedString">
+								<xs:attribute name="UniqueFlag" use="optional" default="0">
+									<xs:annotation>
+										<xs:documentation>Gibt an ob die TransContollID unique ist. Wenn nicht muss zum SAP eine Uniqe ID generiert werden</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:normalizedString">
+											<xs:minLength value="0"/>
+											<xs:maxLength value="1"/>
+											<xs:whiteSpace value="collapse"/>
+											<xs:enumeration value="0"/>
+											<xs:enumeration value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="TransMaxWait" default="10" nillable="false" minOccurs="0">
@@ -206,6 +249,8 @@
 						<xs:restriction base="xs:normalizedString">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([0-9]{1,10})"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -245,7 +290,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="BaseUOM" minOccurs="0">
+				<xs:element name="BaseUOM">
 					<xs:annotation>
 						<xs:documentation>Basismengen-Einheit 
 [PCE|PA|etc.]</xs:documentation>
@@ -256,7 +301,7 @@
 						</xs:simpleContent>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="NetWeight" minOccurs="0">
+				<xs:element name="NetWeight">
 					<xs:annotation>
 						<xs:documentation>Nettogewicht</xs:documentation>
 					</xs:annotation>
@@ -346,13 +391,8 @@
 					<xs:complexType>
 						<xs:simpleContent>
 							<xs:extension base="art:EANvalue">
-								<xs:attribute name="EANType" use="required">
+								<xs:attribute name="EANType" use="optional" default="HE">
 									<xs:annotation>
-										<xs:appinfo>
-											<altova:exampleValues>
-												<altova:example value="HE"/>
-											</altova:exampleValues>
-										</xs:appinfo>
 										<xs:documentation>Standard "HE"</xs:documentation>
 									</xs:annotation>
 									<xs:simpleType>
@@ -371,12 +411,16 @@
 						<xs:appinfo>
 							<altova:exampleValues>
 								<altova:example value="PCE"/>
+								<altova:example value="PK"/>
+								<altova:example value="BG"/>
+								<altova:example value="CA"/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:maxLength value="6"/>
+							<xs:maxLength value="3"/>
+							<xs:pattern value="[A-Z]{1,3}"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -388,12 +432,14 @@
 								<altova:example value="1"/>
 								<altova:example value="12"/>
 								<altova:example value="20"/>
+								<altova:example value=""/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:maxLength value="6"/>
+							<xs:maxLength value="3"/>
+							<xs:pattern value="([0-9]{1,3})?"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -408,7 +454,8 @@
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:maxLength value="6"/>
+							<xs:maxLength value="3"/>
+							<xs:pattern value="([0-9]{1,3})?"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -512,9 +559,14 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="art:ArticleDescription">
-					<xs:attribute name="ArticleDescriptionLC">
+					<xs:attribute name="ArticleDescriptionLC" default="de">
 						<xs:annotation>
 							<xs:documentation>[de|fr|it|en]</xs:documentation>
+							<xs:appinfo>
+								<altova:exampleValues>
+									<altova:example value="de"/>
+								</altova:exampleValues>
+							</xs:appinfo>
 						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
@@ -574,6 +626,7 @@
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:maxLength value="18"/>
+			<xs:whiteSpace value="collapse"/>
 			<xs:pattern value="([0-9]{8,18})?"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -588,7 +641,7 @@
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:restriction base="xs:normalizedString">
-			<xs:maxLength value="2"/>
+			<xs:length value="2"/>
 			<xs:enumeration value="E5"/>
 			<xs:enumeration value="EA"/>
 			<xs:enumeration value="HE"/>
@@ -610,12 +663,14 @@
 			<xs:appinfo>
 				<altova:exampleValues>
 					<altova:example value="1234567890.12"/>
+					<altova:example value="0.95"/>
 				</altova:exampleValues>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="12"/>
 			<xs:fractionDigits value="2"/>
+			<xs:pattern value="([0-9]{1,10}(\.[0-9]{1,2})?)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!--Float13v3-->
@@ -625,12 +680,14 @@
 			<xs:appinfo>
 				<altova:exampleValues>
 					<altova:example value="1234567890123.123"/>
+					<altova:example value="0.123"/>
 				</altova:exampleValues>
 			</xs:appinfo>
 		</xs:annotation>
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="16"/>
 			<xs:fractionDigits value="3"/>
+			<xs:pattern value="([0-9]{1,13}(\.[0-9]{1,3})?)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!--ArticleDescription-->
@@ -643,8 +700,10 @@
 				</altova:exampleValues>
 			</xs:appinfo>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
+		<xs:restriction base="xs:normalizedString">
 			<xs:maxLength value="40"/>
+			<xs:minLength value="1"/>
+			<xs:whiteSpace value="collapse"/>
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

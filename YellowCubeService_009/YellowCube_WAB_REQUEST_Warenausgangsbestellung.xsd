@@ -2,12 +2,16 @@
 <!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***   Version X009 19.11.2014                                                    -->
 <!--   ***                                                                              -->
 <!--   ***   X002 Clean up from initial version                                         -->
 <!--   ***   X003 New URI Namespaces                                                    -->
 <!--   ***   X004 Enumerations added xs:patern und annotations; Element im Order ShippingInterface ergänzt (noch keine TradeXpress-Verwendung        -->
 <!--   ***   X005 New Namespace                                                         -->
+<!--   ***   X006 No changes in this document                                           -->
+<!--   ***   X007 Patterns in Control-Record - Fehler in Pattern                                  -->
+<!--   ***   X008 Pattern EAN-gefixt sowie (F5) Floating-Point (Keine Minuswerte und nicht "trailing zeros" ) -->
+<!--   ***   X009 Zusätzliche Pattern bei fakulativen Feldern eingefügt, Länge Filename=60, WhiteSp=collapse -->
 <xs:schema xmlns:wab="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" xmlns:altova="http://www.altova.com/xml-schema-extensions" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" elementFormDefault="qualified">
 	<xs:element name="WAB">
 		<xs:annotation>
@@ -42,25 +46,31 @@
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="6"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="WAB"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Sender">
 					<xs:annotation>
-						<xs:documentation>Absender als DepositorID im Format Xxxxxxxxxxx</xs:documentation>
+						<xs:documentation>Absender</xs:documentation>
 						<xs:appinfo>
 							<altova:exampleValues>
-								<altova:example value="Easyshop"/>
-								<altova:example value="Smartshop1"/>
+								<altova:example value="Easyshop77"/>
+								<altova:example value="Testshop05"/>
+								<altova:example value="Alpha1"/>
+								<altova:example value="YELLOWCUBE"/>
+								<altova:example value="LOGOS"/>
+								<altova:example value="YCTest"/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction base="xs:normalizedString">
+						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
-							<xs:pattern value="([0-9A-Za-z]{4,9})"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -78,6 +88,8 @@
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="(YELLOWCUBE)|(LOGOS)"/>
 							<xs:enumeration value="YELLOWCUBE"/>
 							<xs:enumeration value="LOGOS"/>
 						</xs:restriction>
@@ -95,20 +107,28 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:unsignedLong">
 							<xs:totalDigits value="14"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="((2[0-9][0-9][0-9])|(1[0-9][0-9][0-9]))((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))((0[0-9])|(1[0-9])|(2[0-3]))([0-5][0-9][0-5][0-9])"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="OperatingMode">
 					<xs:annotation>
-						<xs:documentation>T=Test / P=Production</xs:documentation>
+						<xs:documentation>T=Test / P=Production / D=Development</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="T"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="T"/>
 							<xs:enumeration value="P"/>
+							<xs:enumeration value="D"/>
 							<!-- Testsystem -->
 							<!-- Produktivsystem -->
 						</xs:restriction>
@@ -128,7 +148,8 @@
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="3"/>
-							<xs:pattern value="([1-9][^0-9][0-9])"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([1-9]{1}[\.]{1}[0-9]{1})"/>
 							<xs:enumeration value="1.0"/>
 							<xs:enumeration value="1.1"/>
 							<xs:enumeration value="1.2"/>
@@ -140,11 +161,15 @@
 				<xs:element name="CommType" default="SOAP" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Kommunikationstyp SOAP|REST|HTTPS|FTP etc.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="SOAP"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="5"/>
-							<xs:minLength value="1"/>
 							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="SOAP"/>
 							<xs:enumeration value="REST"/>
@@ -183,6 +208,12 @@
 				<xs:element name="TransMaxWait" default="10" nillable="false" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Maximale Wartezeit bis Response erwünscht. Die Response kann eine Referenz sein (asynchron) ODER die Response kann vom SAP sein (synchron)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="10"/>
+								<altova:example value="3600"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:unsignedInt">
@@ -215,29 +246,43 @@
 	</xs:element>
 	<xs:element name="OrderHeader">
 		<xs:annotation>
-			<xs:documentation>Bestellung</xs:documentation>
+			<xs:documentation>Bestellung-Kopfdaten</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="DepositorNo">
 					<xs:annotation>
 						<xs:documentation>Distanzhändler-ID gemäss Anmeldung Yellow-Cube</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="0000010518"/>
+								<altova:example value="0000099999"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="CustomerOrderNo">
 					<xs:annotation>
 						<xs:documentation>Bestellnummer des Kunden (externe AuftragsReferenz-Nummer)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="2014-01002"/>
+								<altova:example value="OXD-20000005-1"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="35"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -252,7 +297,8 @@
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
-							<xs:maxLength value="8"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:length value="8"/>
 							<xs:pattern value="(2[0-9][0-9][0-9])((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -262,11 +308,15 @@
 	</xs:element>
 	<xs:element name="PartnerAddress">
 		<xs:annotation>
-			<xs:documentation>Adresse</xs:documentation>
+			<xs:documentation>Adressen der Bestellung</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="wab:Partner" maxOccurs="unbounded"/>
+				<xs:element ref="wab:Partner" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Adresse: Mind. eine Adresse vom Typ "WE" Warenempfänger</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -284,49 +334,83 @@
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="2"/>
 							<xs:minLength value="2"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="WE"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="PartnerNo">
 					<xs:annotation>
-						<xs:documentation>Kundennummer des Empfängers. Ist zusammen mit der ID des Distanzhändlers (DepositorNo) eindeutig.</xs:documentation>
+						<xs:documentation>Partner-ID gemäss YellowCube-Profil des Distanzhändlers (Merchant) Wird zusammen mit der ID des Distanzhändlers (DepositorNo) von YellowCube vergeben.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="0000300020"/>
+								<altova:example value="0000300004"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="10"/>
 							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="PartnerReference" minOccurs="0">
 					<xs:annotation>
-						<xs:documentation>Referenz des Partners</xs:documentation>
+						<xs:documentation>Kundenreferenz des Warenempfängers. Adress-ID des Distanzhändlers</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="32423232-Easyshop-Adress-ID"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction base="xs:string">
+						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="50"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Title" minOccurs="0">
 					<xs:annotation>
-						<xs:documentation>Anrede</xs:documentation>
+						<xs:documentation>Anrede (Es werden nur Anreden gemäss Wertetabelle auf die Paket-Adressetikette des Empfängers übernommen!)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Frau"/>
+								<altova:example value="Herr"/>
+								<altova:example value="Firma"/>
+								<altova:example value="Madame"/>
+								<altova:example value="Monsieur"/>
+								<altova:example value="Société"/>
+								<altova:example value="Signora"/>
+								<altova:example value="Signore"/>
+								<altova:example value="Ditta"/>
+								<altova:example value="Ms."/>
+								<altova:example value="Mr."/>
+								<altova:example value="Company"/>
+								<altova:example value="Dr."/>
+								<altova:example value="Prof."/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="15"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Name1">
 					<xs:annotation>
-						<xs:documentation>Name</xs:documentation>
+						<xs:documentation>Name1 1. Adresszeile z.B. Hans Muster (Vorname Nachname) oder Postlogitics (Firmenname)</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
 							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -337,6 +421,7 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -347,6 +432,7 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -357,50 +443,86 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Street">
 					<xs:annotation>
-						<xs:documentation>Strasse inkl. Hausnummer</xs:documentation>
+						<xs:documentation>Strasse inkl. Hausnummer mit einem Leerschlag (SPACE) getrennt.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Roggenstrasse 5"/>
+								<altova:example value="Viktoriastrasse 21"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
 							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="CountryCode">
 					<xs:annotation>
 						<xs:documentation>Ländercode nach ISO-CountryCode ISO 3166-1</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="CH"/>
+								<altova:example value="DE"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:maxLength value="2"/>
-							<xs:minLength value="2"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:length value="2"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="ZIPCode">
 					<xs:annotation>
-						<xs:documentation>Postleitzahl, in der Schweiz 4-stellig.</xs:documentation>
+						<xs:documentation>Postleitzahl, in der Schweiz 4-stellig (NNNN) für Deutschland 5-stellig (NNNNN), etc.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="1200"/>
+								<altova:example value="4665"/>
+								<altova:example value="3030"/>
+								<altova:example value="4000"/>
+								<altova:example value="11000"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="10"/>
 							<xs:minLength value="4"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="City">
 					<xs:annotation>
-						<xs:documentation>Ort</xs:documentation>
+						<xs:documentation>Ortschaft (Stadt) des Empfängers</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Oftringen"/>
+								<altova:example value="Genève"/>
+								<altova:example value="Bern"/>
+								<altova:example value="Zürich"/>
+								<altova:example value="Basel"/>
+								<altova:example value="Lugano"/>
+								<altova:example value="Berlin"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
 							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -411,6 +533,7 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -430,6 +553,7 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="16"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="([+]?[0-9\s]{6,16})?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -448,8 +572,9 @@
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction base="xs:string">
+						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="16"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="([+]?[0-9\s]{6,16})?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -467,6 +592,7 @@ Mobile-Nr.:0041793020467 ohne Lehrschlag</xs:documentation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="16"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="([0-9]{9,16})?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -484,6 +610,7 @@ Fax-Nr.:0041583381112 ohne Lehrschlag</xs:documentation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="16"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="([0-9]{9,16})?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -501,15 +628,24 @@ Fax-Nr.:0041583381112 ohne Lehrschlag</xs:documentation>
 					<xs:simpleType>
 						<xs:restriction base="wab:EmailAdress">
 							<xs:maxLength value="241"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:minLength value="0"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="LanguageCode">
+				<xs:element name="LanguageCode" default="de">
 					<xs:annotation>
 						<xs:documentation>Sprachcode</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="de"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
+							<xs:maxLength value="2"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="de"/>
 							<xs:enumeration value="fr"/>
 							<xs:enumeration value="it"/>
@@ -522,11 +658,15 @@ Fax-Nr.:0041583381112 ohne Lehrschlag</xs:documentation>
 	</xs:element>
 	<xs:element name="ValueAddedServices">
 		<xs:annotation>
-			<xs:documentation>Zusatzleistungen</xs:documentation>
+			<xs:documentation>Zusatzleistungen YellowCube</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="wab:AdditionalService"/>
+				<xs:element ref="wab:AdditionalService">
+					<xs:annotation>
+						<xs:documentation>Zusatzleistungen für den Versand (Paket-, Stückgut(Fracht), etc.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -670,14 +810,15 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 						<xs:documentation>Auslieferdatum, insbesondere im Stückgut-Bereich; NULL-Wert erlaubt.</xs:documentation>
 						<xs:appinfo>
 							<altova:exampleValues>
-								<altova:example value=""/>
 								<altova:example value="20140401"/>
+								<altova:example value=""/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="8"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="((2[0-9][0-9][0-9])((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1])))?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -697,6 +838,7 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="5"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="(((0[0-9])|(1[0-9])|(2[0-3])):([0-5][0-9]))?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -714,6 +856,7 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="5"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:pattern value="(((0[0-9])|(1[0-9])|(2[0-3])):([0-5][0-9]))?"/>
 						</xs:restriction>
 					</xs:simpleType>
@@ -740,29 +883,43 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:annotation>
 						<xs:documentation>1=vormittags; 2=nachmittags; 3=beides-ganztags
 (gilt nur für Frachtsendungen)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="1"/>
+								<altova:example value=""/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="1"/>
-							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="1"/>
 							<xs:enumeration value="2"/>
 							<xs:enumeration value="3"/>
+							<xs:enumeration value=""/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="DeliveryLocation" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>ZustellStandort oder spezielle Anweisung in welchem Anbau</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Eingang rechts hinter Gebäude"/>
+								<altova:example value="Entré à gauche derière l'usine"/>
+								<altova:example value=""/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="35"/>
-							<xs:minLength value="0"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="CODAmount" type="wab:Float10v2" minOccurs="0">
+				<xs:element name="CODAmount" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Nachnahme-Betrag in CHF (Cash on Delivery) Belegloses Inkasso.</xs:documentation>
 						<xs:appinfo>
@@ -772,6 +929,11 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="wab:Float10v2">
+							<xs:whiteSpace value="collapse"/>
+						</xs:restriction>
+					</xs:simpleType>
 				</xs:element>
 				<xs:element name="CODAccountNo" minOccurs="0">
 					<xs:annotation>
@@ -779,24 +941,33 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 						<xs:appinfo>
 							<altova:exampleValues>
 								<altova:example value="010683242"/>
+								<altova:example value=""/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="20"/>
-							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([0-9]{1,20})?"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="CODRefNo" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Nachname Referenznummer ohne Leerschlag</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="123456789012345678901234567"/>
+								<altova:example value=""/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="27"/>
-							<xs:minLength value="16"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([0-9]{1,27})?"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -804,28 +975,45 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:annotation>
 						<xs:documentation>0 oder leer = keine Frachtsendung (Paketpost - parcel)
 1=Ja, Frachtsendung (Stückgut)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="0"/>
+								<altova:example value="1"/>
+								<altova:example value=""/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="0"/>
 							<xs:enumeration value="1"/>
+							<xs:enumeration value=""/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="ShippingInterface" default="WSBC" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Spezielle Versandschnittselle, default WSBC</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="WSBC"/>
+								<altova:example value=""/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
 							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="WSBC"/>
 							<xs:enumeration value="WEBSTAMP"/>
 							<xs:enumeration value="FRIGHT"/>
 							<xs:enumeration value="GLSWEB"/>
+							<xs:enumeration value="PICKUP"/>
+							<xs:enumeration value="MANUALLY"/>
+							<xs:enumeration value=""/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -851,14 +1039,22 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 				<xs:element name="PosNo">
 					<xs:annotation>
 						<xs:documentation>Positions-Nummer. Je Position ein Datensatz. Vorschlag der Positionssequenz 10, 20, 30</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="10"/>
+								<altova:example value="20"/>
+								<altova:example value="30"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:integer">
 							<xs:totalDigits value="6"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="ArticleNo" minOccurs="0">
+				<xs:element name="ArticleNo">
 					<xs:annotation>
 						<xs:documentation>Eindeutige Artikelnummer des Kunden (Unique)</xs:documentation>
 						<xs:appinfo>
@@ -874,6 +1070,7 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 						<xs:restriction base="xs:normalizedString">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="35"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -902,10 +1099,17 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 				<xs:element name="YCLot" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Chargennummer</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="0000000015"/>
+								<altova:example value="0000000103"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -916,6 +1120,7 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="15"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -924,14 +1129,17 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 						<xs:documentation>Lager-ID als Werk-ID gemäss Profil des Distanzhändlers</xs:documentation>
 						<xs:appinfo>
 							<altova:exampleValues>
-								<altova:example value="Y001"/>
+								<altova:example value="Y005"/>
+								<altova:example value="Y006"/>
 								<altova:example value="Y004"/>
+								<altova:example value="Y034"/>
 							</altova:exampleValues>
 						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:length value="4"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -969,26 +1177,39 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="40"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:minLength value="0"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="PickingMessage" minOccurs="0">
 					<xs:annotation>
-						<xs:documentation>Kommisioniertexte. Je Zeile mit einem „*“ unterteilt.</xs:documentation>
+						<xs:documentation>Kommisioniertexte. Wird am YellowCube Autostore-Kommissionierplatz angezeigt.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="Bitte Seriennummer scannen und auf Garantiekarte eintragen."/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
 							<xs:maxLength value="132"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:minLength value="0"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="PickingMessageLC" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>SprachCode des Meldungstextes: „de“, „fr“, „it“ oder „en“</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="de"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:normalizedString">
-							<xs:minLength value="2"/>
 							<xs:maxLength value="2"/>
 							<xs:enumeration value="de"/>
 							<xs:enumeration value="fr"/>
@@ -1001,10 +1222,16 @@ SI; AS; BLN; SA; AZS; etc. (BLN beinhaltet SI, deshalb nur BLN alleine übermitt
 					<xs:annotation>
 						<xs:documentation>Retouren-Grund gemäss YC-Retouren-Code-Liste
 z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="R06"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:maxLength value="3"/>
+							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -1077,7 +1304,7 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:normalizedString">
-				<xs:maxLength value="50"/>
+				<xs:maxLength value="60"/>
 				<xs:whiteSpace value="collapse"/>
 			</xs:restriction>
 		</xs:simpleType>
@@ -1097,9 +1324,15 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 	<xs:simpleType name="ISO">
 		<xs:annotation>
 			<xs:documentation> Einheiten ISO-CodeTabelle</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="CMT"/>
+				</altova:exampleValues>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:maxLength value="3"/>
+			<xs:whiteSpace value="collapse"/>
 			<xs:enumeration value="LTR"/>
 			<xs:enumeration value="BA"/>
 			<xs:enumeration value="GRM"/>
@@ -1124,7 +1357,19 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 	</xs:simpleType>
 	<!--EANValue-->
 	<xs:simpleType name="EANvalue">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="4006381333627"/>
+					<altova:example value="7611330134728"/>
+					<altova:example value="761056789012345678"/>
+					<altova:example value=""/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
 		<xs:restriction base="xs:string">
+			<xs:maxLength value="18"/>
+			<xs:whiteSpace value="collapse"/>
 			<xs:pattern value="([0-9]{8,18})?"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -1135,6 +1380,7 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:normalizedString">
 			<xs:maxLength value="2"/>
+			<xs:whiteSpace value="collapse"/>
 			<xs:enumeration value="E5"/>
 			<xs:enumeration value="EA"/>
 			<xs:enumeration value="HE"/>
@@ -1162,6 +1408,8 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="12"/>
 			<xs:fractionDigits value="2"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="([0-9]{1,10}(\.[0-9]{1,2})?)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!--Float13v3-->
@@ -1177,6 +1425,8 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 		<xs:restriction base="xs:decimal">
 			<xs:totalDigits value="16"/>
 			<xs:fractionDigits value="3"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="([0-9]{1,13}(\.[0-9]{1,3})?)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!--E-Mailadresse Validierung-->
@@ -1190,15 +1440,20 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 				</altova:exampleValues>
 			</xs:appinfo>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
+		<xs:restriction base="xs:normalizedString">
 			<xs:maxLength value="241"/>
 			<xs:pattern value="([^@]+@[^\.]+\..+)?"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:element name="DocStream" type="xs:base64Binary">
+	<xs:element name="DocStream">
 		<xs:annotation>
 			<xs:documentation>Binäre Base64 codierte Filedaten</xs:documentation>
 		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:base64Binary">
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
 	</xs:element>
 	<xs:element name="DocType">
 		<xs:annotation>
@@ -1237,9 +1492,8 @@ z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
 				<xs:length value="3"/>
 				<xs:whiteSpace value="collapse"/>
 				<xs:enumeration value="pdf"/>
-				<xs:enumeration value="PDF"/>
 				<xs:enumeration value="pcl"/>
-				<xs:enumeration value="PCL"/>
+				<xs:enumeration value="txt"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>

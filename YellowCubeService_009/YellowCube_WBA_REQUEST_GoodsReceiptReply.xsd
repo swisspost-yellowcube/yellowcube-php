@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***   Version X009 19.11.2014                                                    -->
 <!--   ***                                                                              -->
-<!--   ***   X002 Clean up from initial version                                         -->
-<!--   ***   X003 New URI Namespaces                                                    -->
-<!--   ***   X004                                                      -->
-<!--   ***   X005 New Namespace                                                         -->
-<xs:schema xmlns:war_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" elementFormDefault="qualified">
-	<xs:element name="WAR_Request">
+<!--   ***   X007 initial version of this document                                      -->
+<!--   ***   X008 No changes in this document                                           -->
+<!--   ***   X009 patterns etc.                                                         -->
+<xs:schema xmlns:wba_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_REQUEST_GoodsReceiptReply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_REQUEST_GoodsReceiptReply.xsd" elementFormDefault="qualified">
+	<xs:element name="WBA_Request">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="war_r:ControlReference"/>
-				<xs:element ref="war_r:CustomerOrderNo" minOccurs="0"/>
+				<xs:element ref="wba_r:ControlReference"/>
+				<xs:element ref="wba_r:SupplierOrderNo" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -24,13 +24,13 @@
 			<xs:sequence>
 				<xs:element name="Type">
 					<xs:annotation>
-						<xs:documentation>Typ - [WAR]-List only</xs:documentation>
+						<xs:documentation>Typ - [WBA]-List only</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="6"/>
-							<xs:enumeration value="WAR"/>
+							<xs:enumeration value="WBA"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -42,24 +42,38 @@
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Receiver">
 					<xs:annotation>
 						<xs:documentation>Empfänger YELLOWCUBE</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="YELLOWCUBE"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
 							<xs:enumeration value="YELLOWCUBE"/>
+							<xs:enumeration value="LOGOS"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="Timestamp">
 					<xs:annotation>
 						<xs:documentation>Zeitstempel - JJJJMMTThhmmss</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="20141113235959"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:unsignedLong">
@@ -86,17 +100,30 @@
 				<xs:element name="Version">
 					<xs:annotation>
 						<xs:documentation>Schnittstellenversion</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="1.0"/>
+								<altova:example value="1.1"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 							<xs:maxLength value="3"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([1-9]{1}[\.]{1}[0-9]{1})"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="CommType" default="SOAP" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Kommunikationstyp SOAP|REST|HTTPS|FTP</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="SOAP"/>
+							</altova:exampleValues>
+						</xs:appinfo>
 					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
@@ -146,7 +173,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="CustomerOrderNo">
+	<xs:element name="SupplierOrderNo">
 		<xs:simpleType>
 			<xs:restriction base="xs:normalizedString">
 				<xs:maxLength value="256"/>

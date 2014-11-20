@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X005 08.10.2014                                                    -->
+<!--   ***   Version X009 19.11.2014                                                    -->
 <!--   ***                                                                              -->
 <!--   ***   X002 Clean up from initial version                                         -->
 <!--   ***   X003 New URI Namespaces                                                    -->
-<!--   ***   X004                                                    -->
+<!--   ***   X004                                                                       -->
 <!--   ***   X005 New Namespace                                                         -->
-<xs:schema 
-		xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd" 
-		xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-		targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd"
->
+<!--   ***   X006 No changes in this document                                           -->
+<!--   ***   X007 ArticleNo String(35)                                                  -->
+<!--   ***   X008 No changes in this document                                           -->
+<!--   ***   X009 No changes in this document                                           -->
+<xs:schema xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd">
 	<xs:element name="BAR">
 		<xs:complexType>
 			<xs:sequence>
@@ -95,7 +96,7 @@
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
-				<xs:maxLength value="40"/>
+				<xs:maxLength value="35"/>
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>
