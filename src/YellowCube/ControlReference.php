@@ -86,7 +86,7 @@ class ControlReference
 
   /**
    *
-   * @return Type
+   * @return string
    */
   public function getType()
   {
@@ -95,8 +95,7 @@ class ControlReference
 
   /**
    *
-   * @param Type $Type
-   * @return \YellowCube\API\ControlReference
+   * @param string $Type
    */
   public function setType($Type)
   {
@@ -105,8 +104,7 @@ class ControlReference
   }
 
   /**
-   *
-   * @return Sender
+   * @return string
    */
   public function getSender()
   {
@@ -114,9 +112,7 @@ class ControlReference
   }
 
   /**
-   *
    * @param string $Sender
-   * @return \YellowCube\API\ControlReference
    */
   public function setSender($Sender)
   {
@@ -126,7 +122,7 @@ class ControlReference
 
   /**
    *
-   * @return Receiver
+   * @return string
    */
   public function getReceiver()
   {
@@ -135,8 +131,7 @@ class ControlReference
 
   /**
    *
-   * @param Receiver $Receiver
-   * @return \YellowCube\API\ControlReference
+   * @param string $Receiver
    */
   public function setReceiver($Receiver)
   {
@@ -146,7 +141,7 @@ class ControlReference
 
   /**
    *
-   * @return Timestamp
+   * @return string
    */
   public function getTimestamp()
   {
@@ -155,8 +150,7 @@ class ControlReference
 
   /**
    *
-   * @param Timestamp $Timestamp
-   * @return \YellowCube\API\ControlReference
+   * @param string $Timestamp
    */
   public function setTimestamp($Timestamp)
   {
@@ -166,7 +160,7 @@ class ControlReference
 
   /**
    *
-   * @return OperatingMode
+   * @return string
    */
   public function getOperatingMode()
   {
@@ -175,8 +169,7 @@ class ControlReference
 
   /**
    *
-   * @param OperatingMode $OperatingMode
-   * @return \YellowCube\API\ControlReference
+   * @param string $OperatingMode
    */
   public function setOperatingMode($OperatingMode)
   {
@@ -186,7 +179,7 @@ class ControlReference
 
   /**
    *
-   * @return Version
+   * @return string
    */
   public function getVersion()
   {
@@ -195,8 +188,7 @@ class ControlReference
 
   /**
    *
-   * @param Version $Version
-   * @return \YellowCube\API\ControlReference
+   * @param string $Version
    */
   public function setVersion($Version)
   {
@@ -206,7 +198,7 @@ class ControlReference
 
   /**
    *
-   * @return CommType
+   * @return string
    */
   public function getCommType()
   {
@@ -215,8 +207,7 @@ class ControlReference
 
   /**
    *
-   * @param CommType $CommType
-   * @return \YellowCube\API\ControlReference
+   * @param string $CommType
    */
   public function setCommType($CommType)
   {
@@ -226,7 +217,7 @@ class ControlReference
 
   /**
    *
-   * @return TransControlID
+   * @return string
    */
   public function getTransControlID()
   {
@@ -235,8 +226,7 @@ class ControlReference
 
   /**
    *
-   * @param TransControlID $TransControlID
-   * @return \YellowCube\API\ControlReference
+   * @param string $TransControlID
    */
   public function setTransControlID($TransControlID)
   {
@@ -246,7 +236,7 @@ class ControlReference
 
   /**
    *
-   * @return TransMaxWait
+   * @return int
    */
   public function getTransMaxWait()
   {
@@ -255,8 +245,7 @@ class ControlReference
 
   /**
    *
-   * @param TransMaxWait $TransMaxWait
-   * @return \YellowCube\API\ControlReference
+   * @param int $TransMaxWait
    */
   public function setTransMaxWait($TransMaxWait)
   {
