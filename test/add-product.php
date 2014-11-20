@@ -8,6 +8,7 @@ use YellowCube\Art\UnitsOfMeasure\AlternateUnitISO;
 use YellowCube\Art\UnitsOfMeasure\EAN;
 use YellowCube\Art\UnitsOfMeasure\EANType;
 use YellowCube\Art\UnitsOfMeasure\ISO;
+use YellowCube\Config;
 
 $article = (new Article)
     ->setChangeFlag('I')
@@ -24,7 +25,7 @@ $article = (new Article)
     ->addArticleDescription(new ArticleDescription('It wasn\'t me.', 'en'))
 ;
 
-$client = new YellowCube\Client(true);
+$client = new YellowCube\Client(Config::testConfig());
 assert($client->insertArticleMasterData($article)->isSuccess() == true);
 
 
