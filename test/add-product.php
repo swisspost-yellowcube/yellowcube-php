@@ -26,8 +26,10 @@ $article = (new Article)
 ;
 
 $client = new YellowCube\Client(Config::testConfig());
-assert($client->insertArticleMasterData($article)->isSuccess() == true);
+$response = $client->insertArticleMasterData($article);
 
-echo "Successfully added article";
+assert($response->isSuccess(), 'Inserting article failed.');
+
+echo "Successfully added article with reference " . $response->getReference();
 
 
