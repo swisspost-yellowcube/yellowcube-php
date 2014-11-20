@@ -7,7 +7,7 @@ use Wsdl2PhpGenerator\Config;
 
 $generator = new \Wsdl2PhpGenerator\Generator();
 $generator->generate(new Config(array(
-    'inputFile'                      => './YellowCubeService_005/YellowCubeService.wsdl',
+    'inputFile'                      => __DIR__ . '/../YellowCubeService_009/YellowCubeService_extern.wsdl',
     'outputDir'                      => 'gen/YellowCube',
     'verbose'                        => false,
     'namespaceName'                  => 'YellowCube',
