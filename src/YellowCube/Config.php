@@ -10,7 +10,7 @@ class Config {
     protected $receiver;
     protected $debugMode;
 
-    function __construct($sender, $wsdl, $debugMode = false, $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
+    function __construct($sender, $wsdl, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
         \Assert\that($sender)->notEmpty()->string('Sender must be set.');
         \Assert\that($wsdl)->notEmpty()->string('WSDL must be set.');
