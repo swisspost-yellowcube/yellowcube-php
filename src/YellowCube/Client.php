@@ -8,48 +8,27 @@ use YellowCube\Util\SoapClient;
 class Client {
 
     /**
-     * @var bool
+     * @var Config
      */
-    protected $debugMode;
+    protected $config;
 
     /**
-     * @var YellowCube_Service
+     * @var \SoapClient
      */
     protected $service;
 
-    protected $sender;
-
-    public function __construct($debugMode = true, $sender = 'YCTest', $service = null) {
-        $this->sender = $sender;
-        $this->debugMode = $debugMode;
-
-
+    public function __construct(Config $config = null, \SoapClient $service = null) {
+        $this->config = $config;
         $this->service = $service;
     }
 
-    protected function getService() {
-        if (empty($this->service)) {
-            $options = array(
-                'soap_version' => SOAP_1_1,
-                'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
-                'classmap' => array(
-                    'GEN_Response' => 'YellowCube\GEN_Response'
-                ),
-            );
-
-            if ($this->debugMode == true) {
-                $options['proxy_host'] = '127.0.0.1';
-                $options['proxy_port'] = '8888';
-            }
-
-            $this->service = new SoapClient('YellowCubeService_009/YellowCubeService_extern.wsdl', $options);
-        }
-
-        return $this->service;
-    }
-
     /**
-     * @param Article $article
+     * Mutates specified Article.
+     *
+     * The Article has a ChangeFlag which indicates if the
+     * article should be inserted, updated or deleted.
+     *
+     * @param Article $article Article to mutate.
      * @return GEN_Response
      */
     public function insertArticleMasterData(Article $article)
@@ -62,15 +41,46 @@ class Client {
         ));
     }
 
+    /**
+     * Returns a ControlReference for specified type.
+     *
+     * @param $type
+     * @return ControlReference
+     */
     protected function getControlReferenceByType($type) {
         $controlReference = new ControlReference();
         return $controlReference
             ->setType($type)
-            ->setSender($this->sender)
+            ->setSender($this->getConfig()->getSender())
             ->setReceiver('YELLOWCUBE')
             ->setTimestamp(date('Ymdhis'))
             ->setOperatingMode('T') // todo: $this->debugMode ? "T" : "P"
             ->setVersion('1.0')
             ->setCommType('SOAP');
     }
+
+    /**
+     * @return Config
+     */
+    protected function getConfig() {
+        if (empty($this->config)) {
+            $this->config = Config::testConfig();
+        }
+
+        return $this->config;
+    }
+
+    /**
+     * Returns a SoapClient instance to use.
+     *
+     * @return \SoapClient
+     */
+    protected function getService() {
+        if (empty($this->service)) {
+            $this->service = new SoapClient($this->getConfig()->getWsdl(), $this->getConfig()->getSoapClientOptions());
+        }
+
+        return $this->service;
+    }
+
 }
