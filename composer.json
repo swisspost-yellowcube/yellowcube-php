@@ -8,14 +8,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "YellowCube\\": "./gen/YellowCube/",
-            "YellowCube\\Util\\": "./src/YellowCube/Util/"
+            "YellowCube\\": "./src/YellowCube/"
         }
     },
     "require": {
         "ext-soap": "*",
-        "php": ">=5.3",
-        "wsdl2phpgenerator/wsdl2phpgenerator": "3.x"
+        "php": ">=5.3"
     },
     "minimum-stability": "dev"
 }
