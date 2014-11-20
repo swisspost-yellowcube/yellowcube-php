@@ -4,5 +4,7 @@
 # PHPUnit
 phpunit.xml
 
+# Editors
 .idea
+**.orig
 
