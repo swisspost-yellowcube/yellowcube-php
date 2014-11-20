@@ -6,6 +6,7 @@ class SoapClient extends \SoapClient {
 
     public function __construct($wsdl, $options)  {
         $defaultOptions = array(
+            'trace' => true,
             'soap_version' => SOAP_1_1,
             'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
             'classmap' => array(
@@ -21,8 +22,9 @@ class SoapClient extends \SoapClient {
         try {
             return parent::__call($method, $args);
         } catch (\Exception $e) {
-            // var_dump($this->__getLastResponse());
-            throw new \Exception($e->getMessage());
+            $message = $e->getMessage();
+            $message .= PHP_EOL . PHP_EOL . 'Request XML: ' . PHP_EOL . $this->__getLastRequest();
+            throw new \Exception($message);
         }
     }
 }

@@ -28,4 +28,6 @@ $article = (new Article)
 $client = new YellowCube\Client(Config::testConfig());
 assert($client->insertArticleMasterData($article)->isSuccess() == true);
 
+echo "Successfully added article";
+
 
