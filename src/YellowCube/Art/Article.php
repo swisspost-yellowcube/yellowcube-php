@@ -2,7 +2,17 @@
 
 namespace YellowCube\Art;
 
+use YellowCube\Art\UnitsOfMeasure\AltDenominatorUOM;
+use YellowCube\Art\UnitsOfMeasure\AlternateUnitISO;
+use YellowCube\Art\UnitsOfMeasure\AltNumeratorUOM;
+use YellowCube\Art\UnitsOfMeasure\EAN;
+use YellowCube\Art\UnitsOfMeasure\EANType;
+use YellowCube\Art\UnitsOfMeasure\GrossWeight;
+use YellowCube\Art\UnitsOfMeasure\Height;
+use YellowCube\Art\UnitsOfMeasure\Length;
 use YellowCube\Art\UnitsOfMeasure\UnitOfMeasure;
+use YellowCube\Art\UnitsOfMeasure\Volume;
+use YellowCube\Art\UnitsOfMeasure\Width;
 use YellowCube\Util\ClassUtil;
 
 class Article
@@ -79,9 +89,123 @@ class Article
      */
     protected $ArticleDescriptions = array();
 
-    public function addArticleDescription(ArticleDescription $articleDescription)
+    /**
+     * Helper to set the unit of measure length .
+     *
+     * @param $length
+     * @param $ISO
+     * @return $this
+     */
+    public function setLength($length, $ISO) {
+        $this->addUnitOfMeasure(new Length($length, $ISO));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure width.
+     *
+     * @param $width
+     * @param $ISO
+     * @return $this
+     */
+    public function setWidth($width, $ISO) {
+        $this->addUnitOfMeasure(new Width($width, $ISO));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure height.
+     *
+     * @param $height
+     * @param $ISO
+     * @return $this
+     */
+    public function setHeight($height, $ISO) {
+        $this->addUnitOfMeasure(new Height($height, $ISO));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure EAN.
+     *
+     * @param $EAN
+     * @param null $EANType
+     * @return $this
+     */
+    public function setEAN($EAN, $EANType = null) {
+        $this->addUnitOfMeasure(new EAN($EAN, $EANType));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure alternate unit ISO.
+     *
+     * @param $alternateUnitISO
+     * @return $this
+     */
+    public function setAlternateUnitISO($alternateUnitISO) {
+        $this->addUnitOfMeasure(new AlternateUnitISO($alternateUnitISO));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure alternate numerator.
+     *
+     * @param $altNumeratorUOM
+     * @return $this
+     */
+    public function setAltNumeratorUOM($altNumeratorUOM) {
+        $this->addUnitOfMeasure(new AltNumeratorUOM($altNumeratorUOM));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure alternate denominator.
+     *
+     * @param $altDenominatorUOM
+     * @return $this
+     */
+    public function setAltDenominatorUOM($altDenominatorUOM) {
+        $this->addUnitOfMeasure(new AltDenominatorUOM($altDenominatorUOM));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure gross weight.
+     *
+     * @param $grossWeight
+     * @param $ISO
+     * @return $this
+     */
+    public function setGrossWeight($grossWeight, $ISO) {
+        $this->addUnitOfMeasure(new GrossWeight($grossWeight, $ISO));
+
+        return $this;
+    }
+
+    /**
+     * Helper to set the unit of measure volume.
+     *
+     * @param $volume
+     * @param $ISO
+     * @return $this
+     */
+    public function setVolume($volume, $ISO) {
+        $this->addUnitOfMeasure(new Volume($volume, $ISO));
+
+        return $this;
+    }
+
+    public function addArticleDescription($description, $langCode)
     {
-        $this->ArticleDescriptions[] = $articleDescription;
+        $this->ArticleDescriptions[] = new ArticleDescription($description, $langCode);
 
         return $this;
     }
@@ -160,9 +284,9 @@ class Article
     /**
      * @param NetWeight $NetWeight
      */
-    public function setNetWeight($NetWeight)
+    public function setNetWeight($netWeight, $ISO)
     {
-        $this->NetWeight = $NetWeight;
+        $this->NetWeight = new NetWeight($netWeight, $ISO);
         return $this;
     }
 

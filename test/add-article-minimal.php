@@ -3,9 +3,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\Art\Article;
 use YellowCube\Art\ChangeFlag;
-use YellowCube\Art\NetWeight;
-use YellowCube\Art\ArticleDescription;
-use YellowCube\Art\UnitsOfMeasure\AlternateUnitISO;
 use YellowCube\Art\UnitsOfMeasure\ISO;
 use YellowCube\Config;
 
@@ -15,9 +12,13 @@ $article
     ->setPlantID('Y012')
     ->setDepositorNo('0000040750')
     ->setArticleNo('47686-3009-35/38')
-    ->setNetWeight(new NetWeight(0.042, ISO::KGM))
-    ->addUnitOfMeasure(new AlternateUnitISO('PCE'))
-    ->addArticleDescription(new ArticleDescription('Ich wars nicht.', 'de'))
+    ->setNetWeight(0.042, ISO::KGM)
+    ->setEAN('7501031311309')
+    ->setAlternateUnitISO(ISO::PCE)
+    ->setLength(120, ISO::MMT)
+    ->setWidth(80, ISO::MMT)
+    ->setHeight(20, ISO::MMT)
+    ->addArticleDescription('Ich wars nicht.', 'de')
 ;
 
 $client = new YellowCube\Client(Config::testConfig());
