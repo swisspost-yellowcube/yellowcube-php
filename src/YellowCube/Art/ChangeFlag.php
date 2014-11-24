@@ -1,6 +1,6 @@
 <?php
 
-namespace YellowCube\Art\Article;
+namespace YellowCube\Art;
 
 class ChangeFlag
 {
