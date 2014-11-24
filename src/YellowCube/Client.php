@@ -48,13 +48,12 @@ class Client {
      * @return ControlReference
      */
     protected function getControlReferenceByType($type) {
-        $controlReference = new ControlReference();
-        return $controlReference
+        return (new ControlReference())
             ->setType($type)
             ->setSender($this->getConfig()->getSender())
-            ->setReceiver('YELLOWCUBE')
+            ->setReceiver($this->getConfig()->getReceiver())
             ->setTimestamp(date('Ymdhis'))
-            ->setOperatingMode('T') // todo: $this->debugMode ? "T" : "P"
+            ->setOperatingMode('T') // todo: $this->getConfig()->isDebugMode() ? "T" : "P"
             ->setVersion('1.0')
             ->setCommType('SOAP');
     }

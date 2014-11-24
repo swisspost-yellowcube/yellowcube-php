@@ -34,7 +34,7 @@ class Config {
     }
 
     /**
-     * Returns a config which can be used for testing.
+     * Returns a config which can be used for testing (with a proxy).
      *
      * @return Config
      */
