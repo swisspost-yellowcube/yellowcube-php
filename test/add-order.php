@@ -39,8 +39,7 @@ $position
     ->setPlant('Y010')
     ->setQuantity(1.00)
     ->setQuantityISO('PCE')
-    ->setShortDescription('loral Pasty Daisie')
-;
+    ->setShortDescription('loral Pasty Daisie');
 
 $order = new Order();
 $order
@@ -50,8 +49,7 @@ $order
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
     ->addValueAddedService(new DeliveryInstructions(''))
     ->addOrderPosition($position)
-    ->setOrderDocumentsFlag(true)
-;
+    ->setOrderDocumentsFlag(true);
 
 $response = $client->createYCCustomerOrder($order);
 assert($response->isSuccess(), 'Getting status for order failed.');

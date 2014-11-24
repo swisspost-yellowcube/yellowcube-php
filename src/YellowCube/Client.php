@@ -76,7 +76,8 @@ class Client {
      * @return ControlReference
      */
     protected function getControlReferenceByType($type) {
-        return (new ControlReference())
+        $controlReference = new ControlReference();
+        return $controlReference
             ->setType($type)
             ->setSender($this->getConfig()->getSender())
             ->setReceiver($this->getConfig()->getReceiver())
