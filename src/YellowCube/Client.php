@@ -89,6 +89,20 @@ class Client {
     }
 
     /**
+     * Returns the current status of a customer order specified by its reference.
+     *
+     * @param string $reference Customer order reference.
+     *
+     * @return Article[] Article List
+     */
+    public function getInventory()
+    {
+        return $this->getService()->GetInventory(array(
+            'ControlReference' => $this->getControlReferenceByType('BAR'),
+        ))->ArticleList->Article;
+    }
+
+    /**
      * Returns a ControlReference for specified type.
      *
      * @param $type

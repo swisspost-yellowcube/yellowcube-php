@@ -10,7 +10,9 @@ class SoapClient extends \SoapClient {
             'soap_version' => SOAP_1_1,
             'features' => SOAP_SINGLE_ELEMENT_ARRAYS,
             'classmap' => array(
-                'GEN_Response' => 'YellowCube\GEN_Response'
+                'GEN_Response' => 'YellowCube\GEN_Response',
+                'Article' => 'YellowCube\BAR\Article',
+                'QuantityUOM' => 'YellowCube\BAR\QuantityUOM',
             )
         );
 
