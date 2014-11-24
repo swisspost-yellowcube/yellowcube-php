@@ -2,11 +2,18 @@
 
 namespace YellowCube;
 
-use YellowCube\Art\Article;
+use YellowCube\ART\Article;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 
-class Service {
+/**
+ * Provides methods to mutate articles, order articles and list inventory.
+ *
+ * @package YellowCube
+ * @author Adrian Philipp <adrian.philipp@liip.ch>
+ */
+class Service
+{
 
     /**
      * @var Config
@@ -18,7 +25,14 @@ class Service {
      */
     protected $client;
 
-    public function __construct(Config $config = null, \SoapClient $client = null) {
+    /**
+     * Creates a new Service used to connect to YellowCube.
+     *
+     * @param Config $config Config containing user credentials, if not provided a test config is used.
+     * @param \SoapClient $client Custom optional SoapClient.
+     */
+    public function __construct(Config $config = null, \SoapClient $client = null)
+    {
         $this->config = $config;
         $this->client = $client;
     }
@@ -124,22 +138,26 @@ class Service {
      * @param $type
      * @return ControlReference
      */
-    protected function getControlReferenceByType($type) {
+    protected function getControlReferenceByType($type)
+    {
         $controlReference = new ControlReference();
         return $controlReference
             ->setType($type)
             ->setSender($this->getConfig()->getSender())
             ->setReceiver($this->getConfig()->getReceiver())
             ->setTimestamp(date('Ymdhis'))
-            ->setOperatingMode('T') // todo: $this->getConfig()->isDebugMode() ? "T" : "P"
+            ->setOperatingMode('T')// todo: $this->getConfig()->isDebugMode() ? "T" : "P"
             ->setVersion('1.0')
             ->setCommType('SOAP');
     }
 
     /**
+     * Returns the config to use.
+     *
      * @return Config
      */
-    protected function getConfig() {
+    protected function getConfig()
+    {
         if (empty($this->config)) {
             $this->config = Config::testConfig();
         }
@@ -152,7 +170,8 @@ class Service {
      *
      * @return \SoapClient
      */
-    protected function getClient() {
+    protected function getClient()
+    {
         if (empty($this->client)) {
             $this->client = new SoapClient($this->getConfig()->getWsdl(), $this->getConfig()->getSoapClientOptions());
         }
