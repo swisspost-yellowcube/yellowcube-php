@@ -1,0 +1,19 @@
+.md|jinja|markdown:
+    - .sh|bash
+    - assets
+    # available extensions https://pythonhosted.org/Markdown/extensions/index.html
+    - markdown:
+        tables: {}
+        toc: { anchorlink : true }
+
+assets:
+    - .css
+    - .png
+    - .ico
+    - .jpg
+    - .eot
+    - .svg
+    - .ttf
+    - .woff
+    - .htpasswd
+    - .htaccess
