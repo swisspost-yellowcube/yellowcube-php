@@ -20,12 +20,10 @@ Manual Installation
 
 With composer:
 
-    composer require TO-BE-DEFINED/yellowcube-php
+    composer require liip/yellowcube-php
 
 Development
 -----------
 
 1. `git clone https://github.com/liip/yellowcube-php.git`
 2. Install dependencies `composer install`
-2. Generate classes from WSDL `php bin/generate.php`
-2. Run tests `phpunit`
