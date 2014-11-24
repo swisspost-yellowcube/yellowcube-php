@@ -6,14 +6,11 @@ class ISO
 {
     const LTR = 'LTR';
     const BA = 'BA';
-
     const GRM = 'GRM';
     const KGM = 'KGM';
     const MGM = 'MGM';
-
     const MMT = 'MMT';
     const CMT = 'CMT';
-
     const CM = 'CM';
     const CMK = 'CMK';
     const CMQ = 'CMQ';

@@ -11,7 +11,6 @@ abstract class SimpleValue
 
     /**
      * @param mixed $value
-     * @param ISO $ISO
      */
     public function __construct($value)
     {
