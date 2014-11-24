@@ -95,7 +95,7 @@ class ControlReference
             ->setSender($config->getSender())
             ->setReceiver($config->getReceiver())
             ->setTimestamp(date('Ymdhis'))
-            ->setOperatingMode('T')// todo: $this->getConfig()->isDebugMode() ? "T" : "P"
+            ->setOperatingMode($config->isDebugMode() ? 'T' : 'P')
             ->setVersion('1.0')
             ->setCommType('SOAP');
     }
