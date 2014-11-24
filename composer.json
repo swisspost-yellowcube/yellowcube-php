@@ -16,5 +16,11 @@
         "php": ">=5.3",
         "beberlei/assert": "~2.0@dev"
     },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
     "minimum-stability": "dev"
 }

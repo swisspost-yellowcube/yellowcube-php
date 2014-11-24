@@ -1,5 +1,6 @@
 # Managed by Composer
 /vendor/
+/bin/phpspec
 
 # PHPUnit
 phpunit.xml
