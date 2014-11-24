@@ -2,8 +2,8 @@
 
 namespace YellowCube\Art;
 
-use YellowCube\API\NetWeight;
 use YellowCube\Art\UnitsOfMeasure\UnitOfMeasure;
+use YellowCube\Util\ClassUtil;
 
 class Article
 {
@@ -88,8 +88,7 @@ class Article
 
     public function addUnitOfMeasure(UnitOfMeasure $unitOfMeasure)
     {
-        $className = (new \ReflectionClass($unitOfMeasure))->getShortName();
-        $this->UnitsOfMeasure[$className] = $unitOfMeasure;
+        $this->UnitsOfMeasure[ClassUtil::getClassName($unitOfMeasure)] = $unitOfMeasure;
 
         return $this;
     }

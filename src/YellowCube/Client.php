@@ -4,6 +4,7 @@ namespace YellowCube;
 
 use YellowCube\Art\Article;
 use YellowCube\Util\SoapClient;
+use YellowCube\WAB\Order;
 
 class Client {
 
@@ -53,6 +54,20 @@ class Client {
             'Reference' => $reference
         ));
     }
+
+    /**
+     * @param Order $order
+     *
+     * @return GEN_Response
+     */
+    public function createYCCustomerOrder(Order $order)
+    {
+        return $this->getService()->CreateYCCustomerOrder(array(
+            'ControlReference' => $this->getControlReferenceByType('WAB'),
+            'Order' => $order
+        ));
+    }
+
 
     /**
      * Returns a ControlReference for specified type.

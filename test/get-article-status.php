@@ -8,6 +8,6 @@ $response = $client->getInsertArticleMasterDataStatus(1040);
 
 assert($response->isSuccess(), 'Getting status for article failed.');
 
-echo "Successfully retrieved staus for article with reference " . $response->getReference();
+echo "Successfully retrieved status for article with reference " . $response->getReference();
 
 

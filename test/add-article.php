@@ -18,7 +18,8 @@ use YellowCube\Art\UnitsOfMeasure\Volume;
 use YellowCube\Art\UnitsOfMeasure\Width;
 use YellowCube\Config;
 
-$article = (new Article)
+$article = new Article;
+$article
     ->setChangeFlag(ChangeFlag::INSERT)
     ->setPlantID('Y012')
     ->setDepositorNo('0000040750')
