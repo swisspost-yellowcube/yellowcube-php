@@ -42,6 +42,19 @@ class Client {
     }
 
     /**
+     *
+     * @param string $reference
+     * @return GEN_Response
+     */
+    public function getInsertArticleMasterDataStatus($reference)
+    {
+        return $this->getService()->GetInsertArticleMasterDataStatus(array(
+            'ControlReference' => $this->getControlReferenceByType('ART'),
+            'Reference' => $reference
+        ));
+    }
+
+    /**
      * Returns a ControlReference for specified type.
      *
      * @param $type
