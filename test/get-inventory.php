@@ -3,7 +3,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\Config;
 
-$client = new YellowCube\Client(Config::testConfig());
+$client = new YellowCube\Service(Config::testConfig());
 $articleList = $client->getInventory();
 
 var_dump($articleList);

@@ -6,7 +6,7 @@ use YellowCube\Art\Article;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 
-class Client {
+class Service {
 
     /**
      * @var Config
@@ -16,11 +16,11 @@ class Client {
     /**
      * @var \SoapClient
      */
-    protected $service;
+    protected $client;
 
-    public function __construct(Config $config = null, \SoapClient $service = null) {
+    public function __construct(Config $config = null, \SoapClient $client = null) {
         $this->config = $config;
-        $this->service = $service;
+        $this->client = $client;
     }
 
     /**
@@ -34,7 +34,7 @@ class Client {
      */
     public function insertArticleMasterData(Article $article)
     {
-        return $this->getService()->InsertArticleMasterData(array(
+        return $this->getClient()->InsertArticleMasterData(array(
             'ControlReference' => $this->getControlReferenceByType('ART'),
             'ArticleList' => array(
                 'Article' => $article
@@ -52,7 +52,7 @@ class Client {
      */
     public function getInsertArticleMasterDataStatus($reference)
     {
-        return $this->getService()->GetInsertArticleMasterDataStatus(array(
+        return $this->getClient()->GetInsertArticleMasterDataStatus(array(
             'ControlReference' => $this->getControlReferenceByType('ART'),
             'Reference' => $reference
         ));
@@ -67,7 +67,7 @@ class Client {
      */
     public function createYCCustomerOrder(Order $order)
     {
-        return $this->getService()->CreateYCCustomerOrder(array(
+        return $this->getClient()->CreateYCCustomerOrder(array(
             'ControlReference' => $this->getControlReferenceByType('WAB'),
             'Order' => $order
         ));
@@ -82,7 +82,7 @@ class Client {
      */
     public function getYCCustomerOrderStatus($reference)
     {
-        return $this->getService()->GetYCCustomerOrderStatus(array(
+        return $this->getClient()->GetYCCustomerOrderStatus(array(
             'ControlReference' => $this->getControlReferenceByType('WAB'),
             'Reference' => $reference
         ));
@@ -98,7 +98,7 @@ class Client {
      */
     public function GetYCCustomerOrderReply($customerOrderNo = '')
     {
-        return $this->getService()->GetYCCustomerOrderReply(array(
+        return $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => $this->getControlReferenceByType('WAR'),
             'CustomerOrderNo' => $customerOrderNo
         ));
@@ -113,7 +113,7 @@ class Client {
      */
     public function getInventory()
     {
-        return $this->getService()->GetInventory(array(
+        return $this->getClient()->GetInventory(array(
             'ControlReference' => $this->getControlReferenceByType('BAR'),
         ))->ArticleList->Article;
     }
@@ -152,12 +152,12 @@ class Client {
      *
      * @return \SoapClient
      */
-    protected function getService() {
-        if (empty($this->service)) {
-            $this->service = new SoapClient($this->getConfig()->getWsdl(), $this->getConfig()->getSoapClientOptions());
+    protected function getClient() {
+        if (empty($this->client)) {
+            $this->client = new SoapClient($this->getConfig()->getWsdl(), $this->getConfig()->getSoapClientOptions());
         }
 
-        return $this->service;
+        return $this->client;
     }
 
 }

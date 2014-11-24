@@ -17,7 +17,7 @@ $article
     ->addArticleDescription('Ich wars nicht.', 'de')
 ;
 
-$client = new YellowCube\Client(Config::testConfig());
+$client = new YellowCube\Service(Config::testConfig());
 $response = $client->insertArticleMasterData($article);
 
 assert($response->isSuccess(), 'Inserting article failed.');

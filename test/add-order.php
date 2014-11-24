@@ -10,7 +10,7 @@ use YellowCube\WAB\Partner;
 use YellowCube\Config;
 use YellowCube\WAB\Position;
 
-$client = new YellowCube\Client(Config::testConfig());
+$client = new YellowCube\Service(Config::testConfig());
 
 $partner = new Partner();
 $partner
