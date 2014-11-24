@@ -2,70 +2,43 @@
 
 namespace YellowCube\Art;
 
-class ArticleDescription
+use YellowCube\Util\SimpleValue;
+
+class ArticleDescription extends SimpleValue
 {
+    /**
+     *
+     * @var string $ArticleDescriptionLC
+     */
+    protected $ArticleDescriptionLC = null;
 
-  /**
-   *
-   * @var ArticleDescription $_
-   */
-  protected $_ = null;
+    /**
+     *
+     * @param ArticleDescription $description
+     * @param string $ArticleDescriptionLC Language constant, e.g. 'de', 'fr', ...
+     */
+    public function __construct($description, $ArticleDescriptionLC)
+    {
+        parent::__construct($description);
+        $this->ArticleDescriptionLC = $ArticleDescriptionLC;
+    }
 
-  /**
-   *
-   * @var anonymous171 $ArticleDescriptionLC
-   */
-  protected $ArticleDescriptionLC = null;
+    /**
+     *
+     * @return string
+     */
+    public function getArticleDescriptionLC()
+    {
+        return $this->ArticleDescriptionLC;
+    }
 
-  /**
-   *
-   * @param ArticleDescription $_
-   * @param string $ArticleDescriptionLC Language constant, e.g. 'de', 'fr', ...
-   */
-  public function __construct($_ = null, $ArticleDescriptionLC = null)
-  {
-    $this->_ = $_;
-    $this->ArticleDescriptionLC = $ArticleDescriptionLC;
-  }
-
-  /**
-   *
-   * @return ArticleDescription
-   */
-  public function get_()
-  {
-    return $this->_;
-  }
-
-  /**
-   *
-   * @param ArticleDescription $_
-   * @return \YellowCube\API\ArticleDescription
-   */
-  public function set_($_)
-  {
-    $this->_ = $_;
-    return $this;
-  }
-
-  /**
-   *
-   * @return anonymous171
-   */
-  public function getArticleDescriptionLC()
-  {
-    return $this->ArticleDescriptionLC;
-  }
-
-  /**
-   *
-   * @param anonymous171 $ArticleDescriptionLC
-   * @return \YellowCube\API\ArticleDescription
-   */
-  public function setArticleDescriptionLC($ArticleDescriptionLC)
-  {
-    $this->ArticleDescriptionLC = $ArticleDescriptionLC;
-    return $this;
-  }
+    /**
+     * @param string $ArticleDescriptionLC
+     */
+    public function setArticleDescriptionLC($ArticleDescriptionLC)
+    {
+        $this->ArticleDescriptionLC = $ArticleDescriptionLC;
+        return $this;
+    }
 
 }
