@@ -89,6 +89,22 @@ class Client {
     }
 
     /**
+     * Returns the current order reply of a customer order specified by
+     * the customer order number.
+     *
+     * @param string $reference Customer order reference.
+     *
+     * @return GEN_Response
+     */
+    public function GetYCCustomerOrderReply($customerOrderNo = '')
+    {
+        return $this->getService()->GetYCCustomerOrderReply(array(
+            'ControlReference' => $this->getControlReferenceByType('WAR'),
+            'CustomerOrderNo' => $customerOrderNo
+        ));
+    }
+
+    /**
      * Returns the current status of a customer order specified by its reference.
      *
      * @param string $reference Customer order reference.
