@@ -49,7 +49,7 @@ class Service
     public function insertArticleMasterData(Article $article)
     {
         return $this->getClient()->InsertArticleMasterData(array(
-            'ControlReference' => $this->getControlReferenceByType('ART'),
+            'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'ArticleList' => array(
                 'Article' => $article
             )
@@ -67,7 +67,7 @@ class Service
     public function getInsertArticleMasterDataStatus($reference)
     {
         return $this->getClient()->GetInsertArticleMasterDataStatus(array(
-            'ControlReference' => $this->getControlReferenceByType('ART'),
+            'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'Reference' => $reference
         ));
     }
@@ -82,7 +82,7 @@ class Service
     public function createYCCustomerOrder(Order $order)
     {
         return $this->getClient()->CreateYCCustomerOrder(array(
-            'ControlReference' => $this->getControlReferenceByType('WAB'),
+            'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Order' => $order
         ));
     }
@@ -97,7 +97,7 @@ class Service
     public function getYCCustomerOrderStatus($reference)
     {
         return $this->getClient()->GetYCCustomerOrderStatus(array(
-            'ControlReference' => $this->getControlReferenceByType('WAB'),
+            'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Reference' => $reference
         ));
     }
@@ -113,7 +113,7 @@ class Service
     public function GetYCCustomerOrderReply($customerOrderNo = '')
     {
         return $this->getClient()->GetYCCustomerOrderReply(array(
-            'ControlReference' => $this->getControlReferenceByType('WAR'),
+            'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
             'CustomerOrderNo' => $customerOrderNo
         ));
     }
@@ -128,27 +128,8 @@ class Service
     public function getInventory()
     {
         return $this->getClient()->GetInventory(array(
-            'ControlReference' => $this->getControlReferenceByType('BAR'),
+            'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
         ))->ArticleList->Article;
-    }
-
-    /**
-     * Returns a ControlReference for specified type.
-     *
-     * @param $type
-     * @return ControlReference
-     */
-    protected function getControlReferenceByType($type)
-    {
-        $controlReference = new ControlReference();
-        return $controlReference
-            ->setType($type)
-            ->setSender($this->getConfig()->getSender())
-            ->setReceiver($this->getConfig()->getReceiver())
-            ->setTimestamp(date('Ymdhis'))
-            ->setOperatingMode('T')// todo: $this->getConfig()->isDebugMode() ? "T" : "P"
-            ->setVersion('1.0')
-            ->setCommType('SOAP');
     }
 
     /**

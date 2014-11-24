@@ -83,6 +83,24 @@ class ControlReference
     }
 
     /**
+     * Returns a ControlReference for specified type.
+     *
+     * @param $type
+     * @return ControlReference
+     */
+    public static function fromConfig($type, Config $config) {
+        $controlReference = new ControlReference();
+        return $controlReference
+            ->setType($type)
+            ->setSender($config->getSender())
+            ->setReceiver($config->getReceiver())
+            ->setTimestamp(date('Ymdhis'))
+            ->setOperatingMode('T')// todo: $this->getConfig()->isDebugMode() ? "T" : "P"
+            ->setVersion('1.0')
+            ->setCommType('SOAP');
+    }
+
+    /**
      *
      * @return string
      */
