@@ -1,10 +1,10 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-use YellowCube\Art\Article;
-use YellowCube\Art\ChangeFlag;
-use YellowCube\Art\UnitsOfMeasure\EANType;
-use YellowCube\Art\UnitsOfMeasure\ISO;
+use YellowCube\ART\Article;
+use YellowCube\ART\ChangeFlag;
+use YellowCube\ART\UnitsOfMeasure\EANType;
+use YellowCube\ART\UnitsOfMeasure\ISO;
 use YellowCube\Config;
 
 $article = new Article;

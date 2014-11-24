@@ -1,6 +1,6 @@
 <?php
 
-namespace YellowCube\Art\UnitsOfMeasure;
+namespace YellowCube\ART\UnitsOfMeasure;
 
 use YellowCube\Util\SimpleValue;
 

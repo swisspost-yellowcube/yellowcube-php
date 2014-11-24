@@ -1,6 +1,6 @@
 <?php
 
-namespace YellowCube\Art\UnitsOfMeasure;
+namespace YellowCube\ART\UnitsOfMeasure;
 
 class Width extends Dimension
 {

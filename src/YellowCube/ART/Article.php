@@ -1,18 +1,17 @@
 <?php
 
-namespace YellowCube\Art;
+namespace YellowCube\ART;
 
-use YellowCube\Art\UnitsOfMeasure\AltDenominatorUOM;
-use YellowCube\Art\UnitsOfMeasure\AlternateUnitISO;
-use YellowCube\Art\UnitsOfMeasure\AltNumeratorUOM;
-use YellowCube\Art\UnitsOfMeasure\EAN;
-use YellowCube\Art\UnitsOfMeasure\EANType;
-use YellowCube\Art\UnitsOfMeasure\GrossWeight;
-use YellowCube\Art\UnitsOfMeasure\Height;
-use YellowCube\Art\UnitsOfMeasure\Length;
-use YellowCube\Art\UnitsOfMeasure\UnitOfMeasure;
-use YellowCube\Art\UnitsOfMeasure\Volume;
-use YellowCube\Art\UnitsOfMeasure\Width;
+use YellowCube\ART\UnitsOfMeasure\AltDenominatorUOM;
+use YellowCube\ART\UnitsOfMeasure\AlternateUnitISO;
+use YellowCube\ART\UnitsOfMeasure\AltNumeratorUOM;
+use YellowCube\ART\UnitsOfMeasure\EAN;
+use YellowCube\ART\UnitsOfMeasure\GrossWeight;
+use YellowCube\ART\UnitsOfMeasure\Height;
+use YellowCube\ART\UnitsOfMeasure\Length;
+use YellowCube\ART\UnitsOfMeasure\UnitOfMeasure;
+use YellowCube\ART\UnitsOfMeasure\Volume;
+use YellowCube\ART\UnitsOfMeasure\Width;
 use YellowCube\Util\ClassUtil;
 
 class Article
@@ -96,7 +95,8 @@ class Article
      * @param $ISO
      * @return $this
      */
-    public function setLength($length, $ISO) {
+    public function setLength($length, $ISO)
+    {
         $this->addUnitOfMeasure(new Length($length, $ISO));
 
         return $this;
@@ -109,7 +109,8 @@ class Article
      * @param $ISO
      * @return $this
      */
-    public function setWidth($width, $ISO) {
+    public function setWidth($width, $ISO)
+    {
         $this->addUnitOfMeasure(new Width($width, $ISO));
 
         return $this;
@@ -122,7 +123,8 @@ class Article
      * @param $ISO
      * @return $this
      */
-    public function setHeight($height, $ISO) {
+    public function setHeight($height, $ISO)
+    {
         $this->addUnitOfMeasure(new Height($height, $ISO));
 
         return $this;
@@ -132,10 +134,11 @@ class Article
      * Helper to set the unit of measure EAN.
      *
      * @param $EAN
-     * @param null $EANType
+     * @param string $EANType
      * @return $this
      */
-    public function setEAN($EAN, $EANType = null) {
+    public function setEAN($EAN, $EANType = null)
+    {
         $this->addUnitOfMeasure(new EAN($EAN, $EANType));
 
         return $this;
@@ -147,7 +150,8 @@ class Article
      * @param $alternateUnitISO
      * @return $this
      */
-    public function setAlternateUnitISO($alternateUnitISO) {
+    public function setAlternateUnitISO($alternateUnitISO)
+    {
         $this->addUnitOfMeasure(new AlternateUnitISO($alternateUnitISO));
 
         return $this;
@@ -159,7 +163,8 @@ class Article
      * @param $altNumeratorUOM
      * @return $this
      */
-    public function setAltNumeratorUOM($altNumeratorUOM) {
+    public function setAltNumeratorUOM($altNumeratorUOM)
+    {
         $this->addUnitOfMeasure(new AltNumeratorUOM($altNumeratorUOM));
 
         return $this;
@@ -171,7 +176,8 @@ class Article
      * @param $altDenominatorUOM
      * @return $this
      */
-    public function setAltDenominatorUOM($altDenominatorUOM) {
+    public function setAltDenominatorUOM($altDenominatorUOM)
+    {
         $this->addUnitOfMeasure(new AltDenominatorUOM($altDenominatorUOM));
 
         return $this;
@@ -184,7 +190,8 @@ class Article
      * @param $ISO
      * @return $this
      */
-    public function setGrossWeight($grossWeight, $ISO) {
+    public function setGrossWeight($grossWeight, $ISO)
+    {
         $this->addUnitOfMeasure(new GrossWeight($grossWeight, $ISO));
 
         return $this;
@@ -197,7 +204,8 @@ class Article
      * @param $ISO
      * @return $this
      */
-    public function setVolume($volume, $ISO) {
+    public function setVolume($volume, $ISO)
+    {
         $this->addUnitOfMeasure(new Volume($volume, $ISO));
 
         return $this;
