@@ -27,3 +27,4 @@ Development
 
 1. `git clone https://github.com/liip/yellowcube-php.git`
 2. Install dependencies `composer install`
+3. Run tests `bin/phpspec run`
