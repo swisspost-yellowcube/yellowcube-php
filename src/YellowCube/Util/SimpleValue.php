@@ -29,7 +29,8 @@ abstract class SimpleValue
     /**
      * @return mixed
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->_;
     }
 

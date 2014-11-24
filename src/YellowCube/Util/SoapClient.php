@@ -2,9 +2,11 @@
 
 namespace YellowCube\Util;
 
-class SoapClient extends \SoapClient {
+class SoapClient extends \SoapClient
+{
 
-    public function __construct($wsdl, $options)  {
+    public function __construct($wsdl, $options)
+    {
         $defaultOptions = array(
             'trace' => true,
             'soap_version' => SOAP_1_1,

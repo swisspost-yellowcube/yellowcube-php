@@ -9,9 +9,11 @@
 namespace YellowCube\Util;
 
 
-class ClassUtil {
+class ClassUtil
+{
 
-    public static function getClassName($object) {
+    public static function getClassName($object)
+    {
         $class = new \ReflectionClass($object);
 
         return $class->getShortName();

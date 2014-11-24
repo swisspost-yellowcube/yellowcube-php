@@ -108,6 +108,7 @@ class Partner
     {
         return $this->PartnerType;
     }
+
     /**
      *
      * @param string $PartnerType
@@ -117,6 +118,7 @@ class Partner
         $this->PartnerType = $PartnerType;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -125,6 +127,7 @@ class Partner
     {
         return $this->PartnerNo;
     }
+
     /**
      *
      * @param string $PartnerNo
@@ -134,6 +137,7 @@ class Partner
         $this->PartnerNo = $PartnerNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -142,6 +146,7 @@ class Partner
     {
         return $this->PartnerReference;
     }
+
     /**
      *
      * @param string $PartnerReference
@@ -151,6 +156,7 @@ class Partner
         $this->PartnerReference = $PartnerReference;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -159,6 +165,7 @@ class Partner
     {
         return $this->Title;
     }
+
     /**
      *
      * @param string $Title
@@ -168,6 +175,7 @@ class Partner
         $this->Title = $Title;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -176,6 +184,7 @@ class Partner
     {
         return $this->Name1;
     }
+
     /**
      *
      * @param string $Name1
@@ -185,6 +194,7 @@ class Partner
         $this->Name1 = $Name1;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -193,6 +203,7 @@ class Partner
     {
         return $this->Name2;
     }
+
     /**
      *
      * @param string $Name2
@@ -202,6 +213,7 @@ class Partner
         $this->Name2 = $Name2;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -210,6 +222,7 @@ class Partner
     {
         return $this->Name3;
     }
+
     /**
      *
      * @param string $Name3
@@ -219,6 +232,7 @@ class Partner
         $this->Name3 = $Name3;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -227,6 +241,7 @@ class Partner
     {
         return $this->Name4;
     }
+
     /**
      *
      * @param string $Name4
@@ -236,6 +251,7 @@ class Partner
         $this->Name4 = $Name4;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -244,6 +260,7 @@ class Partner
     {
         return $this->Street;
     }
+
     /**
      *
      * @param string $Street
@@ -253,6 +270,7 @@ class Partner
         $this->Street = $Street;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -261,6 +279,7 @@ class Partner
     {
         return $this->CountryCode;
     }
+
     /**
      *
      * @param string $CountryCode
@@ -270,6 +289,7 @@ class Partner
         $this->CountryCode = $CountryCode;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -278,6 +298,7 @@ class Partner
     {
         return $this->ZIPCode;
     }
+
     /**
      *
      * @param string $ZIPCode
@@ -287,6 +308,7 @@ class Partner
         $this->ZIPCode = $ZIPCode;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -295,6 +317,7 @@ class Partner
     {
         return $this->City;
     }
+
     /**
      *
      * @param string $City
@@ -304,6 +327,7 @@ class Partner
         $this->City = $City;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -312,6 +336,7 @@ class Partner
     {
         return $this->POBox;
     }
+
     /**
      *
      * @param string $POBox
@@ -321,6 +346,7 @@ class Partner
         $this->POBox = $POBox;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -329,6 +355,7 @@ class Partner
     {
         return $this->PhoneNo;
     }
+
     /**
      *
      * @param string $PhoneNo
@@ -338,6 +365,7 @@ class Partner
         $this->PhoneNo = $PhoneNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -346,6 +374,7 @@ class Partner
     {
         return $this->MobileNo;
     }
+
     /**
      *
      * @param string $MobileNo
@@ -355,6 +384,7 @@ class Partner
         $this->MobileNo = $MobileNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -363,6 +393,7 @@ class Partner
     {
         return $this->SMSAvisMobNo;
     }
+
     /**
      *
      * @param string $SMSAvisMobNo
@@ -372,6 +403,7 @@ class Partner
         $this->SMSAvisMobNo = $SMSAvisMobNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -380,6 +412,7 @@ class Partner
     {
         return $this->FaxNo;
     }
+
     /**
      *
      * @param string $FaxNo
@@ -389,6 +422,7 @@ class Partner
         $this->FaxNo = $FaxNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -397,6 +431,7 @@ class Partner
     {
         return $this->Email;
     }
+
     /**
      *
      * @param string $Email
@@ -406,6 +441,7 @@ class Partner
         $this->Email = $Email;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -414,6 +450,7 @@ class Partner
     {
         return $this->LanguageCode;
     }
+
     /**
      *
      * @param string $LanguageCode

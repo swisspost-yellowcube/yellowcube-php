@@ -19,6 +19,7 @@ class OrderHeader
      * @var string $CustomerOrderDate
      */
     protected $CustomerOrderDate = null;
+
     /**
      *
      * @param string $DepositorNo
@@ -31,6 +32,7 @@ class OrderHeader
         $this->CustomerOrderNo = $CustomerOrderNo;
         $this->CustomerOrderDate = $CustomerOrderDate;
     }
+
     /**
      *
      * @return string
@@ -39,6 +41,7 @@ class OrderHeader
     {
         return $this->DepositorNo;
     }
+
     /**
      *
      * @param string $DepositorNo
@@ -48,6 +51,7 @@ class OrderHeader
         $this->DepositorNo = $DepositorNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -56,6 +60,7 @@ class OrderHeader
     {
         return $this->CustomerOrderNo;
     }
+
     /**
      *
      * @param string $CustomerOrderNo
@@ -65,6 +70,7 @@ class OrderHeader
         $this->CustomerOrderNo = $CustomerOrderNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -73,6 +79,7 @@ class OrderHeader
     {
         return $this->CustomerOrderDate;
     }
+
     /**
      *
      * @param string $CustomerOrderDate

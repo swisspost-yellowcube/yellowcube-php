@@ -42,6 +42,7 @@ class Order
     {
         return $this->OrderHeader;
     }
+
     /**
      *
      * @param OrderHeader $OrderHeader
@@ -51,6 +52,7 @@ class Order
         $this->OrderHeader = $OrderHeader;
         return $this;
     }
+
     /**
      *
      * @return Partner
@@ -59,6 +61,7 @@ class Order
     {
         return $this->PartnerAddress['Partner'];
     }
+
     /**
      *
      * @param Partner $PartnerAddress
@@ -68,6 +71,7 @@ class Order
         $this->PartnerAddress['Partner'] = $Partner;
         return $this;
     }
+
     /**
      *
      * @return array
@@ -76,6 +80,7 @@ class Order
     {
         return $this->ValueAddedServices['AdditionalService'];
     }
+
     /**
      *
      * @param AdditionalService $additionalService
@@ -132,7 +137,8 @@ class Order
         return $this;
     }
 
-    public function setOrderDocumentsFlag($orderDocumentsFlag) {
+    public function setOrderDocumentsFlag($orderDocumentsFlag)
+    {
         $this->OrderDocuments['OrderDocumentsFlag'] = $orderDocumentsFlag;
     }
 

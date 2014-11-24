@@ -45,6 +45,7 @@ class GEN_STATUS
         $this->ControlReference = $ControlReference;
         return $this;
     }
+
     /**
      *
      * @return string

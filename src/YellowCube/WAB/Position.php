@@ -73,6 +73,7 @@ class Position
     {
         return $this->PosNo;
     }
+
     /**
      *
      * @param int $PosNo
@@ -82,6 +83,7 @@ class Position
         $this->PosNo = $PosNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -90,6 +92,7 @@ class Position
     {
         return $this->ArticleNo;
     }
+
     /**
      *
      * @param string $ArticleNo
@@ -99,6 +102,7 @@ class Position
         $this->ArticleNo = $ArticleNo;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -107,6 +111,7 @@ class Position
     {
         return $this->EAN;
     }
+
     /**
      *
      * @param string $EAN
@@ -116,6 +121,7 @@ class Position
         $this->EAN = $EAN;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -124,6 +130,7 @@ class Position
     {
         return $this->YCLot;
     }
+
     /**
      *
      * @param string $YCLot
@@ -133,6 +140,7 @@ class Position
         $this->YCLot = $YCLot;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -141,6 +149,7 @@ class Position
     {
         return $this->Lot;
     }
+
     /**
      *
      * @param string $Lot
@@ -150,6 +159,7 @@ class Position
         $this->Lot = $Lot;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -158,6 +168,7 @@ class Position
     {
         return $this->Plant;
     }
+
     /**
      *
      * @param string $Plant
@@ -167,6 +178,7 @@ class Position
         $this->Plant = $Plant;
         return $this;
     }
+
     /**
      *
      * @return float
@@ -175,6 +187,7 @@ class Position
     {
         return $this->Quantity;
     }
+
     /**
      *
      * @param float $Quantity
@@ -184,6 +197,7 @@ class Position
         $this->Quantity = $Quantity;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -192,6 +206,7 @@ class Position
     {
         return $this->QuantityISO;
     }
+
     /**
      *
      * @param string $QuantityISO
@@ -201,6 +216,7 @@ class Position
         $this->QuantityISO = $QuantityISO;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -209,6 +225,7 @@ class Position
     {
         return $this->ShortDescription;
     }
+
     /**
      *
      * @param string $ShortDescription
@@ -218,6 +235,7 @@ class Position
         $this->ShortDescription = $ShortDescription;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -226,6 +244,7 @@ class Position
     {
         return $this->PickingMessage;
     }
+
     /**
      *
      * @param string $PickingMessage
@@ -235,6 +254,7 @@ class Position
         $this->PickingMessage = $PickingMessage;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -243,6 +263,7 @@ class Position
     {
         return $this->PickingMessageLC;
     }
+
     /**
      *
      * @param string $PickingMessageLC
@@ -252,6 +273,7 @@ class Position
         $this->PickingMessageLC = $PickingMessageLC;
         return $this;
     }
+
     /**
      *
      * @return string
@@ -260,6 +282,7 @@ class Position
     {
         return $this->ReturnReason;
     }
+
     /**
      *
      * @param string $ReturnReason
