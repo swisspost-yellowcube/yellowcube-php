@@ -53,6 +53,7 @@ $order
 
 $response = $client->createYCCustomerOrder($order);
 assert($response->isSuccess(), 'Getting status for order failed.');
+var_dump($response);
 
 echo "Successfully added order with reference " . $response->getReference();
 

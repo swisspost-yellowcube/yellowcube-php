@@ -26,7 +26,7 @@ $article
     ->setArticleNo('47686-3009-35/38')
     ->setBaseUOM('PCE')
     ->setNetWeight(new NetWeight(0.042, ISO::KGM))
-    ->addUnitOfMeasure(new EAN('7501031311309', EANType::HE))
+    ->addUnitOfMeasure(new EAN('714718003580', EANType::HE))
     ->addUnitOfMeasure(new AlternateUnitISO('PCE'))
     ->addUnitOfMeasure(new AltNumeratorUOM('12'))
     ->addUnitOfMeasure(new AltDenominatorUOM('12'))

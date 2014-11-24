@@ -43,6 +43,9 @@ class Client {
     }
 
     /**
+     * Returns the current status of a inserted Article.
+     *
+     * The article is referenced by its reference number.
      *
      * @param string $reference
      * @return GEN_Response
@@ -56,6 +59,8 @@ class Client {
     }
 
     /**
+     * Creates a new customer order.
+     *
      * @param Order $order
      *
      * @return GEN_Response
@@ -68,6 +73,20 @@ class Client {
         ));
     }
 
+    /**
+     * Returns the current status of a customer order specified by its reference.
+     *
+     * @param string $reference Customer order reference.
+     *
+     * @return GEN_Response
+     */
+    public function getYCCustomerOrderStatus($reference)
+    {
+        return $this->getService()->GetYCCustomerOrderStatus(array(
+            'ControlReference' => $this->getControlReferenceByType('WAB'),
+            'Reference' => $reference
+        ));
+    }
 
     /**
      * Returns a ControlReference for specified type.
