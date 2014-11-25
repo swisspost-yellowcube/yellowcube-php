@@ -1,4 +1,4 @@
-title: YellowCube PHP Library
+title:  PHP Library
 ---
 
 PHP library to connect to the SOAP based YellowCube Solutions.
@@ -20,7 +20,7 @@ Please see the [installation section](https://getcomposer.org/doc/00-intro.md) o
 
 To use the library in your project simply require it.
 
-    $ composer require liip/yellowcube-php
+    composer require liip/yellowcube-php
 
 # Configuration
 

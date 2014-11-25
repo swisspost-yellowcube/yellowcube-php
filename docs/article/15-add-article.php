@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../../vendor/autoload.php';
 
+### "create-article"
 use YellowCube\ART\Article;
 use YellowCube\ART\ChangeFlag;
 use YellowCube\ART\UnitsOfMeasure\ISO;
@@ -14,9 +15,9 @@ $article
     ->setArticleNo('47686-3009-35/38')
     ->setNetWeight(0.042, ISO::KGM)
     ->setAlternateUnitISO(ISO::PCE)
-    ->addArticleDescription('Ich wars nicht.', 'de')
-;
+    ->addArticleDescription('Ich wars nicht.', 'de');
 
+### "insert-article"
 $client = new YellowCube\Service(Config::testConfig());
 $response = $client->insertArticleMasterData($article);
 

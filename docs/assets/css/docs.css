@@ -460,7 +460,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-    color: #333;
+    color: #444;
 }
 
 a {
@@ -650,7 +650,7 @@ pre code, .highlight {
 }
 
 .site-nav a {
-    color: #333;
+    color: #444;
 }
 
 .site-nav ul {
