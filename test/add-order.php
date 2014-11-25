@@ -10,7 +10,7 @@ use YellowCube\WAB\Partner;
 use YellowCube\Config;
 use YellowCube\WAB\Position;
 
-$client = new YellowCube\Service(Config::testConfig());
+$service = new YellowCube\Service(Config::testConfig());
 
 $partner = new Partner();
 $partner
@@ -51,7 +51,7 @@ $order
     ->addOrderPosition($position)
     ->setOrderDocumentsFlag(true);
 
-$response = $client->createYCCustomerOrder($order);
+$response = $service->createYCCustomerOrder($order);
 assert($response->isSuccess(), 'Getting status for order failed.');
 var_dump($response);
 

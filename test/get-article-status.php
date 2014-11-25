@@ -3,8 +3,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\Config;
 
-$client = new YellowCube\Service(Config::testConfig());
-$response = $client->getInsertArticleMasterDataStatus(1040);
+$service = new YellowCube\Service(Config::testConfig());
+$response = $service->getInsertArticleMasterDataStatus(1040);
 
 var_dump($response);
 assert($response->isSuccess(), 'Getting status for article failed.');

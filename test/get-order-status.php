@@ -3,8 +3,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\Config;
 
-$client = new YellowCube\Service(Config::testConfig());
-$response = $client->getYCCustomerOrderStatus(1054);
+$service = new YellowCube\Service(Config::testConfig());
+$response = $service->getYCCustomerOrderStatus(1054);
 
 var_dump($response);
 assert($response->isSuccess(), 'Getting status for order failed.');

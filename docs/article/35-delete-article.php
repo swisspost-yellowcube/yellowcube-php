@@ -17,8 +17,8 @@ $article
     ->addArticleDescription('Ich wars nicht.', 'de');
 
 ### "insert-article"
-$client = new YellowCube\Service(YellowCube\Config::testConfig());
-$response = $client->insertArticleMasterData($article);
+$service = new YellowCube\Service(YellowCube\Config::testConfig());
+$response = $service->insertArticleMasterData($article);
 
 echo "Successfully deleted article with reference {$response->getReference()}." . PHP_EOL . PHP_EOL;
 print_r($response);

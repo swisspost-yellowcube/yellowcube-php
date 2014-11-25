@@ -3,8 +3,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\Config;
 
-$client = new YellowCube\Service(Config::testConfig());
-$articleList = $client->getInventory();
+$service = new YellowCube\Service(Config::testConfig());
+$articleList = $service->getInventory();
 
 var_dump($articleList);
 assert(count($articleList), 'Getting inventory failed.');

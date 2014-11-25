@@ -29,11 +29,10 @@ $article
     ->addArticleDescription('Non sono stato io!', 'it')
     ->addArticleDescription('It wasn\'t me.', 'en')
     ->setPeriodExpDateType(1)
-    ->setSerialNoFlag(true)
-;
+    ->setSerialNoFlag(true);
 
-$client = new YellowCube\Service(Config::testConfig());
-$response = $client->insertArticleMasterData($article);
+$service = new YellowCube\Service(Config::testConfig());
+$response = $service->insertArticleMasterData($article);
 
 assert($response->isSuccess(), 'Inserting article failed.');
 
