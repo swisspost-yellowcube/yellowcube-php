@@ -1,31 +1,22 @@
-<small class="muted" style="float: right;margin-top: -50px">{{ d['scripts/version.sh|bash'] }}</small>
---------------------------
+title: YellowCube PHP Library
+---
 
-[TOC]
+PHP library to connect to the SOAP based YellowCube Solutions.
 
---------------------------
+# Integrations
 
-# Introduction
+ - Drupal module [drupal-yellowcube](https://github.com/liip/drupal-yellowcube).
 
-Some content here
+# Installation
 
-# An interesting chapter
+This library is using [Composer](https://getcomposer.org/) to manage dependencies.
+Please see the [Installation section](https://getcomposer.org/doc/00-intro.md) on the composer website.
 
-If you just can't get the markdown to generate the markup you need, you can just use some html <span class="label label-success">YAY!</span>
+To use the library in your project simply require it.
 
-Deadline   | Description
------------| ----------
-2013-02-xx | [A table, also nice, with an anchor](#milestone-1)
-2013-xx-xx | ...
+    composer require liip/yellowcube-php
 
-# Milestones
+# Configuration
 
-## Milestone 1
+# License
 
-More content
-
-# Document changelog
-
-Date | Version | Author | Changelog
----- | --------| -------|----------
-{{ d['scripts/changelog.sh|bash'] }}

@@ -2,32 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation BlogPost</title>
+    <title>Documentation YellowCube PHP Library</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Working Document">
-    <meta name="author" content="Roderik van der Veer">
 
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
-    <!--<link href="bower_components/bootstrap/dist/css/docs.css" rel="stylesheet">-->
-    <!--<link href="bower_components/bootstrap/dist/css/bootstrap-responsive.css" rel="stylesheet">-->
+    <link href="/assets/css/docs.css" rel="stylesheet">
 </head>
 
 <body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
 
-<div class="container-narrow">
+            <h1 class="page-title">{{ title }}</h1>
+        </div>
+    </header>
 
-    <div class="masthead">
-        <h3 class="muted doctitle">Documentation BlogPost</h3>
-    </div>
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+                {% include 'assets/templates/_navigation.html' %}
 
-    {{ content }}
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
 
-    <hr>
 
-    <div class="footer">
-        <p>&copy; Roderik van der Veer 2013</p>
-    </div>
-</div> <!-- /container -->
+            <main>{{ content }}
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
 </body>
 </html>
