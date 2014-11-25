@@ -1,11 +1,10 @@
 <?php
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../../../../../vendor/autoload.php';
 
 ### "create-article"
 use YellowCube\ART\Article;
 use YellowCube\ART\ChangeFlag;
 use YellowCube\ART\UnitsOfMeasure\ISO;
-use YellowCube\Config;
 
 $article = new Article;
 $article
@@ -18,11 +17,10 @@ $article
     ->addArticleDescription('Ich wars nicht.', 'de');
 
 ### "insert-article"
-$client = new YellowCube\Service(Config::testConfig());
+$client = new YellowCube\Service(YellowCube\Config::testConfig());
 $response = $client->insertArticleMasterData($article);
 
-assert($response->isSuccess(), 'Inserting article failed.');
-
-echo "Successfully added article with reference " . $response->getReference();
+echo "Successfully added article with reference {$response->getReference()}." . PHP_EOL . PHP_EOL;
+print_r($response);
 
 
