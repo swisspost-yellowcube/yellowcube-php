@@ -848,3 +848,14 @@ footer {
     background-image: url("../img/drupal-drop.png");
 }
 
+dl {
+    border-radius: 5px;
+    background: #e2e2e2;
+    padding: 0.5em;
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+    font-weight: normal;
+}
