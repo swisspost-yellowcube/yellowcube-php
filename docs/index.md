@@ -29,7 +29,7 @@ be configured using the `YellowCube\Config` which is passed to the `YellowCube\S
 
 To get started quickly, you can use a test configuration:
 
-    $service = new YellowCube\Service(Config::testConfig());
+    $service = new YellowCube\Service(YellowCube\Config::testConfig());
 
 For a list of all configuration options see the [configuration section](library/Configuration.html).
 
