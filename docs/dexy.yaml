@@ -1,6 +1,6 @@
 .md|jinja|yamlargs|markdown|soups:
     - .sh|bash
-    - .php|pyg
+    - code
     - assets
     # available extensions https://pythonhosted.org/Markdown/extensions/index.html
     - markdown:
@@ -8,6 +8,10 @@
             tables: {}
             toc: { anchorlink : true }
 
+code:
+    - .php|pyg
+#    - .py|idio|h
+#    - .py|idio|l
 
 assets:
     - .css

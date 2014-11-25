@@ -1,6 +1,10 @@
 
 <ul class="site-nav nav">
-   <li>{{ link("Index.html") }}</li>
+   <li>{{ link("index.html") }}
+       <ul>
+        <li>{{ link("index.html", section_name = 'Installation')}}</li>
+        <li>{{ link("library/Configuration.html")}}</li>
+   </ul></li>
     <li>{{ link("article/00-article.html") }}
         <ul>
             <li>{{ link("article/10-add-articles.html") }}</li>

@@ -466,6 +466,9 @@ h6 a {
 a {
     text-decoration: none;
     color: #235AA6;
+    -webkit-transition: color 500ms ease, border 500ms ease, background-color 500ms ease;
+    -o-transition: color 500ms ease, border 500ms ease, background-color 500ms ease;
+    transition: color 500ms ease, border 500ms ease, background-color 500ms ease;
 }
 
 a:hover {
@@ -822,3 +825,26 @@ footer {
 
 .color-palette .color-name { display: block; }
 .color-palette .color-hex { display: block; }
+
+
+/* ---- integrations ---- */
+
+.integration {
+    color: #543729;
+    display: block;
+    padding: 30px 0 30px 75px;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    background: no-repeat;
+    background-position: 0 10px;
+}
+
+.integration:hover {
+    background-color: #efefef;
+    border: 1px solid #dfdfdf;
+}
+
+.drupal-integration {
+    background-image: url("../img/drupal-drop.png");
+}
+

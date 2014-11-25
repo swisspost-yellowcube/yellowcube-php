@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation YellowCube PHP Library</title>
+    <title>YellowCube PHP Library: {{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/assets/css/docs.css" rel="stylesheet">
@@ -20,6 +20,7 @@
     <section id="content">
         <div class="container">
             <div class="sidebar">
+
                 {% include 'assets/templates/_navigation.html' %}
 
                 <ul class="nav network-nav">
@@ -30,7 +31,10 @@
             </div>
 
 
-            <main>{{ content }}
+            <main>
+                <!--{{ nav.breadcrumbs() }}-->
+
+                {{ content }}
 
                 <footer>
                     <p class="issue">

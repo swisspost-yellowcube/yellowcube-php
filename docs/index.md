@@ -3,20 +3,36 @@ title: YellowCube PHP Library
 
 PHP library to connect to the SOAP based YellowCube Solutions.
 
+This API is designed to closely match the YellowCube SOAP Interface.
+Please consult the YellowCube Interface Manual for process descriptions, questions regarding
+formats and example values.
+
 # Integrations
 
- - Drupal module [drupal-yellowcube](https://github.com/liip/drupal-yellowcube).
+<a href="https://github.com/liip/drupal-yellowcube" class="integration drupal-integration">
+    Drupal module: drupal-yellowcube.
+</a>
 
 # Installation
 
 This library is using [Composer](https://getcomposer.org/) to manage dependencies.
-Please see the [Installation section](https://getcomposer.org/doc/00-intro.md) on the composer website.
+Please see the [installation section](https://getcomposer.org/doc/00-intro.md) on the composer website.
 
 To use the library in your project simply require it.
 
-    composer require liip/yellowcube-php
+    $ composer require liip/yellowcube-php
 
 # Configuration
 
+YellowCube Credentials, the WSDL to use, enabling or disabling a debug mode can
+be configured using the `YellowCube\Config` which is passed to the `YellowCube\Service`.
+
+To get started quickly, you can use a test configuration:
+
+    $service = new YellowCube\Service(Config::testConfig());
+
+For a list of all configuration options see the [configuration section](library/Configuration.html).
+
 # License
 
+The YellowCube PHP Library is dual licensed under the MIT or GPL Version 2 licenses.
