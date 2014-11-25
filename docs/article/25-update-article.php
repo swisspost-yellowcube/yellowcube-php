@@ -20,7 +20,7 @@ $article
 $client = new YellowCube\Service(YellowCube\Config::testConfig());
 $response = $client->insertArticleMasterData($article);
 
-echo "Successfully added article with reference {$response->getReference()}." . PHP_EOL . PHP_EOL;
+echo "Successfully updated article with reference {$response->getReference()}." . PHP_EOL . PHP_EOL;
 print_r($response);
 
 

@@ -649,6 +649,10 @@ pre code, .highlight {
     font-weight: bold;
 }
 
+.site-nav li ul li {
+    font-weight: normal;
+}
+
 .site-nav a {
     color: #444;
 }
