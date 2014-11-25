@@ -28,3 +28,9 @@ Development
 1. `git clone https://github.com/liip/yellowcube-php.git`
 2. Install dependencies `composer install`
 3. Run tests `bin/phpspec run`
+
+
+License
+-------
+
+The YellowCube PHP Library is dual licensed under the MIT or GPL Version 2 licenses.

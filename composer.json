@@ -1,6 +1,11 @@
 {
     "name": "liip/yellowcube-php",
+    "licenses": ["MIT", "GPL"],
     "authors": [
+        {
+            "name": "Liip AG",
+            "email": "info@liip.ch"
+        },
         {
             "name": "Adrian Philipp",
             "email": "adrian.philipp@liip.ch"
