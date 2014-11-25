@@ -4,8 +4,6 @@ namespace spec\YellowCube;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use YellowCube\Config;
-use YellowCube\Util\SoapClient;
 
 class ServiceSpec extends ObjectBehavior
 {
