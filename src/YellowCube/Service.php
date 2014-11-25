@@ -48,7 +48,7 @@ class Service
      */
     public function insertArticleMasterData(Article $article)
     {
-        return $this->getClient()->__soapCall('InsertArticleMasterData', array(
+        return $this->getClient()->InsertArticleMasterData(array(
             'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'ArticleList' => array(
                 'Article' => $article
@@ -66,7 +66,7 @@ class Service
      */
     public function getInsertArticleMasterDataStatus($reference)
     {
-        return $this->getClient()->__soapCall('GetInsertArticleMasterDataStatus', array(
+        return $this->getClient()->GetInsertArticleMasterDataStatus(array(
             'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'Reference' => $reference
         ));
@@ -81,7 +81,7 @@ class Service
      */
     public function createYCCustomerOrder(Order $order)
     {
-        return $this->getClient()->__soapCall('CreateYCCustomerOrder', array(
+        return $this->getClient()->CreateYCCustomerOrder(array(
             'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Order' => $order
         ));
@@ -96,7 +96,7 @@ class Service
      */
     public function getYCCustomerOrderStatus($reference)
     {
-        return $this->getClient()->__soapCall('GetYCCustomerOrderStatus', array(
+        return $this->getClient()->GetYCCustomerOrderStatus(array(
             'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Reference' => $reference
         ));
@@ -112,7 +112,7 @@ class Service
      */
     public function GetYCCustomerOrderReply($customerOrderNo = '')
     {
-        return $this->getClient()->__soapCall('GetYCCustomerOrderReply', array(
+        return $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
             'CustomerOrderNo' => $customerOrderNo
         ));
@@ -127,7 +127,7 @@ class Service
      */
     public function getInventory()
     {
-        return $this->getClient()->__soapCall('GetInventory', array(
+        return $this->getClient()->GetInventory(array(
             'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
         ))->ArticleList->Article;
     }
