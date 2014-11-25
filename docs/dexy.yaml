@@ -1,15 +1,22 @@
 .md|jinja|yamlargs|markdown|soups:
     - .sh|bash
-    - .php|idio|t|pyg
     - assets
+    - examples
     # available extensions https://pythonhosted.org/Markdown/extensions/index.html
     - markdown:
         extensions:
             tables: {}
             toc: { anchorlink : true }
+            def_list: {}
 
-.php|idio|t|pyg:
-    - pyg: { lexer: 'php', lexer-args: { startinline: True } }
+examples:
+    - .php|idio|t|pyg:
+        - pyg: { lexer: 'php', lexer-args: { startinline: True } }
+    - .php|php|idio:
+            - php:
+                use-wd: true
+                record-vars: true
+                workspace-includes: ".php"
 
 assets:
     - .css
