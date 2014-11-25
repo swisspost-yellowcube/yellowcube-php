@@ -9,3 +9,6 @@ phpunit.xml
 .idea
 **.orig
 
+# Docs
+.dexy
+docs/output-site
