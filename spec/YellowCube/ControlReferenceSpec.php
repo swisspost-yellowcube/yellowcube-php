@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: adri
- * Date: 24.11.14
- * Time: 17:06
- */
-
 namespace spec\YellowCube;
 
 use PhpSpec\ObjectBehavior;
