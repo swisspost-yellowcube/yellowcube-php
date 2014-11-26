@@ -23,6 +23,12 @@ To use the library in your project simply require it.
 
     composer require liip/yellowcube-php
 
+# Requirements
+
+ * PHP > 5.3
+ * PHP [SOAP extension](http://php.net/manual/en/book.soap.php)
+ * [Composer](https://getcomposer.org/)
+
 # Configuration
 
 YellowCube Credentials, the WSDL to use, enabling or disabling a debug mode can
