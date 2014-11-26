@@ -26,11 +26,16 @@ class ConfigSpec extends ObjectBehavior
         $this->shouldThrow('InvalidArgumentException')->during('__construct', array('sender', ''));
     }
 
+    function it_asserts_a_timeout_is_given()
+    {
+        $this->shouldThrow('InvalidArgumentException')->during('__construct', array('sender', 'wsdl', '1 sec'));
+    }
+
     function it_asserts_debug_mode_is_boolean()
     {
         $this->shouldThrow('InvalidArgumentException')->during(
             '__construct',
-            array('sender', 'wsdl', 'false')
+            array('sender', 'wsdl', null, 'false')
         );
     }
 
@@ -38,7 +43,7 @@ class ConfigSpec extends ObjectBehavior
     {
         $this->shouldThrow('PhpSpec\Exception\Example\ErrorException')->during(
             '__construct',
-            array('sender', 'wsdl', 'false', '')
+            array('sender', 'wsdl', null, 'false', '')
         );
     }
 
@@ -46,7 +51,7 @@ class ConfigSpec extends ObjectBehavior
     {
         $this->shouldThrow('InvalidArgumentException')->during(
             '__construct',
-            array('sender', 'wsdl', false, array(), '')
+            array('sender', 'wsdl', null, false, array(), '')
         );
     }
 
@@ -56,5 +61,6 @@ class ConfigSpec extends ObjectBehavior
         $this->getWSDL()->shouldReturn('test.wsdl');
         $this->getReceiver()->shouldReturn('YELLOWCUBE');
         $this->isDebugMode()->shouldReturn(false);
+        $this->getTimeout()->shouldReturn(null);
     }
 }

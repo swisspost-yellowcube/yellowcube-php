@@ -11,6 +11,7 @@ class ControlReferenceSpec extends ObjectBehavior
         $config->getSender()->willReturn('SENDER');
         $config->getReceiver()->willReturn('RECEIVER');
         $config->isDebugMode()->willReturn(true);
+        $config->getTimeoutSec()->willReturn(null);
     }
 
     function it_creates_a_control_reference_by_config(Config $config) {
@@ -31,6 +32,13 @@ class ControlReferenceSpec extends ObjectBehavior
 
         $this::fromConfig('WAR', $config)
             ->getOperatingMode()->shouldEqual('P');
+    }
+
+    function it_creates_a_control_reference_with_timeout(Config $config) {
+        $config->getTimeoutSec()->willReturn(30);
+
+        $this::fromConfig('WAR', $config)
+            ->getTransMaxWait()->shouldEqual(30);
     }
 
 }

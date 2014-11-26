@@ -24,6 +24,11 @@ class Config
     protected $wsdl;
 
     /**
+     * @var integer
+     */
+    protected $timeoutSec;
+
+    /**
      * @var array
      */
     protected $soapClientOptions = array();
@@ -43,21 +48,24 @@ class Config
      *
      * @param string $sender Sender code to use.
      * @param string $wsdl WSDL file to use (local path or URL).
+     * @param int $timeoutSec (Optional) Timeout in seconds, null means no timeout.
      * @param bool $debugMode (Optional) Enable debug mode, default false.
      * @param array $soapClientOptions (Optional) Options for SoapClient.
      * @param string $receiver (Optional) Receiver code to use, default: YELLOWCUBE.
      */
-    function __construct($sender, $wsdl, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
+    function __construct($sender, $wsdl, $timeoutSec = null, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
         \Assert\that($sender)->notEmpty()->string('Sender must be set.');
         \Assert\that($wsdl)->notEmpty()->string('WSDL must be set.');
+        \Assert\that($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
         \Assert\that($debugMode)->boolean('Debug mode must be a boolean.');
         \Assert\that($receiver)->notEmpty()->string('Receiver must be set.');
 
         $this->sender = $sender;
         $this->wsdl = $wsdl;
-        $this->soapClientOptions = $soapClientOptions;
         $this->debugMode = $debugMode;
+        $this->timeoutSec = $timeoutSec;
+        $this->soapClientOptions = $soapClientOptions;
         $this->receiver = $receiver;
     }
 
@@ -124,5 +132,18 @@ class Config
     public function isDebugMode()
     {
         return $this->debugMode;
+    }
+
+    /**
+     * @return int Timeout in seconds.
+     */
+    public function getTimeoutSec()
+    {
+        return $this->timeoutSec;
+    }
+
+    public function getTimeout()
+    {
+        // TODO: write logic here
     }
 }

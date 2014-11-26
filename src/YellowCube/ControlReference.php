@@ -94,6 +94,7 @@ class ControlReference
             ->setType($type)
             ->setSender($config->getSender())
             ->setReceiver($config->getReceiver())
+            ->setTransMaxWait($config->getTimeoutSec())
             ->setTimestamp(date('Ymdhis'))
             ->setOperatingMode($config->isDebugMode() ? 'T' : 'P')
             ->setVersion('1.0')
