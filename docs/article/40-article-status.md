@@ -12,11 +12,9 @@ Reference
 When a reference is available, the status of an article can be retrieved by passing the reference to
 `getInsertArticleMasterDataStatus()`.
 
-Example article status for the reference `1092`:
+Example article status for the reference `1098`:
 
 {{ d["article/45-article-status.php|idio|t|pyg"]['article-status'] }}
 
 {{ d["article/45-article-status.php|php|idio"] }}
-
-
 

@@ -12,6 +12,7 @@ $article
     ->setPlantID('Y012')
     ->setDepositorNo('0000040750')
     ->setArticleNo('47686-3009-35/38')
+    ->setBaseUOM(ISO::PCE)
     ->setNetWeight(0.042, ISO::KGM)
     ->setAlternateUnitISO(ISO::PCE)
     ->addArticleDescription('Ich wars nicht.', 'de')
