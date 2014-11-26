@@ -6,7 +6,7 @@ call `YellowCube\Service::getInventory()`.
 
 {{ d["inventory/00-get-inventory.php|idio|t|pyg"]['get-inventory'] }}
 
-Example response:
+A list of `YellowCube\BAR\Article` objects is returned.
 
 {{ d["inventory/00-get-inventory.php|php|idio"] }}
 

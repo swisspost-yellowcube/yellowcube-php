@@ -8,7 +8,7 @@ use YellowCube\ART\UnitsOfMeasure\ISO;
 
 $article = new Article;
 $article
-    ->setChangeFlag(ChangeFlag::UPDATE)
+    ->setChangeFlag(ChangeFlag::DEACTIVATE)
     ->setPlantID('Y012')
     ->setDepositorNo('0000040750')
     ->setArticleNo('47686-3009-35/38')
