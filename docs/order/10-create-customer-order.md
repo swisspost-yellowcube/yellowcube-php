@@ -30,6 +30,8 @@ The `OrderHeader` is mandatory and contains identifiers for the depositor and th
 
 #### Order Position
 
+The `PosNo` is a incrementing integer like 10, 20, 30.
+
 {{ d["order/15-create-customer-order.php|idio|t|pyg"]['order-position'] }}
 
 #### Additional Services

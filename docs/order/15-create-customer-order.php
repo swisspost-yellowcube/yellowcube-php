@@ -58,7 +58,7 @@ $order->addOrderPosition($position);
 $order
     ->addValueAddedService(new AdditionalShippingServices())
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
-    ->addValueAddedService(new DeliveryInstructions(''))
+    ->addValueAddedService(new DeliveryInstructions('Ring three times.'))
     ->setOrderDocumentsFlag(true);
 
 ### "create-order"

@@ -15,7 +15,6 @@ examples:
     - .php|php|idio:
             - php:
                 use-wd: true
-                record-vars: true
                 workspace-includes: ".php"
 
 assets:
