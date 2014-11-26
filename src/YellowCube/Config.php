@@ -76,7 +76,7 @@ class Config
      */
     public static function testConfig()
     {
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', true);
+        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, true);
     }
 
     /**
@@ -91,7 +91,7 @@ class Config
             'proxy_port' => '8888',
         );
 
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', true, $options);
+        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, true, $options);
     }
 
     /**
