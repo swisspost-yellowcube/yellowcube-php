@@ -1,6 +1,7 @@
 title: Article
 ---
 
-Articles can be inserted, updated and deactivated by setting a `ChangeFlag` on an `Article`.
+Articles can be inserted, updated and deactivated by setting a `ChangeFlag` on an `Article` object.
 
-{{ d["article/05-article-basic.php|idio|t|pyg"] }}
+Hint
+:   YellowCube takes **one article at a time**. For an initial bulk import please consult the manual.
