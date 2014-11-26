@@ -28,6 +28,10 @@ class SoapClient extends \SoapClient
                 'GEN_Response' => 'YellowCube\GEN_Response',
                 'Article' => 'YellowCube\BAR\Article',
                 'QuantityUOM' => 'YellowCube\BAR\QuantityUOM',
+                'GoodsIssue' => 'YellowCube\WAR\GoodsIssue\GoodsIssue',
+                'GoodsIssueHeader' => 'YellowCube\WAR\GoodsIssue\GoodsIssueHeader',
+                'CustomerOrderHeader' => 'YellowCube\WAR\GoodsIssue\CustomerOrderHeader',
+                'CustomerOrderDetail' => 'YellowCube\WAR\GoodsIssue\CustomerOrderDetail',
             )
         );
 

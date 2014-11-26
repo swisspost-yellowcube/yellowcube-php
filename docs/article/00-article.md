@@ -1,4 +1,4 @@
-title: Article
+title: Article (ART)
 ---
 
 Articles can be inserted, updated and deactivated by setting a `ChangeFlag` on an `Article` object.

@@ -5,6 +5,7 @@ namespace YellowCube;
 use YellowCube\ART\Article;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
+use YellowCube\WAR\GoodsIssue\GoodsIssue;
 
 /**
  * Provides methods to mutate articles, order articles and list inventory.
@@ -108,14 +109,21 @@ class Service
      *
      * @param string $reference Customer order reference.
      *
-     * @return GEN_Response
+     * @return GoodsIssue[]
      */
     public function GetYCCustomerOrderReply($customerOrderNo = '')
     {
-        return $this->getClient()->GetYCCustomerOrderReply(array(
+        $WAR = $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
             'CustomerOrderNo' => $customerOrderNo
         ));
+
+        return array_map(
+            function($goodsIssue) {
+                return $goodsIssue->GoodsIssue;
+            },
+            $WAR->WAR
+        );
     }
 
     /**

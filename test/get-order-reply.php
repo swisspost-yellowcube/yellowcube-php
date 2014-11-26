@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use YellowCube\Config;
 
 $service = new YellowCube\Service(Config::testConfig());
-$response = $service->getYCCustomerOrderReply('20186');
+$response = $service->getYCCustomerOrderReply('SOAP-005');
 
 var_dump($response);
 

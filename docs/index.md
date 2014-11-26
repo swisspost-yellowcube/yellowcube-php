@@ -1,7 +1,8 @@
 title:  PHP Library
 ---
 
-This is the documentation for the PHP library to connect to the SOAP based YellowCube Interface.
+This is the documentation for the PHP API library which can be used to
+connect to the SOAP based YellowCube Interface.
 
 This API is designed to closely match the YellowCube SOAP Interface.
 Please consult the YellowCube Interface Manual for process descriptions, questions regarding
