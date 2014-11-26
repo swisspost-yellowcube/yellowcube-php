@@ -1,4 +1,4 @@
-title: Add Article
+title: Insert Article
 ---
 
 To add a new article to YellowCube, create a new `Article` and pass it to
