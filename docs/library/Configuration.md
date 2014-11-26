@@ -1,7 +1,7 @@
 title: Configuration
 ---
 
-Create a new Configuration use:
+To create a new configuration use:
 
     new YellowCube\Config($sender, $wsdl, $debugMode, $soapClientOptions, $receiver)
 
