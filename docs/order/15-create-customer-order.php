@@ -1,13 +1,26 @@
 <?php
 require __DIR__ . '/../../../../../../vendor/autoload.php';
 
+use YellowCube\Config;
 use YellowCube\WAB\AdditionalService\AdditionalShippingServices;
 use YellowCube\WAB\AdditionalService\BasicShippingServices;
+use YellowCube\WAB\AdditionalService\CODAccountNo;
+use YellowCube\WAB\AdditionalService\CODAmount;
+use YellowCube\WAB\AdditionalService\CODRefNo;
+use YellowCube\WAB\AdditionalService\DeliveryDate;
 use YellowCube\WAB\AdditionalService\DeliveryInstructions;
+use YellowCube\WAB\AdditionalService\DeliveryLocation;
+use YellowCube\WAB\AdditionalService\DeliveryPeriodeCode;
+use YellowCube\WAB\AdditionalService\DeliveryTimeFrom;
+use YellowCube\WAB\AdditionalService\DeliveryTimeJIT;
+use YellowCube\WAB\AdditionalService\DeliveryTimeTo;
+use YellowCube\WAB\AdditionalService\FloorNo;
+use YellowCube\WAB\AdditionalService\FrightShippingFlag;
+use YellowCube\WAB\AdditionalService\NotificationServiceCode;
+use YellowCube\WAB\AdditionalService\NotificationType;
 use YellowCube\WAB\Order;
 use YellowCube\WAB\OrderHeader;
 use YellowCube\WAB\Partner;
-use YellowCube\Config;
 use YellowCube\WAB\Position;
 
 
@@ -66,8 +79,21 @@ $order->addOrderDocument($exampleDocument);
 ### "additional-services"
 $order
     ->addValueAddedService(new AdditionalShippingServices())
-    ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
+    ->addValueAddedService(new BasicShippingServices(BasicShippingServices::ECO))
     ->addValueAddedService(new DeliveryInstructions('Ring three times.'))
+    ->addValueAddedService(new DeliveryLocation('Last house in the street.'))
+    ->addValueAddedService(new DeliveryPeriodeCode(DeliveryPeriodeCode::MORNING))
+    ->addValueAddedService(new DeliveryTimeFrom('13:00'))
+    ->addValueAddedService(new DeliveryTimeTo('15:00'))
+    ->addValueAddedService(new DeliveryTimeJIT('14:00'))
+    ->addValueAddedService(new DeliveryDate(date('Ymd', strtotime('+4 days'))))
+    ->addValueAddedService(new CODAmount('150.00')) // COD amount in CHF (Cash on 153.45 Delivery).
+    ->addValueAddedService(new CODAccountNo('010683242'))
+    ->addValueAddedService(new CODRefNo('897201301070000097673'))
+    ->addValueAddedService(new FrightShippingFlag('1')) // Yes, fright consignment (small consignments).
+    ->addValueAddedService(new FloorNo('3'))
+    ->addValueAddedService(new NotificationType(NotificationType::EMAIL))
+    ->addValueAddedService(new NotificationServiceCode('2'))
     ->setOrderDocumentsFlag(true);
 
 ### "create-order"
