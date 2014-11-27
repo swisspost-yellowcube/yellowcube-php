@@ -36,9 +36,17 @@ The `PosNo` is a incrementing integer like 10, 20, 30.
 
 #### Additional Services
 
+For a complete list of additional services, please consult the YellowCube Interface Manual.
+
 {{ d["order/15-create-customer-order.php|idio|t|pyg"]['additional-services'] }}
 
 #### Order Documents
+
+You can add documents to your order by using the `addOrderDocument()` method.
+It is advised to use the `Doc::fromFile()` factory method which reads the provided file
+and base64-encodes it.
+
+{{ d["order/15-create-customer-order.php|idio|t|pyg"]['order-document'] }}
 
 -----------------------------
 

@@ -1,25 +1,18 @@
 <?php
-require __DIR__ . '/../../../../../../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use YellowCube\WAB\AdditionalService\AdditionalShippingServices;
 use YellowCube\WAB\AdditionalService\BasicShippingServices;
 use YellowCube\WAB\AdditionalService\DeliveryInstructions;
+use YellowCube\WAB\Doc;
 use YellowCube\WAB\Order;
 use YellowCube\WAB\OrderHeader;
 use YellowCube\WAB\Partner;
 use YellowCube\Config;
 use YellowCube\WAB\Position;
 
+$service = new YellowCube\Service(Config::testConfig());
 
-### "order-header"
-$order = new Order();
-$order->setOrderHeader(new OrderHeader(
-    '0000040730',   // DepositorNo
-    \uniqid('yc'),  // CustomerOrderNo
-    date('Ymd')     // CustomerOrderDate
-));
-
-### "partner-address"
 $partner = new Partner();
 $partner
     ->setPartnerType('WE')
@@ -39,9 +32,6 @@ $partner
     ->setEmail('name@test.ch')
     ->setLanguageCode('en');
 
-$order->setPartnerAddress($partner);
-
-### "order-position"
 $position = new Position();
 $position
     ->setPosNo(10)
@@ -52,30 +42,21 @@ $position
     ->setQuantityISO('PCE')
     ->setShortDescription('loral Pasty Daisie');
 
-$order->addOrderPosition($position);
-
-### "order-document"
-$exampleDocument = YellowCube\WAB\Doc::fromFile(
-    'LS',  // DocType
-    'pdf', // DocMimeType
-    '../../../../../order/example-file.pdf' // FilePath
-);
-
-$order->addOrderDocument($exampleDocument);
-
-### "additional-services"
+$order = new Order();
 $order
+    ->setOrderHeader(new OrderHeader('0000040730', \uniqid('yc'), date('Ymd')))
+    ->setPartnerAddress($partner)
     ->addValueAddedService(new AdditionalShippingServices())
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
-    ->addValueAddedService(new DeliveryInstructions('Ring three times.'))
+    ->addValueAddedService(new DeliveryInstructions(''))
+    ->addOrderPosition($position)
+    ->addOrderDocument(Doc::fromFile('LS', 'pdf', 'test/example-file.pdf'))
     ->setOrderDocumentsFlag(true);
 
-### "create-order"
-$service = new YellowCube\Service(Config::testConfig());
 $response = $service->createYCCustomerOrder($order);
+assert($response->isSuccess(), 'Getting status for order failed.');
+var_dump($response);
 
-echo "Successfully created order with reference {$response->getReference()}" . PHP_EOL . PHP_EOL;
-
-print_r($response);
+echo "Successfully added order with reference " . $response->getReference();
 
 

@@ -32,7 +32,10 @@ class Order
      *
      * @var array $OrderDocuments
      */
-    protected $OrderDocuments = array('OrderDocFilenames' => array());
+    protected $OrderDocuments = array(
+        'Docs' => array(),
+        'OrderDocFilenames' => array()
+    );
 
     /**
      *
@@ -119,12 +122,21 @@ class Order
     }
 
     /**
+     * @param array $OrderPositions
+     */
+    public function addOrderDocument(Doc $doc)
+    {
+        $this->OrderDocuments['Docs'][] = $doc;
+        return $this;
+    }
+
+    /**
      *
-     * @return array
+     * @return Doc[]
      */
     public function getOrderDocuments()
     {
-        return $this->OrderDocuments;
+        return $this->OrderDocuments['Docs'];
     }
 
     /**
@@ -133,7 +145,7 @@ class Order
      */
     public function setOrderDocuments($OrderDocuments)
     {
-        $this->OrderDocuments = $OrderDocuments;
+        $this->OrderDocuments['Docs'] = $OrderDocuments;
         return $this;
     }
 
