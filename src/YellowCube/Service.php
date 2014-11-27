@@ -118,6 +118,10 @@ class Service
             'CustomerOrderNo' => $customerOrderNo
         ));
 
+        if (empty($WAR->WAR)) {
+            return array();
+        }
+
         return array_map(
             function($goodsIssue) {
                 return $goodsIssue->GoodsIssue;
