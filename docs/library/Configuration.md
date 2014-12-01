@@ -8,7 +8,7 @@ To create a new configuration use:
 Constructor arguments are:
 
  * `$sender`: Mandatory <Depositor-ID> (Distance seller ID) in accordance with the registration to YellowCube Format: "Xxxxxxxxxxx"
- * `$wsdl`: Mandatory WSDL file to use. This can be a path to a local file or a URL.
+ * `$wsdl`: Optional WSDL file to use. This can be a path to a local file or a URL. If no value is provided, the production WSDL is used (if debug mode is `false`) or the test WSDL is used (if debug mode is `true`).
  * `$timeout`: Optional timeout in seconds for a transaction to finish, by default no timeout is set.
  * `$debugMode`: Optional enable test mode, by default the production mode is used (`false`).
  * `$soapClientOptions`: Optional options which are passed to the [SoapClient](http://php.net/manual/en/class.soapclient.php).

@@ -3,12 +3,13 @@
 namespace spec\YellowCube;
 
 use PhpSpec\ObjectBehavior;
+use YellowCube\Config;
 
 class ConfigSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('YCTest', 'test.wsdl');
+        $this->beConstructedWith('YCTest');
     }
 
     function it_is_initializable()
@@ -58,9 +59,15 @@ class ConfigSpec extends ObjectBehavior
     function it_returns_correct_defaults()
     {
         $this->getSender()->shouldReturn('YCTest');
-        $this->getWSDL()->shouldReturn('test.wsdl');
+        $this->getWSDL()->shouldReturn(Config::WSDL_PRODUCTION);
         $this->getReceiver()->shouldReturn('YELLOWCUBE');
         $this->isDebugMode()->shouldReturn(false);
-        $this->getTimeout()->shouldReturn(null);
+        $this->getTimeoutSec()->shouldReturn(null);
+    }
+
+    function it_returns_test_wsdl_in_debug_mode()
+    {
+        $this->beConstructedWith('YCTest', null, null, true);
+        $this->getWSDL()->shouldReturn(Config::WSDL_TEST);
     }
 }

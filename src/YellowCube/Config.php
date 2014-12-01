@@ -12,6 +12,15 @@ namespace YellowCube;
  */
 class Config
 {
+    /**
+     * @const string Path to YellowCubes production WSDL file.
+     */
+    CONST WSDL_PRODUCTION = 'https://service.swisspost.ch/apache/yellowcube/?wsdl';
+
+    /**
+     * @const string Path to YellowCubes test WSDL file.
+     */
+    CONST WSDL_TEST = 'https://service-test.swisspost.ch/apache/yellowcube-test/?wsdl';
 
     /**
      * @var string
@@ -47,16 +56,16 @@ class Config
      * Create a Config.
      *
      * @param string $sender Sender code to use.
-     * @param string $wsdl WSDL file to use (local path or URL).
+     * @param string $wsdl WSDL file to use (local path or URL), null means default depending on the debug mode.
      * @param int $timeoutSec (Optional) Timeout in seconds, null means no timeout.
      * @param bool $debugMode (Optional) Enable debug mode, default false.
      * @param array $soapClientOptions (Optional) Options for SoapClient.
      * @param string $receiver (Optional) Receiver code to use, default: YELLOWCUBE.
      */
-    function __construct($sender, $wsdl, $timeoutSec = null, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
+    function __construct($sender, $wsdl = null, $timeoutSec = null, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
         \Assert\that($sender)->notEmpty()->string('Sender must be set.');
-        \Assert\that($wsdl)->notEmpty()->string('WSDL must be set.');
+        \Assert\that($wsdl)->nullOr()->notEmpty()->string('WSDL must be set.');
         \Assert\that($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
         \Assert\that($debugMode)->boolean('Debug mode must be a boolean.');
         \Assert\that($receiver)->notEmpty()->string('Receiver must be set.');
@@ -123,6 +132,10 @@ class Config
      */
     public function getWsdl()
     {
+        if (empty($this->wsdl)) {
+            return $this->isDebugMode() ? self::WSDL_TEST : self::WSDL_PRODUCTION;
+        }
+
         return $this->wsdl;
     }
 
@@ -140,10 +153,5 @@ class Config
     public function getTimeoutSec()
     {
         return $this->timeoutSec;
-    }
-
-    public function getTimeout()
-    {
-        // TODO: write logic here
     }
 }
