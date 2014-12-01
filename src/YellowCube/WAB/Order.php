@@ -151,7 +151,7 @@ class Order
 
     public function setOrderDocumentsFlag($orderDocumentsFlag)
     {
-        $this->OrderDocuments['OrderDocumentsFlag'] = $orderDocumentsFlag;
+        $this->OrderDocuments['OrderDocumentsFlag'] = (int) $orderDocumentsFlag;
     }
 
     /**
