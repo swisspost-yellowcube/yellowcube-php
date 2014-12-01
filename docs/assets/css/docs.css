@@ -567,15 +567,6 @@ pre code, .highlight {
 .highlight .m  { color: #DE8E50; } /* CSS value */
 .highlight .nd { color: #9FAD7E; } /* CSS pseudo selector */
 
-/* bash leading $ */
-.highlight .nv {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-
 #masthead {
     background: rgb(255, 204, 0);
     color: #543729;
