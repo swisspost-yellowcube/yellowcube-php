@@ -40,6 +40,10 @@ class Article
      * @var string
      */
     protected $QuantityUOM = null;
+    /**
+     * @var string
+     */
+    protected $ArticleNo = null;
 
     /**
      * @return string
@@ -111,5 +115,13 @@ class Article
     public function getYCLot()
     {
         return $this->YCLot;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArticleNo()
+    {
+        return $this->ArticleNo;
     }
 }
