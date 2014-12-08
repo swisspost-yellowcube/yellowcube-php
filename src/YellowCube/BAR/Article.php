@@ -49,7 +49,7 @@ class Article
      */
     protected $StockType = null;
     /**
-     * @var string
+     * @var \YellowCube\BAR\QuantityUOM
      */
     protected $QuantityUOM = null;
 
@@ -86,7 +86,7 @@ class Article
     }
 
     /**
-     * @return string
+     * @return \YellowCube\BAR\QuantityUOM
      */
     public function getQuantityUOM()
     {

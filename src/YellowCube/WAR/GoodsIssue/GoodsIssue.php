@@ -21,7 +21,7 @@ class GoodsIssue
 
     /**
      *
-     * @return GoodsIssueHeader
+     * @return \YellowCube\WAR\GoodsIssue\GoodsIssueHeader
      */
     public function getGoodsIssueHeader()
     {
@@ -30,7 +30,7 @@ class GoodsIssue
 
     /**
      *
-     * @return CustomerOrderHeader
+     * @return \YellowCube\WAR\GoodsIssue\CustomerOrderHeader
      */
     public function getCustomerOrderHeader()
     {
@@ -39,7 +39,7 @@ class GoodsIssue
 
     /**
      *
-     * @return CustomerOrderDetail[]
+     * @return \YellowCube\WAR\GoodsIssue\CustomerOrderDetail[]
      */
     public function getCustomerOrderList()
     {

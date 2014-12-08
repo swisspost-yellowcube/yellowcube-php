@@ -29,7 +29,7 @@ class Service
     /**
      * Creates a new Service used to connect to YellowCube.
      *
-     * @param Config $config Config containing user credentials, if not provided a test config is used.
+     * @param \YellowCube\Config $config Config containing user credentials, if not provided a test config is used.
      * @param \SoapClient $client Custom optional SoapClient.
      */
     public function __construct(Config $config = null, \SoapClient $client = null)
@@ -45,7 +45,7 @@ class Service
      * article should be inserted, updated or deleted.
      *
      * @param Article $article Article to mutate.
-     * @return GEN_Response
+     * @return \YellowCube\GEN_Response
      */
     public function insertArticleMasterData(Article $article)
     {
@@ -63,7 +63,7 @@ class Service
      * The article is referenced by its reference number.
      *
      * @param string $reference
-     * @return GEN_Response
+     * @return \YellowCube\GEN_Response
      */
     public function getInsertArticleMasterDataStatus($reference)
     {
@@ -78,7 +78,7 @@ class Service
      *
      * @param Order $order
      *
-     * @return GEN_Response
+     * @return \YellowCube\GEN_Response
      */
     public function createYCCustomerOrder(Order $order)
     {
@@ -93,7 +93,7 @@ class Service
      *
      * @param string $reference Customer order reference.
      *
-     * @return GEN_Response
+     * @return \YellowCube\GEN_Response
      */
     public function getYCCustomerOrderStatus($reference)
     {
@@ -109,7 +109,7 @@ class Service
      *
      * @param string $reference Customer order reference.
      *
-     * @return GoodsIssue[]
+     * @return \YellowCube\WAR\GoodsIssue\GoodsIssue[]
      */
     public function getYCCustomerOrderReply($customerOrderNo = '')
     {
@@ -135,7 +135,7 @@ class Service
      *
      * @param string $reference Customer order reference.
      *
-     * @return Article[] Article List
+     * @return \YellowCube\BAR\Article[] Article List
      */
     public function getInventory()
     {
@@ -147,7 +147,7 @@ class Service
     /**
      * Returns the config to use.
      *
-     * @return Config
+     * @return \YellowCube\Config
      */
     protected function getConfig()
     {
