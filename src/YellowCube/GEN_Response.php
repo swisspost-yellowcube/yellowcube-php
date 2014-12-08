@@ -93,6 +93,26 @@ class GEN_Response
     }
 
     /**
+     * Returns true if the requested object is not finished processing.
+     *
+     * @return bool
+     */
+    public function isPending() {
+       return !$this->isError()
+            && $this->getStatusCode() <= 100;
+    }
+
+    public function isSuccess()
+    {
+        return $this->getStatusType() == 'S';
+    }
+
+    public function isError()
+    {
+        return $this->getStatusType() == 'E';
+    }
+
+    /**
      * @return string
      */
     public function getEventTimestamp()
@@ -170,15 +190,5 @@ class GEN_Response
     public function getStatusType()
     {
         return $this->StatusType;
-    }
-
-    public function isSuccess()
-    {
-        return $this->getStatusType() == 'S';
-    }
-
-    public function isError()
-    {
-        return $this->getStatusType() == 'E';
     }
 }
