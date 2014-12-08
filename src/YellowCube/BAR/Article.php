@@ -11,6 +11,14 @@ class Article
     /**
      * @var string
      */
+    protected $EAN = null;
+    /**
+     * @var string
+     */
+    protected $ArticleNo = null;
+    /**
+     * @var string
+     */
     protected $ArticleDescription = null;
     /**
      * @var string
@@ -35,15 +43,15 @@ class Article
     /**
      * @var string
      */
+    protected $ProductionDate = null;
+    /**
+     * @var string
+     */
     protected $StockType = null;
     /**
      * @var string
      */
     protected $QuantityUOM = null;
-    /**
-     * @var string
-     */
-    protected $ArticleNo = null;
 
     /**
      * @return string
@@ -123,5 +131,21 @@ class Article
     public function getArticleNo()
     {
         return $this->ArticleNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEAN()
+    {
+        return $this->EAN;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductionDate()
+    {
+        return $this->ProductionDate;
     }
 }
