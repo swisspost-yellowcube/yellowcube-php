@@ -111,7 +111,7 @@ class Service
      *
      * @return GoodsIssue[]
      */
-    public function GetYCCustomerOrderReply($customerOrderNo = '')
+    public function getYCCustomerOrderReply($customerOrderNo = '')
     {
         $WAR = $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
