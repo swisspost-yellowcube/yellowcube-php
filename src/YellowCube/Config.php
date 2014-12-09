@@ -50,7 +50,7 @@ class Config
     /**
      * @var bool
      */
-    protected $debugMode;
+    protected $operatingMode;
 
     /**
      * Create a Config.
@@ -58,22 +58,22 @@ class Config
      * @param string $sender Sender code to use.
      * @param string $wsdl WSDL file to use (local path or URL), null means default depending on the debug mode.
      * @param int $timeoutSec (Optional) Timeout in seconds, null means no timeout.
-     * @param bool $debugMode (Optional) Enable debug mode, default false.
+     * @param bool $operatingMode (Optional) Operating mode, default is "P" for production. "D" = Development, "T" = Test.
      * @param array $soapClientOptions (Optional) Options for SoapClient.
      * @param string $receiver (Optional) Receiver code to use, default: YELLOWCUBE.
      */
-    function __construct($sender, $wsdl = null, $timeoutSec = null, $debugMode = false, array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
+    function __construct($sender, $wsdl = null, $timeoutSec = null, $operatingMode = 'P', array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
         \Assert\that($sender)->notEmpty()->string('Sender must be set.');
         \Assert\that($wsdl)->nullOr()->notEmpty()->string('WSDL must be set.');
         \Assert\that($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
-        \Assert\that($debugMode)->boolean('Debug mode must be a boolean.');
+        \Assert\that($operatingMode)->choice(array('T', 'D', 'P'), 'Operating mode must be "T", "D" or "P".');
         \Assert\that($receiver)->notEmpty()->string('Receiver must be set.');
 
         $this->sender = $sender;
         $this->wsdl = $wsdl;
-        $this->debugMode = $debugMode;
         $this->timeoutSec = $timeoutSec;
+        $this->operatingMode = $operatingMode;
         $this->soapClientOptions = $soapClientOptions;
         $this->receiver = $receiver;
     }
@@ -85,7 +85,17 @@ class Config
      */
     public static function testConfig()
     {
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, true);
+        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, 'T');
+    }
+
+    /**
+     * Returns a config which can be used for integration tests.
+     *
+     * @return Config
+     */
+    public static function integrationConfig()
+    {
+        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, 'D');
     }
 
     /**
@@ -100,7 +110,7 @@ class Config
             'proxy_port' => '8888',
         );
 
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, true, $options);
+        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, 'T', $options);
     }
 
     /**
@@ -133,18 +143,23 @@ class Config
     public function getWsdl()
     {
         if (empty($this->wsdl)) {
-            return $this->isDebugMode() ? self::WSDL_TEST : self::WSDL_PRODUCTION;
+            $wsdls = array(
+                'T' => self::WSDL_TEST,
+                'D' => self::WSDL_TEST,
+                'P' => self::WSDL_PRODUCTION
+            );
+            return $wsdls[$this->getOperatingMode()];
         }
 
         return $this->wsdl;
     }
 
     /**
-     * @return bool True if debug mode is enabled, false otherwise.
+     * @return bool Operating mode, "P" for production, "D" = Development, "T" = Test.
      */
-    public function isDebugMode()
+    public function getOperatingMode()
     {
-        return $this->debugMode;
+        return $this->operatingMode;
     }
 
     /**

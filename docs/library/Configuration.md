@@ -10,15 +10,21 @@ Constructor arguments are:
  * `$sender`: Mandatory <Depositor-ID> (Distance seller ID) in accordance with the registration to YellowCube Format: "Xxxxxxxxxxx"
  * `$wsdl`: Optional WSDL file to use. This can be a path to a local file or a URL. If no value is provided, the production WSDL is used (if debug mode is `false`) or the test WSDL is used (if debug mode is `true`).
  * `$timeout`: Optional timeout in seconds for a transaction to finish, by default no timeout is set.
- * `$debugMode`: Optional enable test mode, by default the production mode is used (`false`).
+ * `$operatingMode`: Optional operating mode, default is "P" for production. "D" = Development, "T" = Test.
  * `$soapClientOptions`: Optional options which are passed to the [SoapClient](http://php.net/manual/en/class.soapclient.php).
  * `$receiver`: Optional receiver constant, by default `YELLOWCUBE`.
 
 ### Test configuration
 
-To receive a configuration with an enabled debug mode, which can be used for testing use:
+To receive a configuration with an operating mode set to "T" = test, which can be used for testing use:
 
     Config::testConfig();
+
+### Test configuration
+
+To receive a configuration with an operating mode set to "D" = development, which can be used for integration tests:
+
+    Config::integrationConfig();
 
 ### Proxy configuration
 

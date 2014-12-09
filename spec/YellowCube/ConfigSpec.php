@@ -32,11 +32,11 @@ class ConfigSpec extends ObjectBehavior
         $this->shouldThrow('InvalidArgumentException')->during('__construct', array('sender', 'wsdl', '1 sec'));
     }
 
-    function it_asserts_debug_mode_is_boolean()
+    function it_asserts_operating_mode_is_string()
     {
         $this->shouldThrow('InvalidArgumentException')->during(
             '__construct',
-            array('sender', 'wsdl', null, 'false')
+            array('sender', 'wsdl', null, 'Other')
         );
     }
 
@@ -61,13 +61,13 @@ class ConfigSpec extends ObjectBehavior
         $this->getSender()->shouldReturn('YCTest');
         $this->getWSDL()->shouldReturn(Config::WSDL_PRODUCTION);
         $this->getReceiver()->shouldReturn('YELLOWCUBE');
-        $this->isDebugMode()->shouldReturn(false);
+        $this->getOperatingMode()->shouldReturn('P');
         $this->getTimeoutSec()->shouldReturn(null);
     }
 
-    function it_returns_test_wsdl_in_debug_mode()
+    function it_returns_test_wsdl_in_operating_mode()
     {
-        $this->beConstructedWith('YCTest', null, null, true);
+        $this->beConstructedWith('YCTest', null, null, 'D');
         $this->getWSDL()->shouldReturn(Config::WSDL_TEST);
     }
 }

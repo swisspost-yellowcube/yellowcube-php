@@ -96,7 +96,7 @@ class ControlReference
             ->setReceiver($config->getReceiver())
             ->setTransMaxWait($config->getTimeoutSec())
             ->setTimestamp(date('Ymdhis'))
-            ->setOperatingMode($config->isDebugMode() ? 'T' : 'P')
+            ->setOperatingMode($config->getOperatingMode())
             ->setVersion('1.0')
             ->setCommType('SOAP');
     }

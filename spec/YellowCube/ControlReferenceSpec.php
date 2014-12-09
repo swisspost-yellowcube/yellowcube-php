@@ -10,7 +10,7 @@ class ControlReferenceSpec extends ObjectBehavior
     function let(Config $config) {
         $config->getSender()->willReturn('SENDER');
         $config->getReceiver()->willReturn('RECEIVER');
-        $config->isDebugMode()->willReturn(true);
+        $config->getOperatingMode()->willReturn('P');
         $config->getTimeoutSec()->willReturn(null);
     }
 
@@ -22,13 +22,13 @@ class ControlReferenceSpec extends ObjectBehavior
         $cr->getReceiver()->shouldEqual('RECEIVER');
         $cr->getSender()->shouldEqual('SENDER');
         $cr->getTimestamp()->shouldEqual(date('Ymdhis'));
-        $cr->getOperatingMode()->shouldEqual('T');
+        $cr->getOperatingMode()->shouldEqual('P');
         $cr->getVersion()->shouldEqual('1.0');
         $cr->getCommType()->shouldEqual('SOAP');
     }
 
     function it_creates_a_control_reference_by_config_in_production_mode(Config $config) {
-        $config->isDebugMode()->willReturn(false);
+        $config->getOperatingMode()->willReturn('P');
 
         $this::fromConfig('WAR', $config)
             ->getOperatingMode()->shouldEqual('P');
