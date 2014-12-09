@@ -95,7 +95,7 @@ class Config
      */
     public static function integrationConfig()
     {
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, 'D');
+        return new self('Testshop06', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern.wsdl', null, 'D');
     }
 
     /**
