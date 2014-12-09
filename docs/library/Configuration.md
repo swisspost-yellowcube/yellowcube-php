@@ -20,7 +20,7 @@ To receive a configuration with an operating mode set to "T" = test, which can b
 
     Config::testConfig();
 
-### Test configuration
+### Integration configuration
 
 To receive a configuration with an operating mode set to "D" = development, which can be used for integration tests:
 
