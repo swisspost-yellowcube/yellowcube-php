@@ -169,4 +169,24 @@ class Config
     {
         return $this->timeoutSec;
     }
+
+    /**
+     * @return string
+     */
+    public function getCertificateFilePath()
+    {
+        return $this->soapClientOptions['local_cert'];
+    }
+
+    /**
+     * @param string $certificateFilePath
+     */
+    public function setCertificateFilePath($certificateFilePath)
+    {
+        \Assert\that($certificateFilePath)->file()->readable();
+        $this->certificateFilePath = $certificateFilePath;
+
+        $this->soapClientOptions['local_cert'] = $certificateFilePath;
+        return $this;
+    }
 }
