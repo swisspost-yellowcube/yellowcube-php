@@ -34,3 +34,13 @@ testing configuration.
     Config::proxyConfig();
 
 The configuration expects a HTTP Proxy running on host `127.0.0.1` and port `8888`.
+
+### Set certificate to use for authentication
+
+In order to authenticate, a certificate which is registered with the YellowCube Service is necessary. To authenticate
+with the certificate, set it on a configuration instance:
+
+    $config = Config::testConfig();
+    $config->setCertificateFilePath(__DIR__ . '/../client_ca.pem');
+
+When you receive a `Could not connect to host` error, that probably means that the certificate is broken.
