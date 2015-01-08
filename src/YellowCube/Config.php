@@ -181,12 +181,24 @@ class Config
     /**
      * @param string $certificateFilePath
      */
-    public function setCertificateFilePath($certificateFilePath)
+    public function setCertificateFilePath($certificateFilePath, $passphrase = null)
     {
         \Assert\that($certificateFilePath)->file()->readable();
         $this->certificateFilePath = $certificateFilePath;
 
         $this->soapClientOptions['local_cert'] = $certificateFilePath;
+
+        if (!empty($passphrase)) {
+            $this->soapClientOptions['passphrase'] = $passphrase;
+        }
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificatePassphrase()
+    {
+        return $this->soapClientOptions['passphrase'];
     }
 }

@@ -2,14 +2,23 @@
 
 namespace spec\YellowCube;
 
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamFile;
 use PhpSpec\ObjectBehavior;
 use YellowCube\Config;
 
 class ConfigSpec extends ObjectBehavior
 {
+    /**
+     * @var string
+     */
+    private $certFilePath;
+
     function let()
     {
         $this->beConstructedWith('YCTest');
+        $root = vfsStream::setup('test');
+        $this->certFilePath = vfsStream::newFile('foo.txt')->at($root)->url();
     }
 
     function it_is_initializable()
@@ -69,5 +78,20 @@ class ConfigSpec extends ObjectBehavior
     {
         $this->beConstructedWith('YCTest', null, null, 'D');
         $this->getWSDL()->shouldReturn(Config::WSDL_TEST);
+    }
+
+    function it_does_not_allow_empty_certificate() {
+        $this->shouldThrow('InvalidArgumentException')->during('setCertificateFilePath', array(''));
+    }
+
+    function it_sets_certificate_without_passphrase() {
+        $this->setCertificateFilePath($this->certFilePath);
+        $this->getCertificateFilePath()->shouldReturn($this->certFilePath);
+    }
+
+    function it_sets_certificate_with_passphrase() {
+        $this->setCertificateFilePath($this->certFilePath, 'pass-phrase');
+        $this->getCertificateFilePath()->shouldReturn($this->certFilePath);
+        $this->getCertificatePassphrase()->shouldReturn('pass-phrase');
     }
 }
