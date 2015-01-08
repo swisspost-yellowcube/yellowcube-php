@@ -43,4 +43,8 @@ with the certificate, set it on a configuration instance:
     $config = Config::testConfig();
     $config->setCertificateFilePath(__DIR__ . '/../client_ca.pem');
 
-When you receive a `Could not connect to host` error, that probably means that the certificate is broken.
+:   When you receive a `Could not connect to host` error, that probably means that the certificate is broken.
+
+If the certificate requires a password, you can set a **passphrase** as **second parameter**.
+
+    $config->setCertificateFilePath(__DIR__ . '/../client_ca.pem', 'passphrase');
