@@ -22,7 +22,8 @@
         "beberlei/assert": "~2.0@dev"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "phpspec/phpspec": "~2.0",
+        "mikey179/vfsStream": "1.4.*@dev"
     },
     "config": {
         "bin-dir": "bin"
