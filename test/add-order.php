@@ -70,7 +70,7 @@ $order
     ->setPartnerAddress($partner)
     ->addValueAddedService(new AdditionalShippingServices())
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
-    ->addValueAddedService(new DeliveryInstructions('Ring three times.'))
+    ->addValueAddedService(new DeliveryInstructions('ZAW3219;ZAW3222'))
     ->addValueAddedService(new DeliveryLocation('Last house in the street.'))
     ->addValueAddedService(new DeliveryPeriodeCode(DeliveryPeriodeCode::MORNING))
     ->addValueAddedService(new DeliveryTimeFrom('13:00'))

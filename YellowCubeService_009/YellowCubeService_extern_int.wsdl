@@ -1,32 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
 <!-- 	===========================================================	-->
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
-<!--   ***   Version X009 19.11.2014                                                    -->
+<!--   ***   Version 1.00 05.01.2015                                                    -->
 <!--   ***                                                                              -->
-<!--   ***   X002 Clean up from initial version                                         -->
-<!--   ***   X003 New URI Namespaces                                                    -->
-<!--   ***   X005 New Namespace                                                         -->
-<!--   ***   X006 New Gen Response Structure                                            -->
-<!--   ***   X007 WBL and WBA added. Pattern updated in WAR, WAB, BAR and ART           -->
-<!--   ***   X008 Changes to WAB and ART                                                -->
-<!--   ***   X009 Changes to WBL, WBA, ART and WAB                                      -->
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
-                 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-                 xmlns:tns="https://service.swisspost.ch/apache/yellowcube/YellowCubeService.wsdl" 
-                 xmlns:wab="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" 
-                 xmlns:warr="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd" 
-                 xmlns:art="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd" 
-                 xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd"
-                 xmlns:gen="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_RESPONSE_General.xsd" 
-                 xmlns:gen_s="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" 
-                 xmlns:war_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" 
-                 xmlns:bar_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_REQUEST_ArticleList.xsd"
-				 xmlns:wbl="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBL_REQUEST_SupplierOrders.xsd" 
-				 xmlns:wba="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_RESPONSE_GoodsReceiptReply.xsd" 
-				 xmlns:wba_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_REQUEST_GoodsReceiptReply.xsd" 				 
-                 name="YellowCubeService" 
-                 targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCubeService.wsdl">
+<!--   ***   1.00 initial version                                                       -->
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://service.swisspost.ch/apache/yellowcube/YellowCubeService.wsdl" xmlns:wab="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" xmlns:warr="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd" xmlns:art="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd" xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd" xmlns:gen="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_RESPONSE_General.xsd" xmlns:gen_s="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" xmlns:war_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" xmlns:bar_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_REQUEST_ArticleList.xsd" xmlns:wbl="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBL_REQUEST_SupplierOrders.xsd" xmlns:wba="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_RESPONSE_GoodsReceiptReply.xsd" xmlns:wba_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_REQUEST_GoodsReceiptReply.xsd" name="YellowCubeService" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCubeService.wsdl">
 	<types>
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" schemaLocation="YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd"/>
@@ -84,61 +63,57 @@
 	<message name="WBL_Response">
 		<part name="WBL_Response" element="gen:GEN_Response"/>
 	</message>
+	<message name="WBL_STATUS_Request">
+		<part name="WBL_STATUS" element="gen_s:GEN_STATUS"/>
+	</message>
+	<message name="WBL_STATUS_Response">
+		<part name="WBL_S_Response" element="gen:GEN_Response"/>
+	</message>
 	<message name="WBA_Request">
 		<part name="WBA_Request" element="wba_r:WBA_Request"/>
 	</message>
 	<message name="WBA_Response">
 		<part name="WBA" element="wba:WBA_List"/>
 	</message>
-	<portType name="CreateYCCustomerOrder_PortType">
+	<portType name="YellowCube_PortType">
 		<operation name="CreateYCCustomerOrder">
 			<input message="tns:WAB_Request"/>
 			<output message="tns:WAB_Response"/>
 		</operation>
-	</portType>
-	<portType name="GetYCCustomerOrderStatus_PortType">
 		<operation name="GetYCCustomerOrderStatus">
 			<input message="tns:WAB_STATUS_Request"/>
 			<output message="tns:WAB_STATUS_Response"/>
 		</operation>
-	</portType>
-	<portType name="GetYCCustomerOrderReply_PortType">
 		<operation name="GetYCCustomerOrderReply">
 			<input message="tns:WAR_Request"/>
 			<output message="tns:WAR_Response"/>
 		</operation>
-	</portType>
-	<portType name="InsertArticleMasterData_PortType">
 		<operation name="InsertArticleMasterData">
 			<input message="tns:ART_Request"/>
 			<output message="tns:ART_Response"/>
 		</operation>
-	</portType>
-	<portType name="GetInsertArticleMasterDataStatus_PortType">
 		<operation name="GetInsertArticleMasterDataStatus">
 			<input message="tns:ART_STATUS_Request"/>
 			<output message="tns:ART_STATUS_Response"/>
 		</operation>
-	</portType>
-	<portType name="GetInventory_PortType">
 		<operation name="GetInventory">
 			<input message="tns:BAR_Request"/>
 			<output message="tns:BAR_Response"/>
 		</operation>
-	</portType>
-	<portType name="CreateYCSupplierOrders_PortType">
-		<operation name="CreateYCSupplierOrders">
+		<operation name="CreateYCSupplierOrder">
 			<input message="tns:WBL_Request"/>
 			<output message="tns:WBL_Response"/>
 		</operation>
-	</portType>
-	<portType name="GetYCSupplierOrderReply_PortType">
+		<operation name="GetYCSupplierOrderStatus">
+			<input message="tns:WBL_STATUS_Request"/>
+			<output message="tns:WBL_STATUS_Response"/>
+		</operation>
 		<operation name="GetYCSupplierOrderReply">
 			<input message="tns:WBA_Request"/>
 			<output message="tns:WBA_Response"/>
 		</operation>
 	</portType>
-	<binding name="CreateYCCustomerOrder_Binding" type="tns:CreateYCCustomerOrder_PortType">
+	<binding name="YellowCube_Binding" type="tns:YellowCube_PortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="CreateYCCustomerOrder">
 			<soap:operation soapAction="CreateYCCustomerOrder" style="document"/>
@@ -149,9 +124,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="GetYCCustomerOrderStatus_Binding" type="tns:GetYCCustomerOrderStatus_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="GetYCCustomerOrderStatus">
 			<soap:operation soapAction="GetYCCustomerOrderStatus" style="document"/>
 			<input>
@@ -161,9 +133,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="GetYCCustomerOrderReply_Binding" type="tns:GetYCCustomerOrderReply_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="GetYCCustomerOrderReply">
 			<soap:operation soapAction="GetYCCustomerOrderReply" style="document"/>
 			<input>
@@ -173,9 +142,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="InsertArticleMasterData_Binding" type="tns:InsertArticleMasterData_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="InsertArticleMasterData">
 			<soap:operation soapAction="InsertArticleMasterData" style="document"/>
 			<input>
@@ -185,9 +151,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="GetInsertArticleMasterDataStatus_Binding" type="tns:GetInsertArticleMasterDataStatus_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="GetInsertArticleMasterDataStatus">
 			<soap:operation soapAction="GetInsertArticleMasterDataStatus" style="document"/>
 			<input>
@@ -197,9 +160,6 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="GetInventory_Binding" type="tns:GetInventory_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="GetInventory">
 			<soap:operation soapAction="GetInventory" style="document"/>
 			<input>
@@ -209,11 +169,8 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="CreateYCSupplierOrders_Binding" type="tns:CreateYCSupplierOrders_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-		<operation name="CreateYCSupplierOrders">
-			<soap:operation soapAction="CreateYCSupplierOrders" style="document"/>
+		<operation name="CreateYCSupplierOrder">
+			<soap:operation soapAction="CreateYCSupplierOrder" style="document"/>
 			<input>
 				<soap:body use="literal"/>
 			</input>
@@ -221,9 +178,15 @@
 				<soap:body use="literal"/>
 			</output>
 		</operation>
-	</binding>
-	<binding name="GetYCSupplierOrderReply_Binding" type="tns:GetYCSupplierOrderReply_PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="GetYCSupplierOrderStatus">
+			<soap:operation soapAction="GetYCSupplierOrderStatus" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
 		<operation name="GetYCSupplierOrderReply">
 			<soap:operation soapAction="GetYCSupplierOrderReply" style="document"/>
 			<input>
@@ -236,29 +199,8 @@
 	</binding>
 	<service name="YellowCube_Service">
 		<documentation>YellowCube Webservice</documentation>
-		<port name="CreateYCCustomerOrder_Port" binding="tns:CreateYCCustomerOrder_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/CreateYCCustomerOrder"/>
+		<port name="YellowCube_Port" binding="tns:YellowCube_Binding">
+			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-int/e-comm-services"/>
 		</port>
-		<port name="GetYCCustomerOrderStatus_Port" binding="tns:GetYCCustomerOrderStatus_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/GetYCCustomerOrderStatus"/>
-		</port>
-		<port name="GetYCCustomerOrderReply_Port" binding="tns:GetYCCustomerOrderReply_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/GetYCCustomerOrderReply"/>
-		</port>
-		<port name="InsertArticleMasterData_Port" binding="tns:InsertArticleMasterData_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/InsertArticleMasterData"/>
-		</port>
-		<port name="GetInsertArticleMasterDataStatus_Port" binding="tns:GetInsertArticleMasterDataStatus_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/GetInsertArticleMasterDataStatus"/>
-		</port>
-		<port name="GetInventory_Port" binding="tns:GetInventory_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/GetInventory"/>
-		</port>
-		<port name="CreateYCSupplierOrders_Port" binding="tns:CreateYCSupplierOrders_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/CreateYCSupplierOrders"/>
-		</port>
-		<port name="GetYCSupplierOrderReply_Port" binding="tns:GetYCSupplierOrderReply_Binding">
-			<soap:address location="https://service-test.swisspost.ch/apache/yellowcube-test/GetYCSupplierOrderReply"/>
-        </port>
 	</service>
 </definitions>

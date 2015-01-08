@@ -80,7 +80,7 @@ $order->addOrderDocument($exampleDocument);
 $order
     ->addValueAddedService(new AdditionalShippingServices())
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::ECO))
-    ->addValueAddedService(new DeliveryInstructions('Ring three times.'))
+    ->addValueAddedService(new DeliveryInstructions('ZAW3219;ZAW3222'))
     ->addValueAddedService(new DeliveryLocation('Last house in the street.'))
     ->addValueAddedService(new DeliveryPeriodeCode(DeliveryPeriodeCode::MORNING))
     ->addValueAddedService(new DeliveryTimeFrom('13:00'))
