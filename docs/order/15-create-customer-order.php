@@ -93,8 +93,7 @@ $order
     ->addValueAddedService(new FrightShippingFlag('1')) // Yes, fright consignment (small consignments).
     ->addValueAddedService(new FloorNo('3'))
     ->addValueAddedService(new NotificationType(NotificationType::EMAIL))
-    ->addValueAddedService(new NotificationServiceCode('2'))
-    ->setOrderDocumentsFlag(true);
+    ->addValueAddedService(new NotificationServiceCode('2'));
 
 ### "create-order"
 $service = new YellowCube\Service(Config::testConfig());

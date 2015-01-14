@@ -34,7 +34,8 @@ class Order
      */
     protected $OrderDocuments = array(
         'Docs' => array(),
-        'OrderDocFilenames' => array()
+        'OrderDocFilenames' => array(),
+        'OrderDocumentsFlag' => 0
     );
 
     /**
@@ -127,6 +128,7 @@ class Order
     public function addOrderDocument(Doc $doc)
     {
         $this->OrderDocuments['Docs'][] = $doc;
+        $this->setOrderDocumentsFlag(true);
         return $this;
     }
 
@@ -152,6 +154,7 @@ class Order
     public function setOrderDocumentsFlag($orderDocumentsFlag)
     {
         $this->OrderDocuments['OrderDocumentsFlag'] = (int) $orderDocumentsFlag;
+        return $this;
     }
 
     /**

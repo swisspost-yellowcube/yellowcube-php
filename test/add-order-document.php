@@ -50,8 +50,7 @@ $order
     ->addValueAddedService(new BasicShippingServices(BasicShippingServices::PRI))
     ->addValueAddedService(new DeliveryInstructions(''))
     ->addOrderPosition($position)
-    ->addOrderDocument(Doc::fromFile('LS', 'pdf', 'test/example-file.pdf'))
-    ->setOrderDocumentsFlag(true);
+    ->addOrderDocument(Doc::fromFile('LS', 'pdf', 'docs/order/example-file.pdf'));
 
 $response = $service->createYCCustomerOrder($order);
 assert($response->isSuccess(), 'Getting status for order failed.');

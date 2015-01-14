@@ -85,8 +85,7 @@ $order
     ->addValueAddedService(new NotificationType(NotificationType::EMAIL))
     ->addValueAddedService(new NotificationServiceCode('2'))
     ->addOrderPosition($position1)
-    ->addOrderPosition($position2)
-    ->setOrderDocumentsFlag(true);
+    ->addOrderPosition($position2);
 
 $response = $service->createYCCustomerOrder($order);
 assert($response->isSuccess(), 'Getting status for order failed.');
