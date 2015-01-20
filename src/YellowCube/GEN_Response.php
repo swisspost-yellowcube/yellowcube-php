@@ -99,7 +99,7 @@ class GEN_Response
      */
     public function isPending() {
        return !$this->isError()
-            && $this->getStatusCode() <= 100;
+            && $this->getStatusCode() < 100;
     }
 
     public function isSuccess()

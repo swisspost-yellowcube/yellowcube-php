@@ -21,13 +21,13 @@ class GEN_ResponseSpec extends ObjectBehavior
         $this->isPending()->shouldReturn(true);
     }
 
-    function it_should_return_pending_when_status_100()
+    function it_should_return_not_pending_when_status_100()
     {
         $statusType = 'S';
-        $statusCode = 10;
+        $statusCode = 100;
         $this->beConstructedWith(null, null, $statusCode, $statusType);
 
-        $this->isPending()->shouldReturn(true);
+        $this->isPending()->shouldReturn(false);
     }
 
     function it_should_return_not_pending_when_status_greater_than_100()
