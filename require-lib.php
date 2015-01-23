@@ -23,6 +23,7 @@ require_once $baseDir . '/src/YellowCube/Service.php';
 require_once $baseDir . '/src/YellowCube/Util/ClassUtil.php';
 require_once $baseDir . '/src/YellowCube/Util/SimpleValue.php';
 require_once $baseDir . '/src/YellowCube/Util/SoapClient.php';
+require_once $baseDir . '/src/YellowCube/Util/YellowCubeException.php';
 require_once $baseDir . '/src/YellowCube/ART/Article.php';
 require_once $baseDir . '/src/YellowCube/ART/ArticleDescription.php';
 require_once $baseDir . '/src/YellowCube/ART/ChangeFlag.php';

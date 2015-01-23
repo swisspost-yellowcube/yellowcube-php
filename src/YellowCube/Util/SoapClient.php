@@ -54,7 +54,7 @@ class SoapClient extends \SoapClient
         } catch (\Exception $e) {
             $message = $e->getMessage();
             $message .= PHP_EOL . PHP_EOL . 'Request XML: ' . PHP_EOL . $this->__getLastRequest();
-            throw new \Exception($message);
+            throw new YellowCubeException($message, $e->getCode(), $e);
         }
     }
 }
