@@ -2,6 +2,8 @@
 
 namespace YellowCube;
 
+use \Assert\AssertionChain;
+
 /**
  * Contains credentials, wsdl to use and other configuration options.
  *
@@ -58,17 +60,17 @@ class Config
      * @param string $sender Sender code to use.
      * @param string $wsdl WSDL file to use (local path or URL), null means default depending on the debug mode.
      * @param int $timeoutSec (Optional) Timeout in seconds, null means no timeout.
-     * @param bool $operatingMode (Optional) Operating mode, default is "P" for production. "D" = Development, "T" = Test.
+     * @param string $operatingMode (Optional) Operating mode, default is "P" for production. "D" = Development, "T" = Test.
      * @param array $soapClientOptions (Optional) Options for SoapClient.
      * @param string $receiver (Optional) Receiver code to use, default: YELLOWCUBE.
      */
     function __construct($sender, $wsdl = null, $timeoutSec = null, $operatingMode = 'P', array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
-        \Assert\that($sender)->notEmpty()->string('Sender must be set.');
-        \Assert\that($wsdl)->nullOr()->notEmpty()->string('WSDL must be set.');
-        \Assert\that($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
-        \Assert\that($operatingMode)->choice(array('T', 'D', 'P'), 'Operating mode must be "T", "D" or "P".');
-        \Assert\that($receiver)->notEmpty()->string('Receiver must be set.');
+        $this->assertionChain($sender)->notEmpty()->string('Sender must be set.');
+        $this->assertionChain($wsdl)->nullOr()->notEmpty()->string('WSDL must be set.');
+        $this->assertionChain($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
+        $this->assertionChain($operatingMode)->choice(array('T', 'D', 'P'), 'Operating mode must be "T", "D" or "P".');
+        $this->assertionChain($receiver)->notEmpty()->string('Receiver must be set.');
 
         $this->sender = $sender;
         $this->wsdl = $wsdl;
@@ -76,6 +78,19 @@ class Config
         $this->operatingMode = $operatingMode;
         $this->soapClientOptions = $soapClientOptions;
         $this->receiver = $receiver;
+    }
+
+    /**
+     * Return Assertion Chain object
+     *
+     * @param $value
+     * @param null $defaultMessage
+     * @param null $defaultPropertyPath
+     * @return AssertionChain
+     */
+    public function assertionChain($value, $defaultMessage = null, $defaultPropertyPath = null)
+    {
+        return new AssertionChain($value, $defaultMessage, $defaultPropertyPath);
     }
 
     /**
@@ -180,10 +195,11 @@ class Config
 
     /**
      * @param string $certificateFilePath
+     * @return Config
      */
     public function setCertificateFilePath($certificateFilePath, $passphrase = null)
     {
-        \Assert\that($certificateFilePath)->file()->readable();
+        $this->assertionChain($certificateFilePath)->file()->readable();
         $this->certificateFilePath = $certificateFilePath;
 
         $this->soapClientOptions['local_cert'] = $certificateFilePath;

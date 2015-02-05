@@ -44,7 +44,7 @@ class Magento
                 if (is_dir($magentoPath . 'lib/Beberlei')) {
                     self::_recursiveRmDir($magentoPath . 'lib/Beberlei');
                 }
-                self::_recurseCopy(dirname(__DIR__) . '/../../../../beberlei/assert/lib', $magentoPath . 'lib/Beberlei');
+                self::_recurseCopy(dirname(__DIR__) . '/../../../../beberlei/assert/lib/Assert', $magentoPath . 'lib');
             }
         }
     }

@@ -2,6 +2,8 @@
 
 namespace YellowCube\WAB;
 
+use \Assert\AssertionChain;
+
 class Doc
 {
 
@@ -45,8 +47,10 @@ class Doc
      * @param $FilePath
      * @return Doc
      */
-    public static function fromFile($DocType, $DocMimeType, $FilePath) {
-        \Assert\that($FilePath)
+    public static function fromFile($DocType, $DocMimeType, $FilePath)
+    {
+        $assertionChain = new AssertionChain($FilePath);
+        $assertionChain
             ->file("{$FilePath} does not exist.")
             ->readable("{$FilePath} is not readable.");
 
