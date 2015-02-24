@@ -19,7 +19,8 @@
     "require": {
         "ext-soap": "*",
         "php": ">=5.3",
-        "beberlei/assert": "~2.0@dev"
+        "beberlei/assert": "~2.0@dev",
+        "course-hero/wse-php": "2.x"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
