@@ -20,7 +20,7 @@
         "ext-soap": "*",
         "php": ">=5.3",
         "beberlei/assert": "~2.0@dev",
-        "course-hero/wse-php": "2.x"
+        "course-hero/wse-php": "dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
@@ -29,5 +29,11 @@
     "config": {
         "bin-dir": "bin"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/liip-forks/wse-php"
+        }
+    ],
     "minimum-stability": "dev"
 }

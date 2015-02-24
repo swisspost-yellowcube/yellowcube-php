@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d217492bc3e3bdec45a3479a1cf04052",
+    "hash": "f1e4f4b74daae5569d54e27cc432e343",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -57,16 +57,16 @@
         },
         {
             "name": "course-hero/wse-php",
-            "version": "2.0.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/course-hero/wse-php.git",
-                "reference": "9cc7751f22aa4b40409f78e87b9d13ea8a60bd87"
+                "url": "https://github.com/liip-forks/wse-php.git",
+                "reference": "c1457c8560b08803c1646c6d6445b53a7e089252"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/course-hero/wse-php/zipball/9cc7751f22aa4b40409f78e87b9d13ea8a60bd87",
-                "reference": "9cc7751f22aa4b40409f78e87b9d13ea8a60bd87",
+                "url": "https://api.github.com/repos/liip-forks/wse-php/zipball/c1457c8560b08803c1646c6d6445b53a7e089252",
+                "reference": "c1457c8560b08803c1646c6d6445b53a7e089252",
                 "shasum": ""
             },
             "require": {
@@ -79,19 +79,18 @@
                     "Wse": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD"
             ],
             "authors": [
                 {
-                    "name": "Chris Verges",
-                    "email": "cverges@coursehero.com",
+                    "name": "Rob Richards",
+                    "email": "rrichards@ctindustries.net",
                     "role": "Developer"
                 },
                 {
-                    "name": "Rob Richards",
-                    "email": "rrichards@ctindustries.net",
+                    "name": "Chris Verges",
+                    "email": "cverges@coursehero.com",
                     "role": "Developer"
                 }
             ],
@@ -101,7 +100,10 @@
                 "soap",
                 "wse"
             ],
-            "time": "2015-01-14 14:35:37"
+            "support": {
+                "source": "https://github.com/liip-forks/wse-php/tree/master"
+            },
+            "time": "2015-02-24 17:14:43"
         }
     ],
     "packages-dev": [
@@ -661,12 +663,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "be6d274e452bc6e3016d7d2d725b1e59a58982bb"
+                "reference": "f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/be6d274e452bc6e3016d7d2d725b1e59a58982bb",
-                "reference": "be6d274e452bc6e3016d7d2d725b1e59a58982bb",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158",
+                "reference": "f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158",
                 "shasum": ""
             },
             "require": {
@@ -710,7 +712,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-21 13:05:27"
+            "time": "2015-02-24 12:09:34"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -828,12 +830,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "8fdfab66a3db42796ef85abe92203aafbb5fe802"
+                "reference": "068af938416f94e638e5d86f420e9be62c64ecdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/8fdfab66a3db42796ef85abe92203aafbb5fe802",
-                "reference": "8fdfab66a3db42796ef85abe92203aafbb5fe802",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/068af938416f94e638e5d86f420e9be62c64ecdf",
+                "reference": "068af938416f94e638e5d86f420e9be62c64ecdf",
                 "shasum": ""
             },
             "require": {
@@ -869,7 +871,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-18 10:38:04"
+            "time": "2015-02-24 12:09:34"
         },
         {
             "name": "symfony/yaml",
@@ -926,6 +928,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "beberlei/assert": 20,
+        "course-hero/wse-php": 20,
         "mikey179/vfsstream": 20
     },
     "prefer-stable": false,
