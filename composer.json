@@ -32,7 +32,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/liip-forks/wse-php"
+            "url": "https://github.com/liip-forks/wse-php.git"
         }
     ],
     "minimum-stability": "dev"
