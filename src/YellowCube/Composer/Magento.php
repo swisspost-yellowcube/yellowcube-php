@@ -68,8 +68,8 @@ class Magento
             if (is_dir($magentoPath . 'lib/YellowCube')) {
                 self::_recursiveRmDir($magentoPath . 'lib/YellowCube');
             }
-            if (is_dir($magentoPath . 'lib/Beberlei')) {
-                self::_recursiveRmDir($magentoPath . 'lib/Beberlei');
+            if (is_dir($magentoPath . 'lib/Assert')) {
+                self::_recursiveRmDir($magentoPath . 'lib/Assert');
             }
             if (is_dir($magentoPath . 'lib/Wse')) {
                 self::_recursiveRmDir($magentoPath . 'lib/Wse');
