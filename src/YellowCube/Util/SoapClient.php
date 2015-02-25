@@ -54,14 +54,36 @@ class SoapClient extends \SoapClient
         );
 
         $this->options = array_merge($defaultOptions, $options);
-        
+
         parent::__construct($wsdl, $this->options);
     }
 
     /**
      * @inheritdoc
      */
-    public function __doRequest($request, $location, $action, $version, $one_way = NULL)
+    public function __doRequest($request, $location, $action, $version, $oneWay = NULL)
+    {
+        if ($this->useCertificate()) {
+            return $this->signRequest($request, $location, $action, $version, $oneWay);
+
+        }
+
+        return parent::__doRequest($request, $location, $action, $version, $oneWay);
+    }
+
+    /**
+     * Signs the specified request.
+     *
+     * @param      $request
+     * @param      $location
+     * @param      $action
+     * @param      $version
+     * @param null $oneWay
+     *
+     * @return string
+     * @throws \Exception
+     */
+    protected function signRequest($request, $location, $action, $version, $oneWay = NULL)
     {
         $doc = new \DOMDocument();
         $doc->loadXML($request);
@@ -78,7 +100,7 @@ class SoapClient extends \SoapClient
 
         $signedRequest = $wsse->saveXML();
 
-        return parent::__doRequest($signedRequest, $location, $action, $version);
+        return parent::__doRequest($signedRequest, $location, $action, $version, $oneWay);
     }
 
     /**
@@ -99,6 +121,15 @@ class SoapClient extends \SoapClient
             $message .= PHP_EOL . PHP_EOL . 'Request XML: ' . PHP_EOL . $this->__getLastRequest();
             throw new YellowCubeException($message, $e->getCode(), $e);
         }
+    }
+
+    /**
+     * Returns true if a certificate should be used.
+     *
+     * @return mixed
+     */
+    protected function useCertificate() {
+        return !empty($this->options['local_cert']);
     }
 
     /**
