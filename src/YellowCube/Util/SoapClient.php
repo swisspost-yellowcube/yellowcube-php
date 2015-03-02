@@ -64,7 +64,7 @@ class SoapClient extends \SoapClient
     public function __doRequest($request, $location, $action, $version, $oneWay = NULL)
     {
         if ($this->useCertificate()) {
-            return $this->signRequest($request, $location, $action, $version, $oneWay);
+            $request = $this->signRequest($request);
 
         }
 
@@ -80,10 +80,10 @@ class SoapClient extends \SoapClient
      * @param      $version
      * @param null $oneWay
      *
-     * @return string
+     * @return string Signed request.
      * @throws \Exception
      */
-    protected function signRequest($request, $location, $action, $version, $oneWay = NULL)
+    protected function signRequest($request)
     {
         $doc = new \DOMDocument();
         $doc->loadXML($request);
@@ -92,15 +92,17 @@ class SoapClient extends \SoapClient
         $wsse->addTimestamp();
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+        if (!empty($this->options['passphrase'])) {
+            $key->passphrase = $this->options['passphrase'];
+        }
         $key->loadKey($this->getCertificateContent());
+
         $wsse->signSoapDoc($key);
 
         $token = $wsse->addBinaryToken($this->getCertificateContent());
         $wsse->attachTokentoSig($token);
 
-        $signedRequest = $wsse->saveXML();
-
-        return parent::__doRequest($signedRequest, $location, $action, $version, $oneWay);
+        return $wsse->saveXML();
     }
 
     /**
