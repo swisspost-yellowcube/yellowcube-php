@@ -100,7 +100,7 @@ class Config
      */
     public static function testConfig()
     {
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern_test.wsdl', null, 'T');
+        return new self('YCTest', 'https://service-test.swisspost.ch/apache/yellowcube-test/?wsdl', null, 'T');
     }
 
     /**
@@ -110,7 +110,7 @@ class Config
      */
     public static function integrationConfig()
     {
-        return new self('Testshop06', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern_int.wsdl', null, 'D');
+        return new self('Testshop06', 'https://service-test.swisspost.ch/apache/yellowcube-int/?wsdl', null, 'D');
     }
 
     /**
@@ -125,7 +125,7 @@ class Config
             'proxy_port' => '8888',
         );
 
-        return new self('YCTest', __DIR__ . '/../../YellowCubeService_009/YellowCubeService_extern_test.wsdl', null, 'T', $options);
+        return new self('YCTest', 'https://service-test.swisspost.ch/apache/yellowcube-test/?wsdl', null, 'T', $options);
     }
 
     /**
