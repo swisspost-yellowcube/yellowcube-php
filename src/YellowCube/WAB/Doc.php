@@ -6,6 +6,30 @@ use \Assert\AssertionChain;
 
 class Doc
 {
+    /**
+     * DocTyp Shipment
+     */
+    const DOC_TYPE_LS = 'LS';
+
+    /**
+     * DocTyp Invoice
+     */
+    const DOC_TYPE_IV = 'IV';
+
+    /**
+     * DocTyp Payment confirmation
+     */
+    const DOC_TYPE_ZS = 'ZS';
+
+    /**
+     * Mime Type PCL
+     */
+    const MIME_TYP_PCL = 'pcl'; // must be small caps
+
+    /**
+     * Mime Type PDF
+     */
+    const MIME_TYP_PDF = 'pdf'; // must be small caps
 
     /**
      *
