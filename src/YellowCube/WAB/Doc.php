@@ -24,12 +24,12 @@ class Doc
     /**
      * Mime Type PCL
      */
-    const MIME_TYP_PCL = 'pcl'; // must be small caps
+    const MIME_TYPE_PCL = 'pcl'; // must be small caps
 
     /**
      * Mime Type PDF
      */
-    const MIME_TYP_PDF = 'pdf'; // must be small caps
+    const MIME_TYPE_PDF = 'pdf'; // must be small caps
 
     /**
      *
