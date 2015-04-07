@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YellowCube PHP Library: PHP Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
+
+            <h1 class="page-title">YellowCube PHP Library</h1>
+        </div>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+
+                
+<ul class="site-nav nav">
+   <li><a href="index.html">PHP Library</a>
+       <ul>
+        <li><a href="index.html#installation">Installation</a></li>
+        <li><a href="library/Configuration.html">Configuration</a></li>
+        <li><a href="library/GEN_Response.html">GEN_Response</a></li>
+   </ul></li>
+    <li><a href="article/00-article.html">Article (ART)</a>
+        <ul>
+            <li><a href="article/10-add-articles.html">Insert Article</a></li>
+            <li><a href="article/20-update-articles.html">Update Article</a></li>
+            <li><a href="article/30-deactivate-articles.html">Deactivate Article</a></li>
+            <li><a href="article/40-article-status.html">Article Status</a></li>
+        </ul></li>
+    <li><a href="order/00-order.html">Customer Orders</a>
+        <ul>
+            <li><a href="order/10-create-customer-order.html">Create Customer Order (WAB)</a></li>
+            <li><a href="order/20-get-order-status.html">Order Status</a></li>
+            <li><a href="order/30-get-order-reply.html">Order Reply (WAR)</a></li>
+        </ul></li>
+    <li><a href="inventory/00-inventory.html">Inventory (BAR)</a></li>
+</ul>
+
+
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
+
+
+            <main>
+                <!--<a href="/">PHP Library</a>-->
+
+                <p>This is the documentation for the PHP API library which can be used to
+connect to the SOAP based YellowCube Interface.</p>
+<p>This API is designed to closely match the YellowCube SOAP Interface.
+Please consult the YellowCube Interface Manual for process descriptions, questions regarding
+formats and example values.</p>
+<h1 id="integrations"><a class="toclink" href="#integrations">Integrations</a></h1>
+<p><a class="integration drupal-integration" href="https://github.com/swisspost-yellowcube/drupal-yellowcube">
+    Drupal module: drupal-yellowcube.
+</a></p>
+<p><a class="integration magento-integration" href="https://github.com/swisspost-yellowcube/magento-yellowcube">
+    Magento module: magento-yellowcube.
+</a></p>
+<h1 id="installation"><a class="toclink" href="#installation">Installation</a></h1>
+<p>This library is using <a href="https://getcomposer.org/">Composer</a> to manage dependencies.
+Please see the <a href="https://getcomposer.org/doc/00-intro.md">installation section</a> on the composer website.</p>
+<p>To use the library in your project simply require it.</p>
+<pre><code>composer require swisspost-yellowcube/yellowcube-php
+</code></pre>
+<h1 id="requirements"><a class="toclink" href="#requirements">Requirements</a></h1>
+<ul>
+<li>PHP &gt; 5.3</li>
+<li>PHP <a href="http://php.net/manual/en/book.soap.php">SOAP extension</a></li>
+<li><a href="https://getcomposer.org/">Composer</a></li>
+</ul>
+<h1 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h1>
+<p>YellowCube Credentials, the WSDL to use, enabling or disabling a debug mode can
+be configured using the <code>YellowCube\Config</code> which is passed to the <code>YellowCube\Service</code>.</p>
+<p>To get started quickly, you can use a test configuration:</p>
+<pre><code>$service = new YellowCube\Service(YellowCube\Config::testConfig());
+</code></pre>
+<p>For a list of all configuration options see the <a href="library/Configuration.html">configuration section</a>.</p>
+<h1 id="license"><a class="toclink" href="#license">License</a></h1>
+<p>The YellowCube PHP Library is dual licensed under the MIT or GPL Version 2 licenses.</p>
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
+</body>
+</html>

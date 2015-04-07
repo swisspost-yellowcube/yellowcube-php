@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YellowCube PHP Library: Create Customer Order (WAB)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
+
+            <h1 class="page-title">YellowCube Create Customer Order (WAB)</h1>
+        </div>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+
+                
+<ul class="site-nav nav">
+   <li><a href="../index.html">PHP Library</a>
+       <ul>
+        <li><a href="../index.html#installation">Installation</a></li>
+        <li><a href="../library/Configuration.html">Configuration</a></li>
+        <li><a href="../library/GEN_Response.html">GEN_Response</a></li>
+   </ul></li>
+    <li><a href="../article/00-article.html">Article (ART)</a>
+        <ul>
+            <li><a href="../article/10-add-articles.html">Insert Article</a></li>
+            <li><a href="../article/20-update-articles.html">Update Article</a></li>
+            <li><a href="../article/30-deactivate-articles.html">Deactivate Article</a></li>
+            <li><a href="../article/40-article-status.html">Article Status</a></li>
+        </ul></li>
+    <li><a href="00-order.html">Customer Orders</a>
+        <ul>
+            <li><a href="10-create-customer-order.html">Create Customer Order (WAB)</a></li>
+            <li><a href="20-get-order-status.html">Order Status</a></li>
+            <li><a href="30-get-order-reply.html">Order Reply (WAR)</a></li>
+        </ul></li>
+    <li><a href="../inventory/00-inventory.html">Inventory (BAR)</a></li>
+</ul>
+
+
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
+
+
+            <main>
+                <!--<a href="/">PHP Library</a>-->
+
+                <p>For each customer order, the distance seller will send a purchase order to YellowCube.
+For all ordered articles, a corresponding article must be submitted to the master data and
+physically transferred to the warehouse.</p>
+<p>In addition, the available stock (YAFS stock) must be sufficient. Otherwise, the order is rejected.
+The distance seller receives a goods issue confirmation (WAR) from YellowCube whenever a WAB is issued.</p>
+<hr/>
+<p>An order contains the following information:</p>
+<div class="toc">
+<ul>
+<li><a href="#order-header">Order Header</a></li>
+<li><a href="#partner-address">Partner Address</a></li>
+<li><a href="#order-position">Order Position</a></li>
+<li><a href="#additional-services">Additional Services</a></li>
+<li><a href="#order-documents">Order Documents</a></li>
+</ul>
+</div>
+<dl>
+<dt>Parameter formats</dt>
+<dd>For a comprehensive documentation of parameters and formats, please consult the
+YellowCube SOAP Interface manual.</dd>
+</dl>
+<h4 id="order-header"><a class="toclink" href="#order-header">Order Header</a></h4>
+<p>The <code>OrderHeader</code> is mandatory and contains identifiers for the depositor and the customer order.
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$order</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Order</span><span class="p">();</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">setOrderHeader</span><span class="p">(</span><span class="k">new</span> <span class="nx">OrderHeader</span><span class="p">(</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>    <span class="s1">'0000040730'</span><span class="p">,</span>   <span class="c1">// DepositorNo</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a>    <span class="nx">\uniqid</span><span class="p">(</span><span class="s1">'yc'</span><span class="p">),</span>  <span class="c1">// CustomerOrderNo</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a>    <span class="nb">date</span><span class="p">(</span><span class="s1">'Ymd'</span><span class="p">)</span>     <span class="c1">// CustomerOrderDate</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a><span class="p">));</span>
+</pre></div></p>
+<h4 id="partner-address"><a class="toclink" href="#partner-address">Partner Address</a></h4>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$partner</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Partner</span><span class="p">();</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a><span class="nv">$partner</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>    <span class="o">-&gt;</span><span class="na">setPartnerType</span><span class="p">(</span><span class="s1">'WE'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a>    <span class="o">-&gt;</span><span class="na">setPartnerNo</span><span class="p">(</span><span class="s1">'0000300020'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a>    <span class="o">-&gt;</span><span class="na">setPartnerReference</span><span class="p">(</span><span class="s1">'LiiP AG'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a>    <span class="o">-&gt;</span><span class="na">setTitle</span><span class="p">(</span><span class="s1">'Madame'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-7"></a>    <span class="o">-&gt;</span><span class="na">setName1</span><span class="p">(</span><span class="s1">'We Name'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-8"></a>    <span class="o">-&gt;</span><span class="na">setName2</span><span class="p">(</span><span class="s1">'c/o Cailler'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-9"></a>    <span class="o">-&gt;</span><span class="na">setStreet</span><span class="p">(</span><span class="s1">'Strasse'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-10"></a>    <span class="o">-&gt;</span><span class="na">setCountryCode</span><span class="p">(</span><span class="s1">'CH'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-11"></a>    <span class="o">-&gt;</span><span class="na">setZIPCode</span><span class="p">(</span><span class="s1">'8057'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-12"></a>    <span class="o">-&gt;</span><span class="na">setCity</span><span class="p">(</span><span class="s1">'Zurich'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-13"></a>    <span class="o">-&gt;</span><span class="na">setPOBox</span><span class="p">(</span><span class="s1">'po box'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-14"></a>    <span class="o">-&gt;</span><span class="na">setPhoneNo</span><span class="p">(</span><span class="s1">'0041793020467'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-15"></a>    <span class="o">-&gt;</span><span class="na">setSMSAvisMobNo</span><span class="p">(</span><span class="s1">'0041793020467'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-16"></a>    <span class="o">-&gt;</span><span class="na">setFaxNo</span><span class="p">(</span><span class="s1">'0041793020467'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-17"></a>    <span class="o">-&gt;</span><span class="na">setEmail</span><span class="p">(</span><span class="s1">'name@test.ch'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-18"></a>    <span class="o">-&gt;</span><span class="na">setLanguageCode</span><span class="p">(</span><span class="s1">'en'</span><span class="p">);</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-19"></a>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-20"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">setPartnerAddress</span><span class="p">(</span><span class="nv">$partner</span><span class="p">);</span>
+</pre></div>
+<h4 id="order-position"><a class="toclink" href="#order-position">Order Position</a></h4>
+<p>The <code>PosNo</code> is a incrementing integer like 10, 20, 30.</p>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$position</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Position</span><span class="p">();</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a><span class="nv">$position</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>    <span class="o">-&gt;</span><span class="na">setPosNo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a>    <span class="o">-&gt;</span><span class="na">setArticleNo</span><span class="p">(</span><span class="s1">'200522004'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a>    <span class="o">-&gt;</span><span class="na">setEAN</span><span class="p">(</span><span class="s1">'714718003580'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a>    <span class="o">-&gt;</span><span class="na">setPlant</span><span class="p">(</span><span class="s1">'Y010'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-7"></a>    <span class="o">-&gt;</span><span class="na">setQuantity</span><span class="p">(</span><span class="mf">1.00</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-8"></a>    <span class="o">-&gt;</span><span class="na">setQuantityISO</span><span class="p">(</span><span class="s1">'PCE'</span><span class="p">)</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-9"></a>    <span class="o">-&gt;</span><span class="na">setShortDescription</span><span class="p">(</span><span class="s1">'loral Pasty Daisie'</span><span class="p">);</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-10"></a>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-11"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">addOrderPosition</span><span class="p">(</span><span class="nv">$position</span><span class="p">);</span>
+</pre></div>
+<h4 id="additional-services"><a class="toclink" href="#additional-services">Additional Services</a></h4>
+<p>For a complete list of additional services, please consult the YellowCube Interface Manual.</p>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$order</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">AdditionalShippingServices</span><span class="p">())</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">BasicShippingServices</span><span class="p">(</span><span class="nx">BasicShippingServices</span><span class="o">::</span><span class="na">ECO</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryInstructions</span><span class="p">(</span><span class="s1">'ZAW3219;ZAW3222'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryLocation</span><span class="p">(</span><span class="s1">'Last house in the street.'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryPeriodeCode</span><span class="p">(</span><span class="nx">DeliveryPeriodeCode</span><span class="o">::</span><span class="na">MORNING</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-7"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryTimeFrom</span><span class="p">(</span><span class="s1">'13:00'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-8"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryTimeTo</span><span class="p">(</span><span class="s1">'15:00'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-9"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryTimeJIT</span><span class="p">(</span><span class="s1">'14:00'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-10"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">DeliveryDate</span><span class="p">(</span><span class="nb">date</span><span class="p">(</span><span class="s1">'Ymd'</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="s1">'+4 days'</span><span class="p">))))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-11"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">CODAmount</span><span class="p">(</span><span class="s1">'150.00'</span><span class="p">))</span> <span class="c1">// COD amount in CHF (Cash on 153.45 Delivery).</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-12"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">CODAccountNo</span><span class="p">(</span><span class="s1">'010683242'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-13"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">CODRefNo</span><span class="p">(</span><span class="s1">'897201301070000097673'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-14"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">FrightShippingFlag</span><span class="p">(</span><span class="s1">'1'</span><span class="p">))</span> <span class="c1">// Yes, fright consignment (small consignments).</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-15"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">FloorNo</span><span class="p">(</span><span class="s1">'3'</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-16"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">NotificationType</span><span class="p">(</span><span class="nx">NotificationType</span><span class="o">::</span><span class="na">EMAIL</span><span class="p">))</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-17"></a>    <span class="o">-&gt;</span><span class="na">addValueAddedService</span><span class="p">(</span><span class="k">new</span> <span class="nx">NotificationServiceCode</span><span class="p">(</span><span class="s1">'2'</span><span class="p">));</span>
+</pre></div>
+<h4 id="order-documents"><a class="toclink" href="#order-documents">Order Documents</a></h4>
+<p>You can add documents to your order by using the <code>addOrderDocument()</code> method.
+It is advised to use the <code>Doc::fromFile()</code> factory method which reads the provided file
+and base64-encodes it.</p>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$exampleDocument</span> <span class="o">=</span> <span class="nx">YellowCube\WAB\Doc</span><span class="o">::</span><span class="na">fromFile</span><span class="p">(</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a>    <span class="s1">'LS'</span><span class="p">,</span>  <span class="c1">// DocType</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>    <span class="s1">'pdf'</span><span class="p">,</span> <span class="c1">// DocMimeType</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a>    <span class="s1">'../../../../../order/example-file.pdf'</span> <span class="c1">// FilePath</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a><span class="p">);</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-7"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">addOrderDocument</span><span class="p">(</span><span class="nv">$exampleDocument</span><span class="p">);</span>
+</pre></div>
+<hr/>
+<p>To create a customer order, create an <code>Order</code> object and pass it to
+<code>YellowCube\Service::createYCCustomerOrder($order)</code>.</p>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-idio-t-pyg.html-1"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YellowCube\Service</span><span class="p">(</span><span class="nx">Config</span><span class="o">::</span><span class="na">testConfig</span><span class="p">());</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-2"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">createYCCustomerOrder</span><span class="p">(</span><span class="nv">$order</span><span class="p">);</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-3"></a>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-4"></a><span class="k">echo</span> <span class="s2">"Successfully created order with reference </span><span class="si">{</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span> <span class="o">.</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-5"></a>
+<a name="order--15-create-customer-order.php-idio-t-pyg.html-6"></a><span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+</pre></div>
+<p>When running this code a <code>GEN_Response</code> is returned.</p>
+<div class="highlight"><pre><a name="order--15-create-customer-order.php-php-idio.html-1"></a>Successfully created order with reference 13611
+<a name="order--15-create-customer-order.php-php-idio.html-2"></a>
+<a name="order--15-create-customer-order.php-php-idio.html-3"></a>YellowCube\GEN_Response Object
+<a name="order--15-create-customer-order.php-php-idio.html-4"></a>(
+<a name="order--15-create-customer-order.php-php-idio.html-5"></a>    [EventTimestamp:protected] =&gt; 2015-04-07T08:50:08Z
+<a name="order--15-create-customer-order.php-php-idio.html-6"></a>    [MessageType:protected] =&gt; WAB
+<a name="order--15-create-customer-order.php-php-idio.html-7"></a>    [StatusCode:protected] =&gt; 10
+<a name="order--15-create-customer-order.php-php-idio.html-8"></a>    [StatusType:protected] =&gt; S
+<a name="order--15-create-customer-order.php-php-idio.html-9"></a>    [StatusText:protected] =&gt; File received
+<a name="order--15-create-customer-order.php-php-idio.html-10"></a>    [Reference:protected] =&gt; 13611
+<a name="order--15-create-customer-order.php-php-idio.html-11"></a>    [Reference1:protected] =&gt; 
+<a name="order--15-create-customer-order.php-php-idio.html-12"></a>    [Reference2:protected] =&gt; 
+<a name="order--15-create-customer-order.php-php-idio.html-13"></a>    [Reference3:protected] =&gt; 
+<a name="order--15-create-customer-order.php-php-idio.html-14"></a>    [Reference4:protected] =&gt; 
+<a name="order--15-create-customer-order.php-php-idio.html-15"></a>)
+</pre></div>
+<p>The reference can be used to receive a customer order status.</p>
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
+</body>
+</html>

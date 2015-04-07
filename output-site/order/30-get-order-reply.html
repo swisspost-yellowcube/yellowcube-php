@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YellowCube PHP Library: Order Reply (WAR)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
+
+            <h1 class="page-title">YellowCube Order Reply (WAR)</h1>
+        </div>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+
+                
+<ul class="site-nav nav">
+   <li><a href="../index.html">PHP Library</a>
+       <ul>
+        <li><a href="../index.html#installation">Installation</a></li>
+        <li><a href="../library/Configuration.html">Configuration</a></li>
+        <li><a href="../library/GEN_Response.html">GEN_Response</a></li>
+   </ul></li>
+    <li><a href="../article/00-article.html">Article (ART)</a>
+        <ul>
+            <li><a href="../article/10-add-articles.html">Insert Article</a></li>
+            <li><a href="../article/20-update-articles.html">Update Article</a></li>
+            <li><a href="../article/30-deactivate-articles.html">Deactivate Article</a></li>
+            <li><a href="../article/40-article-status.html">Article Status</a></li>
+        </ul></li>
+    <li><a href="00-order.html">Customer Orders</a>
+        <ul>
+            <li><a href="10-create-customer-order.html">Create Customer Order (WAB)</a></li>
+            <li><a href="20-get-order-status.html">Order Status</a></li>
+            <li><a href="30-get-order-reply.html">Order Reply (WAR)</a></li>
+        </ul></li>
+    <li><a href="../inventory/00-inventory.html">Inventory (BAR)</a></li>
+</ul>
+
+
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
+
+
+            <main>
+                <!--<a href="/">PHP Library</a>-->
+
+                <p>Order replies are goods issue confirmations and can be retrieved for:</p>
+<div class="toc">
+<ul>
+<li><a href="#a-specific-order">A Specific Order</a></li>
+<li><a href="#all-orders">All Orders</a></li>
+</ul>
+</div>
+<dl>
+<dt>GoodsIssue</dt>
+<dd>The goods issue confirmation is the answer to a order (WAB). The distance seller receives it after
+the goods have been picked and the goods have been shipped.</dd>
+</dl>
+<p>For a complete list of the response structure and formats please consult the YellowCube Interface Manual.</p>
+<h3 id="a-specific-order"><a class="toclink" href="#a-specific-order">A Specific Order</a></h3>
+<p>To check available replies for a specific customer order in YellowCube, a <code>CustomerOrderNo</code> is needed.</p>
+<dl>
+<dt>CustomerOrderNo</dt>
+<dd>The <code>CustomerOrderNo</code> was set in the <code>OrderHeader</code> when creating an customer order.
+It is chosen by the distant seller (shop).</dd>
+</dl>
+<p>Pass the <code>CustomerOrderNo</code> to the method <code>YellowCube\Service::getYCCustomerOrderReply($customerOrderNo)</code> to retrieve a
+list of <code>GoodsIssue</code> objects.</p>
+<div class="highlight"><pre><a name="order--35-get-order-reply.php-idio-t-pyg.html-1"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YellowCube\Service</span><span class="p">(</span><span class="nx">YellowCube\Config</span><span class="o">::</span><span class="na">testConfig</span><span class="p">());</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-2"></a><span class="nv">$goodsIssueList</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">getYCCustomerOrderReply</span><span class="p">(</span><span class="s1">'SOAP-005'</span><span class="p">);</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-3"></a>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-4"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$goodsIssueList</span> <span class="k">as</span> <span class="nv">$goodsIssue</span><span class="p">)</span> <span class="p">{</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-5"></a>    <span class="nv">$header</span> <span class="o">=</span> <span class="nv">$goodsIssue</span><span class="o">-&gt;</span><span class="na">getCustomerOrderHeader</span><span class="p">();</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-6"></a>    <span class="k">echo</span> <span class="s2">"Order number: "</span> <span class="o">.</span>   <span class="nv">$header</span><span class="o">-&gt;</span><span class="na">getCustomerOrderNo</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-7"></a>    <span class="k">echo</span> <span class="s2">"PostalShipmentNo: "</span> <span class="o">.</span> <span class="nv">$header</span><span class="o">-&gt;</span><span class="na">getPostalShipmentNo</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-8"></a>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-9"></a>    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$goodsIssue</span><span class="o">-&gt;</span><span class="na">getCustomerOrderList</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$orderDetail</span><span class="p">)</span> <span class="p">{</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-10"></a>        <span class="k">echo</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">Position: "</span> <span class="o">.</span> <span class="nv">$orderDetail</span><span class="o">-&gt;</span><span class="na">getCustomerOrderPosNo</span><span class="p">();</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-11"></a>        <span class="k">echo</span> <span class="s2">", EAN: "</span> <span class="o">.</span> <span class="nv">$orderDetail</span><span class="o">-&gt;</span><span class="na">getEAN</span><span class="p">()</span> <span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-12"></a>        <span class="k">echo</span> <span class="s2">", ArticleNo: "</span> <span class="o">.</span> <span class="nv">$orderDetail</span><span class="o">-&gt;</span><span class="na">getArticleNo</span><span class="p">();</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-13"></a>        <span class="k">echo</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-14"></a>    <span class="p">}</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-15"></a>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-16"></a>    <span class="k">echo</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-17"></a><span class="p">}</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-18"></a>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-19"></a><span class="k">echo</span> <span class="s2">"All information:"</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-20"></a><span class="nb">print_r</span><span class="p">(</span><span class="nv">$goodsIssueList</span><span class="p">);</span>
+</pre></div>
+<p>Example response:</p>
+<div class="highlight"><pre><a name="order--35-get-order-reply.php-php-idio.html-1"></a>All information:
+<a name="order--35-get-order-reply.php-php-idio.html-2"></a>Array
+<a name="order--35-get-order-reply.php-php-idio.html-3"></a>(
+<a name="order--35-get-order-reply.php-php-idio.html-4"></a>)
+</pre></div>
+<h3 id="all-orders"><a class="toclink" href="#all-orders">All Orders</a></h3>
+<p>To retrieve a list of all replies simply omit the <code>CustomerOrderNo</code> when calling
+<code>YellowCube\Service::getYCCustomerOrderReply($customerOrderNo)</code>.</p>
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
+</body>
+</html>

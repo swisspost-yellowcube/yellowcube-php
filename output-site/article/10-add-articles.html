@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YellowCube PHP Library: Insert Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
+
+            <h1 class="page-title">YellowCube Insert Article</h1>
+        </div>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+
+                
+<ul class="site-nav nav">
+   <li><a href="../index.html">PHP Library</a>
+       <ul>
+        <li><a href="../index.html#installation">Installation</a></li>
+        <li><a href="../library/Configuration.html">Configuration</a></li>
+        <li><a href="../library/GEN_Response.html">GEN_Response</a></li>
+   </ul></li>
+    <li><a href="00-article.html">Article (ART)</a>
+        <ul>
+            <li><a href="10-add-articles.html">Insert Article</a></li>
+            <li><a href="20-update-articles.html">Update Article</a></li>
+            <li><a href="30-deactivate-articles.html">Deactivate Article</a></li>
+            <li><a href="40-article-status.html">Article Status</a></li>
+        </ul></li>
+    <li><a href="../order/00-order.html">Customer Orders</a>
+        <ul>
+            <li><a href="../order/10-create-customer-order.html">Create Customer Order (WAB)</a></li>
+            <li><a href="../order/20-get-order-status.html">Order Status</a></li>
+            <li><a href="../order/30-get-order-reply.html">Order Reply (WAR)</a></li>
+        </ul></li>
+    <li><a href="../inventory/00-inventory.html">Inventory (BAR)</a></li>
+</ul>
+
+
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
+
+
+            <main>
+                <!--<a href="/">PHP Library</a>-->
+
+                <p>To add a new article to YellowCube, create a new <code>Article</code> and pass it to
+<code>YellowCube/Service::insertArticleMasterData()</code>.</p>
+<dl>
+<dt>Warning</dt>
+<dd>There is no exception, if an article already exists.</dd>
+</dl>
+<div class="highlight"><pre><a name="article--15-add-article.php-idio-t-pyg.html-1"></a><span class="k">use</span> <span class="nx">YellowCube\ART\Article</span><span class="p">;</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-2"></a><span class="k">use</span> <span class="nx">YellowCube\ART\ChangeFlag</span><span class="p">;</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-3"></a><span class="k">use</span> <span class="nx">YellowCube\ART\UnitsOfMeasure\ISO</span><span class="p">;</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-4"></a>
+<a name="article--15-add-article.php-idio-t-pyg.html-5"></a><span class="nv">$article</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Article</span><span class="p">;</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-6"></a><span class="nv">$article</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-7"></a>    <span class="o">-&gt;</span><span class="na">setChangeFlag</span><span class="p">(</span><span class="nx">ChangeFlag</span><span class="o">::</span><span class="na">INSERT</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-8"></a>    <span class="o">-&gt;</span><span class="na">setPlantID</span><span class="p">(</span><span class="s1">'Y012'</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-9"></a>    <span class="o">-&gt;</span><span class="na">setDepositorNo</span><span class="p">(</span><span class="s1">'0000040750'</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-10"></a>    <span class="o">-&gt;</span><span class="na">setArticleNo</span><span class="p">(</span><span class="s1">'47686-3009-35/38'</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-11"></a>    <span class="o">-&gt;</span><span class="na">setBaseUOM</span><span class="p">(</span><span class="nx">ISO</span><span class="o">::</span><span class="na">PCE</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-12"></a>    <span class="o">-&gt;</span><span class="na">setNetWeight</span><span class="p">(</span><span class="mf">0.042</span><span class="p">,</span> <span class="nx">ISO</span><span class="o">::</span><span class="na">KGM</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-13"></a>    <span class="o">-&gt;</span><span class="na">setAlternateUnitISO</span><span class="p">(</span><span class="nx">ISO</span><span class="o">::</span><span class="na">PCE</span><span class="p">)</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-14"></a>    <span class="o">-&gt;</span><span class="na">addArticleDescription</span><span class="p">(</span><span class="s1">'Ich wars nicht.'</span><span class="p">,</span> <span class="s1">'de'</span><span class="p">);</span>
+</pre></div>
+<p>For a full description of all possible <code>Article</code> parameters please consult
+the YellowCube SOAP Interface Manual. There are setters for these parameters on the <code>Article</code> object.</p>
+<p>Pass this article to the <code>insertArticleMasterData</code> method.</p>
+<div class="highlight"><pre><a name="article--15-add-article.php-idio-t-pyg.html-1"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YellowCube\Service</span><span class="p">(</span><span class="nx">YellowCube\Config</span><span class="o">::</span><span class="na">testConfig</span><span class="p">());</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-2"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">insertArticleMasterData</span><span class="p">(</span><span class="nv">$article</span><span class="p">);</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-3"></a>
+<a name="article--15-add-article.php-idio-t-pyg.html-4"></a><span class="k">echo</span> <span class="s2">"Successfully added article with reference </span><span class="si">{</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getReference</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span> <span class="o">.</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="article--15-add-article.php-idio-t-pyg.html-5"></a><span class="nb">print_r</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+</pre></div>
+<p>When running this code a <code>GEN_Response</code> is returned.</p>
+<div class="highlight"><pre><a name="article--15-add-article.php-php-idio.html-1"></a>Successfully added article with reference 13613.
+<a name="article--15-add-article.php-php-idio.html-2"></a>
+<a name="article--15-add-article.php-php-idio.html-3"></a>YellowCube\GEN_Response Object
+<a name="article--15-add-article.php-php-idio.html-4"></a>(
+<a name="article--15-add-article.php-php-idio.html-5"></a>    [EventTimestamp:protected] =&gt; 2015-04-07T08:50:09Z
+<a name="article--15-add-article.php-php-idio.html-6"></a>    [MessageType:protected] =&gt; ART
+<a name="article--15-add-article.php-php-idio.html-7"></a>    [StatusCode:protected] =&gt; 10
+<a name="article--15-add-article.php-php-idio.html-8"></a>    [StatusType:protected] =&gt; S
+<a name="article--15-add-article.php-php-idio.html-9"></a>    [StatusText:protected] =&gt; File received
+<a name="article--15-add-article.php-php-idio.html-10"></a>    [Reference:protected] =&gt; 13613
+<a name="article--15-add-article.php-php-idio.html-11"></a>    [Reference1:protected] =&gt; 
+<a name="article--15-add-article.php-php-idio.html-12"></a>    [Reference2:protected] =&gt; 
+<a name="article--15-add-article.php-php-idio.html-13"></a>    [Reference3:protected] =&gt; 
+<a name="article--15-add-article.php-php-idio.html-14"></a>    [Reference4:protected] =&gt; 
+<a name="article--15-add-article.php-php-idio.html-15"></a>)
+</pre></div>
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
+</body>
+</html>

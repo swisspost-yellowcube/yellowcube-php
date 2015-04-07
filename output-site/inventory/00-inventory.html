@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YellowCube PHP Library: Inventory (BAR)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/css/docs.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="masthead">
+        <div class="container">
+            <a href="/"><img class="logo" src="/assets/img/post-logo.gif" alt="Post logo" /></a>
+
+            <h1 class="page-title">YellowCube Inventory (BAR)</h1>
+        </div>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <div class="sidebar">
+
+                
+<ul class="site-nav nav">
+   <li><a href="../index.html">PHP Library</a>
+       <ul>
+        <li><a href="../index.html#installation">Installation</a></li>
+        <li><a href="../library/Configuration.html">Configuration</a></li>
+        <li><a href="../library/GEN_Response.html">GEN_Response</a></li>
+   </ul></li>
+    <li><a href="../article/00-article.html">Article (ART)</a>
+        <ul>
+            <li><a href="../article/10-add-articles.html">Insert Article</a></li>
+            <li><a href="../article/20-update-articles.html">Update Article</a></li>
+            <li><a href="../article/30-deactivate-articles.html">Deactivate Article</a></li>
+            <li><a href="../article/40-article-status.html">Article Status</a></li>
+        </ul></li>
+    <li><a href="../order/00-order.html">Customer Orders</a>
+        <ul>
+            <li><a href="../order/10-create-customer-order.html">Create Customer Order (WAB)</a></li>
+            <li><a href="../order/20-get-order-status.html">Order Status</a></li>
+            <li><a href="../order/30-get-order-reply.html">Order Reply (WAR)</a></li>
+        </ul></li>
+    <li><a href="00-inventory.html">Inventory (BAR)</a></li>
+</ul>
+
+
+                <ul class="nav network-nav">
+                    <li><a href="http://yellowcube.ch/">YellowCube website</a></li>
+                    <li><a href="https://github.com/liip/yellowcube-php">Browse on Github</a></li>
+                    <li class="liip-logo"><a href="http://www.liip.ch/">Developed by liip</a></li>
+                </ul>
+            </div>
+
+
+            <main>
+                <!--<a href="/">PHP Library</a>-->
+
+                <p>In order to retrieve a complete status report including the YellowCube warehouse stock
+call <code>YellowCube\Service::getInventory()</code>.</p>
+<div class="highlight"><pre><a name="inventory--00-get-inventory.php-idio-t-pyg.html-1"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YellowCube\Service</span><span class="p">(</span><span class="nx">YellowCube\Config</span><span class="o">::</span><span class="na">testConfig</span><span class="p">());</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-2"></a><span class="nv">$articleList</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">getInventory</span><span class="p">();</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-3"></a>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-4"></a><span class="k">echo</span> <span class="s2">"Retrieved "</span> <span class="o">.</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$articleList</span><span class="p">)</span> <span class="o">.</span> <span class="s2">" articles from inventory."</span> <span class="o">.</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-5"></a>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-6"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$articleList</span> <span class="k">as</span> <span class="nv">$article</span><span class="p">)</span> <span class="p">{</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-7"></a>    <span class="k">echo</span> <span class="s2">"ArticleNo: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-8"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getArticleNo</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-9"></a>    <span class="k">echo</span> <span class="s2">"Quantity: "</span> <span class="o">.</span>  <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getQuantityUOM</span><span class="p">()</span> <span class="o">.</span> <span class="s1">' '</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-10"></a>        <span class="o">.</span> <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getQuantityUOM</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">getQuantityISO</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-11"></a>    <span class="k">echo</span> <span class="s2">"ArticleDescription: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-12"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getArticleDescription</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-13"></a>    <span class="k">echo</span> <span class="s2">"Plant: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-14"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getPlant</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-15"></a>    <span class="k">echo</span> <span class="s2">"StorageLocation: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-16"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getStorageLocation</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-17"></a>    <span class="k">echo</span> <span class="s2">"YCLot: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-18"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getYCLot</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-19"></a>    <span class="k">echo</span> <span class="s2">"YCArticleNo: "</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-20"></a>        <span class="o">.</span>  <span class="nv">$article</span><span class="o">-&gt;</span><span class="na">getYCArticleNo</span><span class="p">()</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-21"></a>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-22"></a>    <span class="k">echo</span> <span class="nx">PHP_EOL</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-23"></a><span class="p">}</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-24"></a>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-25"></a><span class="k">echo</span> <span class="s2">"List of all data: "</span><span class="p">;</span>
+<a name="inventory--00-get-inventory.php-idio-t-pyg.html-26"></a><span class="nb">print_r</span><span class="p">(</span><span class="nv">$articleList</span><span class="p">);</span>
+</pre></div>
+<p>A list of <code>YellowCube\BAR\Article</code> objects is returned.</p>
+<div class="highlight"><pre><a name="inventory--00-get-inventory.php-php-idio.html-1"></a>Fatal error: Uncaught exception 'SoapFault' with message 'Inventory report not available yet.' in /Users/adri/workspace/yellowcube-php/src/YellowCube/Util/SoapClient.php on line 124
+<a name="inventory--00-get-inventory.php-php-idio.html-2"></a>
+<a name="inventory--00-get-inventory.php-php-idio.html-3"></a>SoapFault: Inventory report not available yet. in /Users/adri/workspace/yellowcube-php/src/YellowCube/Util/SoapClient.php on line 120
+<a name="inventory--00-get-inventory.php-php-idio.html-4"></a>
+<a name="inventory--00-get-inventory.php-php-idio.html-5"></a>Call Stack:
+<a name="inventory--00-get-inventory.php-php-idio.html-6"></a>    0.0002     236528   1. {main}() /Users/adri/workspace/yellowcube-php/docs/.dexy/work/53/532da82a9bd0f6fc91b71e5328449eac-001-php/inventory/00-get-inventory.php:0
+<a name="inventory--00-get-inventory.php-php-idio.html-7"></a>    0.0031     702712   2. YellowCube\Service-&gt;getInventory() /Users/adri/workspace/yellowcube-php/docs/.dexy/work/53/532da82a9bd0f6fc91b71e5328449eac-001-php/inventory/00-get-inventory.php:6
+<a name="inventory--00-get-inventory.php-php-idio.html-8"></a>    0.0055    1354456   3. YellowCube\Util\SoapClient-&gt;GetInventory() /Users/adri/workspace/yellowcube-php/src/YellowCube/Service.php:144
+<a name="inventory--00-get-inventory.php-php-idio.html-9"></a>    0.0055    1354928   4. YellowCube\Util\SoapClient-&gt;__call() /Users/adri/workspace/yellowcube-php/src/YellowCube/Service.php:144
+<a name="inventory--00-get-inventory.php-php-idio.html-10"></a>    0.0055    1354976   5. SoapClient-&gt;__call() /Users/adri/workspace/yellowcube-php/src/YellowCube/Util/SoapClient.php:120
+<a name="inventory--00-get-inventory.php-php-idio.html-11"></a>
+<a name="inventory--00-get-inventory.php-php-idio.html-12"></a>YellowCube\Util\YellowCubeException: Inventory report not available yet.
+<a name="inventory--00-get-inventory.php-php-idio.html-13"></a>
+<a name="inventory--00-get-inventory.php-php-idio.html-14"></a>Request XML: 
+<a name="inventory--00-get-inventory.php-php-idio.html-15"></a><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<a name="inventory--00-get-inventory.php-php-idio.html-16"></a><span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_REQUEST_ArticleList.xsd"</span><span class="nt">&gt;&lt;SOAP-ENV:Body&gt;&lt;ns1:BAR_Request&gt;&lt;ns1:ControlReference&gt;&lt;ns1:Type&gt;</span>BAR<span class="nt">&lt;/ns1:Type&gt;&lt;ns1:Sender&gt;</span>YCTest<span class="nt">&lt;/ns1:Sender&gt;&lt;ns1:Receiver&gt;</span>YELLOWCUBE<span class="nt">&lt;/ns1:Receiver&gt;&lt;ns1:Timestamp&gt;</span>20150407105010<span class="nt">&lt;/ns1:Timestamp&gt;&lt;ns1:OperatingMode&gt;</span>T<span class="nt">&lt;/ns1:OperatingMode&gt;&lt;ns1:Version&gt;</span>1.0<span class="nt">&lt;/ns1:Version&gt;&lt;ns1:CommType&gt;</span>SOAP<span class="nt">&lt;/ns1:CommType&gt;&lt;/ns1:ControlReference&gt;&lt;/ns1:BAR_Request&gt;&lt;/SOAP-ENV:Body&gt;&lt;/SOAP-ENV:Envelope&gt;</span>
+<a name="inventory--00-get-inventory.php-php-idio.html-17"></a> in /Users/adri/workspace/yellowcube-php/src/YellowCube/Util/SoapClient.php on line 124
+<a name="inventory--00-get-inventory.php-php-idio.html-18"></a>
+<a name="inventory--00-get-inventory.php-php-idio.html-19"></a>Call Stack:
+<a name="inventory--00-get-inventory.php-php-idio.html-20"></a>    0.0002     236528   1. {main}() /Users/adri/workspace/yellowcube-php/docs/.dexy/work/53/532da82a9bd0f6fc91b71e5328449eac-001-php/inventory/00-get-inventory.php:0
+<a name="inventory--00-get-inventory.php-php-idio.html-21"></a>    0.0031     702712   2. YellowCube\Service-&gt;getInventory() /Users/adri/workspace/yellowcube-php/docs/.dexy/work/53/532da82a9bd0f6fc91b71e5328449eac-001-php/inventory/00-get-inventory.php:6
+<a name="inventory--00-get-inventory.php-php-idio.html-22"></a>    0.0055    1354456   3. YellowCube\Util\SoapClient-&gt;GetInventory() /Users/adri/workspace/yellowcube-php/src/YellowCube/Service.php:144
+<a name="inventory--00-get-inventory.php-php-idio.html-23"></a>    0.0055    1354928   4. YellowCube\Util\SoapClient-&gt;__call() /Users/adri/workspace/yellowcube-php/src/YellowCube/Service.php:144
+</pre></div>
+
+                <footer>
+                    <p class="issue">
+                        <a href="https://github.com/liip/yellowcube-php/issues">Help improve this documentation by creating a issue on Github.</a>
+                    </p>
+                </footer>
+            </main>
+
+        </div>
+    </section>
+</body>
+</html>
