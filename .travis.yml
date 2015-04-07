@@ -21,6 +21,9 @@ cache:
     - docs/.dexy
     - $HOME/.composer/cache
 
+notifications:
+  email: false
+
 env:
   global:
     - secure: "EAtxaLyapYmBfPUkPOtrVY/C5K0lzUZJHcHGwZV0dBV2Txv+lunGpTdCo20z39dIuzL/4TFn1JyjqJZuiXllhsGwykQvBDip8LXhedZwoZjK6D+SP/J7mQsCHAFEjzBGVMgzilrBYUlz5SnsRKVMifIAZhfyJAmGRtFSXzQK3eI="
