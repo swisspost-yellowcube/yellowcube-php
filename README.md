@@ -33,4 +33,4 @@ Development
 License
 -------
 
-The YellowCube PHP Library is dual licensed under the MIT or GPL Version 2 licenses.
+The YellowCube PHP Library is dual licensed under the MIT or GPL Version 2 (or later) licenses.
