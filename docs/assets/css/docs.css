@@ -862,6 +862,10 @@ footer {
     background-image: url("../img/drupal-drop.png");
 }
 
+.magento-integration {
+    background-image: url("../img/magento-logo-icon.png");
+}
+
 dl {
     border-radius: 5px;
     background: #e2e2e2;

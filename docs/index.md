@@ -14,7 +14,7 @@ formats and example values.
     Drupal module: drupal-yellowcube.
 </a>
 
-<a href="https://github.com/swisspost-yellowcube/magento-yellowcube" class="integration drupal-integration">
+<a href="https://github.com/swisspost-yellowcube/magento-yellowcube" class="integration magento-integration">
     Magento module: magento-yellowcube.
 </a>
 
