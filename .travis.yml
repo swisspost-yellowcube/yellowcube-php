@@ -26,3 +26,7 @@ cache:
     - docs/.dexy
     - $HOME/.composer/cache
 
+env:
+  global:
+    - secure=EbUMl2PXONzF+gYkCEsAnVbB1694noPE+AhCmhdVM6VC1A7nToA9mmTpJ89iVsj8vk6F6lfeqCIwfWgpqpLX/uleOfN2cRvYZUcuSppq4cPpSV2ehumOSBiKj1bWSthe9T1w7HmmlRKgd65dy+GU7CluvSzSz2nHVthGWdvEpsk=
+
