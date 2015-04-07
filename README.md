@@ -29,7 +29,7 @@ Development
 
 1. `git clone https://github.com/swisspost-yellowcube/yellowcube-php.git`
 2. Install dependencies `composer install`
-3. Run tests `bin/phpspec run`
+3. Run tests `vendor/phpspec/phpspec/bin/phpspec run`
 
 
 License
