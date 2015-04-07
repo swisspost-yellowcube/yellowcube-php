@@ -2,6 +2,7 @@ YellowCube PHP client API
 =========================
 
 Connect to the SOAP based [YellowCube Solutions](http://yellowcube.ch/).
+[![Build Status](https://travis-ci.org/swisspost-yellowcube/yellowcube-php.svg)](https://travis-ci.org/swisspost-yellowcube/yellowcube-php)
 
 Integrations
 ------------
