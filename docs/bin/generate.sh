@@ -22,10 +22,11 @@ git checkout gh-pages
 cp -r output-site/* ../
 rm -r output-site/*
 
+# Show whats going to be changed.
 git status
 
 # Push docs to the github page.
-git add --all
+git add --all ..
 git commit -m "Updates docs."
 git push origin gh-pages
 git checkout master
