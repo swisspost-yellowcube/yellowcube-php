@@ -1,5 +1,6 @@
 .md|jinja|yamlargs|markdown|soups:
-    - .sh|bash
+    - .sh|bash:
+        exclude-add-new-files-from-dir: ["bin/*"]
     - assets
     - examples
     # available extensions https://pythonhosted.org/Markdown/extensions/index.html
