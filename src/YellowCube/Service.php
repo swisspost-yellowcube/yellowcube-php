@@ -2,7 +2,9 @@
 
 namespace YellowCube;
 
+use Psr\Log\LoggerInterface;
 use YellowCube\ART\Article;
+use YellowCube\Util\Logger\LoggerProxy;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 use YellowCube\WAR\GoodsIssue\GoodsIssue;
@@ -31,11 +33,13 @@ class Service
      *
      * @param \YellowCube\Config $config Config containing user credentials, if not provided a test config is used.
      * @param \SoapClient $client Custom optional SoapClient.
+     * @param \Psr\Log\LoggerInterface $logger Optional logger.
      */
-    public function __construct(Config $config = null, \SoapClient $client = null)
+    public function __construct(Config $config = null, \SoapClient $client = null, LoggerInterface $logger = null)
     {
         $this->config = $config;
         $this->client = $client;
+        $this->logger = new LoggerProxy($logger);
     }
 
     /**
@@ -49,6 +53,8 @@ class Service
      */
     public function insertArticleMasterData(Article $article)
     {
+        $this->logger->info(__METHOD__, array('article' => $article));
+
         return $this->getClient()->InsertArticleMasterData(array(
             'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'ArticleList' => array(
@@ -67,6 +73,8 @@ class Service
      */
     public function getInsertArticleMasterDataStatus($reference)
     {
+        $this->logger->info(__METHOD__, array('reference' => $reference));
+
         return $this->getClient()->GetInsertArticleMasterDataStatus(array(
             'ControlReference' => ControlReference::fromConfig('ART', $this->getConfig()),
             'Reference' => $reference
@@ -82,6 +90,8 @@ class Service
      */
     public function createYCCustomerOrder(Order $order)
     {
+        $this->logger->info(__METHOD__, array('order' => $order));
+
         return $this->getClient()->CreateYCCustomerOrder(array(
             'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Order' => $order
@@ -97,6 +107,8 @@ class Service
      */
     public function getYCCustomerOrderStatus($reference)
     {
+        $this->logger->info(__METHOD__, array('reference' => $reference));
+
         return $this->getClient()->GetYCCustomerOrderStatus(array(
             'ControlReference' => ControlReference::fromConfig('WAB', $this->getConfig()),
             'Reference' => $reference
@@ -112,6 +124,8 @@ class Service
      */
     public function getYCCustomerOrderReply()
     {
+        $this->logger->info(__METHOD__);
+
         $WAR = $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
         ));
@@ -137,6 +151,8 @@ class Service
      */
     public function getInventory()
     {
+        $this->logger->info(__METHOD__);
+
         return $this->getClient()->GetInventory(array(
             'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
         ))->ArticleList->Article;
@@ -164,7 +180,11 @@ class Service
     protected function getClient()
     {
         if (empty($this->client)) {
-            $this->client = new SoapClient($this->getConfig()->getWsdl(), $this->getConfig()->getSoapClientOptions());
+            $this->client = new SoapClient(
+              $this->getConfig()->getWsdl(),
+              $this->getConfig()->getSoapClientOptions(),
+              $this->logger
+            );
         }
 
         return $this->client;
