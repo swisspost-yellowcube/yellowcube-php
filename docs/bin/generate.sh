@@ -22,7 +22,7 @@ rm -r output-site/*
 git status
 
 # Push docs to the github page.
-git add ../*
+git add --all
 git commit -m "Updates docs."
 git push origin gh-pages
 git checkout master
