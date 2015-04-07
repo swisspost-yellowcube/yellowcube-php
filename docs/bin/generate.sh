@@ -5,6 +5,7 @@ set -e
 pip install -r requirements.txt
 
 # Run documentation generator.
+dexy setup
 dexy
 
 # Change to the gh-pages branch.
