@@ -10,6 +10,7 @@ cache:
     - docs/.dexy
     - $HOME/.composer/cache
     - $HOME/.cache
+    - $HOME/.local
 
 before_script:
   - composer update --prefer-dist
