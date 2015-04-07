@@ -18,7 +18,7 @@ after_success:
   - sudo apt-get update
   - sudo apt-get install python
 
-sudo: false # use container
+sudo: required
 
 cache:
   directories:
