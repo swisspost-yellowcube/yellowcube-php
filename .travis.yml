@@ -17,3 +17,4 @@ before_script:
 script:
   - bin/phpspec run
 
+sudo: false
