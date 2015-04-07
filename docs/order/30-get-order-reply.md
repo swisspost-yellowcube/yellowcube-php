@@ -1,7 +1,7 @@
 title: Order Reply (WAR)
 ---
 
-Order replies are goods issue confirmations.
+Order replies are a list of goods issue confirmations.
 
 GoodsIssue
 :   The goods issue confirmation is the answer to a order (WAB). The distance seller receives it after
@@ -20,4 +20,6 @@ To check for all available replies for orders in YellowCube call
 Example response:
 
 {{ d["order/35-get-order-reply.php|php|idio"] }}
+
+An empty array means there are currently no new replies available.
 
