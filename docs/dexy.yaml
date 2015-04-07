@@ -5,6 +5,7 @@
     - examples
     # available extensions https://pythonhosted.org/Markdown/extensions/index.html
     - markdown:
+        exclude-add-new-files-from-dir: ["requirements.txt", "Readme.md"]
         extensions:
             tables: {}
             toc: { anchorlink : true }
