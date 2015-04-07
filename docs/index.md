@@ -10,8 +10,12 @@ formats and example values.
 
 # Integrations
 
-<a href="https://github.com/liip/drupal-yellowcube" class="integration drupal-integration">
+<a href="https://github.com/swisspost-yellowcube/drupal-yellowcube" class="integration drupal-integration">
     Drupal module: drupal-yellowcube.
+</a>
+
+<a href="https://github.com/swisspost-yellowcube/magento-yellowcube" class="integration drupal-integration">
+    Magento module: magento-yellowcube.
 </a>
 
 # Installation
@@ -21,7 +25,7 @@ Please see the [installation section](https://getcomposer.org/doc/00-intro.md) o
 
 To use the library in your project simply require it.
 
-    composer require liip/yellowcube-php
+    composer require swisspost-yellowcube/yellowcube-php
 
 # Requirements
 

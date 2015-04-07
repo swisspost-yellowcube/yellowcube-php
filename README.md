@@ -6,7 +6,8 @@ Connect to the SOAP based [YellowCube Solutions](http://yellowcube.ch/).
 Integrations
 ------------
 
- * Drupal module [drupal-yellowcube](https://github.com/liip/drupal-yellowcube)
+ * Drupal module [drupal-yellowcube](https://github.com/swisspost-yellowcube/drupal-yellowcube)
+ * Magento extension [magento-yellowcube](https://github.com/swisspost-yellowcube/magento-yellowcube)
 
 
 Requirements
@@ -20,12 +21,12 @@ Manual Installation
 
 With composer:
 
-    composer require liip/yellowcube-php
+    composer require swisspost-yellowcube/yellowcube-php
 
 Development
 -----------
 
-1. `git clone https://github.com/liip/yellowcube-php.git`
+1. `git clone https://github.com/swisspost-yellowcube/yellowcube-php.git`
 2. Install dependencies `composer install`
 3. Run tests `bin/phpspec run`
 
