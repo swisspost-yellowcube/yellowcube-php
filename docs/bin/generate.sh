@@ -2,10 +2,10 @@
 set -e
 
 # Install dependencies.
-pip install .
+pip install -r requirements.txt
 
 # Run documentation generator.
-/bin/bash dexy
+dexy
 
 # Change to the gh-pages branch.
 git config --global user.email "adrian.philipp@liip.ch"
