@@ -104,18 +104,16 @@ class Service
     }
 
     /**
-     * Returns the current order reply of a customer order specified by
-     * the customer order number.
+     * Returns the current order replies.
      *
      * @param string $reference Customer order reference.
      *
      * @return \YellowCube\WAR\GoodsIssue\GoodsIssue[]
      */
-    public function getYCCustomerOrderReply($customerOrderNo = '')
+    public function getYCCustomerOrderReply()
     {
         $WAR = $this->getClient()->GetYCCustomerOrderReply(array(
             'ControlReference' => ControlReference::fromConfig('WAR', $this->getConfig()),
-            'CustomerOrderNo' => $customerOrderNo
         ));
 
         if (empty($WAR->WAR)) {

@@ -3,7 +3,7 @@ require __DIR__ . '/../../../../../../vendor/autoload.php';
 
 ### "order-reply"
 $service = new YellowCube\Service(YellowCube\Config::testConfig());
-$goodsIssueList = $service->getYCCustomerOrderReply('SOAP-005');
+$goodsIssueList = $service->getYCCustomerOrderReply();
 
 foreach ($goodsIssueList as $goodsIssue) {
     $header = $goodsIssue->getCustomerOrderHeader();
