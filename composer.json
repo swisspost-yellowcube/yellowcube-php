@@ -29,11 +29,5 @@
     "config": {
         "bin-dir": "bin"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/liip-forks/wse-php.git"
-        }
-    ],
     "minimum-stability": "dev"
 }
