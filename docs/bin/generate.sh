@@ -3,6 +3,7 @@ set -e
 
 # Install dependencies.
 pip install --user -r requirements.txt
+export PATH=$PATH:~/.local/bin
 
 # Run documentation generator.
 dexy setup
