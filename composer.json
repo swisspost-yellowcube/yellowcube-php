@@ -20,7 +20,8 @@
         "ext-soap": "*",
         "php": ">=5.3",
         "beberlei/assert": "~2.0@dev",
-        "course-hero/wse-php": "dev-master"
+        "course-hero/wse-php": "dev-master",
+        "psr/log": "~1.0@dev"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
