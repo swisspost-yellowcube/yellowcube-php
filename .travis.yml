@@ -7,7 +7,6 @@ sudo: false
 cache:
   directories:
     - vendor
-    - docs/.dexy
     - $HOME/.composer/cache
     - $HOME/.cache
     - $HOME/.local
