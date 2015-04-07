@@ -57,30 +57,18 @@
             <main>
                 <!--<a href="/">PHP Library</a>-->
 
-                <p>Order replies are goods issue confirmations and can be retrieved for:</p>
-<div class="toc">
-<ul>
-<li><a href="#a-specific-order">A Specific Order</a></li>
-<li><a href="#all-orders">All Orders</a></li>
-</ul>
-</div>
+                <p>Order replies are goods issue confirmations.</p>
 <dl>
 <dt>GoodsIssue</dt>
 <dd>The goods issue confirmation is the answer to a order (WAB). The distance seller receives it after
 the goods have been picked and the goods have been shipped.</dd>
 </dl>
 <p>For a complete list of the response structure and formats please consult the YellowCube Interface Manual.</p>
-<h3 id="a-specific-order"><a class="toclink" href="#a-specific-order">A Specific Order</a></h3>
-<p>To check available replies for a specific customer order in YellowCube, a <code>CustomerOrderNo</code> is needed.</p>
-<dl>
-<dt>CustomerOrderNo</dt>
-<dd>The <code>CustomerOrderNo</code> was set in the <code>OrderHeader</code> when creating an customer order.
-It is chosen by the distant seller (shop).</dd>
-</dl>
-<p>Pass the <code>CustomerOrderNo</code> to the method <code>YellowCube\Service::getYCCustomerOrderReply($customerOrderNo)</code> to retrieve a
-list of <code>GoodsIssue</code> objects.</p>
+<h3 id="all-orders"><a class="toclink" href="#all-orders">All Orders</a></h3>
+<p>To check for all available replies for orders in YellowCube call
+<code>YellowCube\Service::getYCCustomerOrderReply()</code>.</p>
 <div class="highlight"><pre><a name="order--35-get-order-reply.php-idio-t-pyg.html-1"></a><span class="nv">$service</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YellowCube\Service</span><span class="p">(</span><span class="nx">YellowCube\Config</span><span class="o">::</span><span class="na">testConfig</span><span class="p">());</span>
-<a name="order--35-get-order-reply.php-idio-t-pyg.html-2"></a><span class="nv">$goodsIssueList</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">getYCCustomerOrderReply</span><span class="p">(</span><span class="s1">'SOAP-005'</span><span class="p">);</span>
+<a name="order--35-get-order-reply.php-idio-t-pyg.html-2"></a><span class="nv">$goodsIssueList</span> <span class="o">=</span> <span class="nv">$service</span><span class="o">-&gt;</span><span class="na">getYCCustomerOrderReply</span><span class="p">();</span>
 <a name="order--35-get-order-reply.php-idio-t-pyg.html-3"></a>
 <a name="order--35-get-order-reply.php-idio-t-pyg.html-4"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$goodsIssueList</span> <span class="k">as</span> <span class="nv">$goodsIssue</span><span class="p">)</span> <span class="p">{</span>
 <a name="order--35-get-order-reply.php-idio-t-pyg.html-5"></a>    <span class="nv">$header</span> <span class="o">=</span> <span class="nv">$goodsIssue</span><span class="o">-&gt;</span><span class="na">getCustomerOrderHeader</span><span class="p">();</span>
@@ -106,9 +94,6 @@ list of <code>GoodsIssue</code> objects.</p>
 <a name="order--35-get-order-reply.php-php-idio.html-3"></a>(
 <a name="order--35-get-order-reply.php-php-idio.html-4"></a>)
 </pre></div>
-<h3 id="all-orders"><a class="toclink" href="#all-orders">All Orders</a></h3>
-<p>To retrieve a list of all replies simply omit the <code>CustomerOrderNo</code> when calling
-<code>YellowCube\Service::getYCCustomerOrderReply($customerOrderNo)</code>.</p>
 
                 <footer>
                     <p class="issue">
