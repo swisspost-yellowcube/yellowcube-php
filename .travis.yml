@@ -11,10 +11,6 @@ cache:
     - $HOME/.composer/cache
     - $HOME/.cache
 
-addons:
-  apt_packages:
-    - python
-
 before_script:
   - composer update --prefer-dist
 
