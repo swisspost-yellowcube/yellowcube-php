@@ -6,7 +6,9 @@ pip install --user -r requirements.txt
 export PATH=$PATH:~/.local/bin
 
 # Run documentation generator.
-dexy setup
+if [ ! -d ".dexy" ]; then
+    dexy setup
+fi
 dexy
 
 # Change to the gh-pages branch.
