@@ -9,8 +9,8 @@ dexy setup
 dexy
 
 # Change to the gh-pages branch.
-git config --global user.email "adrian.philipp@liip.ch"
-git config --global user.name "Travis build bot."
+git config --global user.email "mail@adrian-philipp.com"
+git config --global user.name "Travis build bot"
 git remote set-url origin "https://${GH_TOKEN}@github.com/swisspost-yellowcube/yellowcube-php.git"
 git fetch origin +gh-pages:gh-pages
 git checkout gh-pages
