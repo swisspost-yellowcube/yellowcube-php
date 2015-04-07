@@ -1,8 +1,5 @@
 language: php
 php:
-  - 5.6
-  - 5.5
-  - 5.4
   - 5.3
   - hhvm-nightly
 
@@ -17,4 +14,15 @@ before_script:
 script:
   - bin/phpspec run
 
-sudo: false
+after_success:
+  - sudo apt-get update
+  - sudo apt-get install python
+
+sudo: false # use container
+
+cache:
+  directories:
+    - vendor
+    - docs/.dexy
+    - $HOME/.composer/cache
+

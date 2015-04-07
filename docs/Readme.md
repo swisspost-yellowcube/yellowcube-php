@@ -8,6 +8,12 @@ sudo pip install dexy
 sudo pip install markdown
 ```
 
+or
+
+```
+pip install .
+```
+
 ## Building
 
  * `cd docs`
