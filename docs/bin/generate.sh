@@ -19,6 +19,8 @@ git checkout gh-pages
 cp -r output-site/* ../
 rm -r output-site/*
 
+git status
+
 # Push docs to the github page.
 git add ../*
 git commit -m "Updates docs."
