@@ -2,6 +2,19 @@ language: php
 php:
   - 5.3
 
+sudo: false
+
+cache:
+  directories:
+    - vendor
+    - docs/.dexy
+    - $HOME/.composer/cache
+    - $HOME/.cache
+
+addons:
+  apt_packages:
+    - python
+
 before_script:
   - composer update --prefer-dist
 
@@ -13,19 +26,10 @@ after_success:
   - sudo apt-get install python
   - cd docs && sudo bash ./bin/generate.sh
 
-sudo: required
-
-cache:
-  directories:
-    - vendor
-    - docs/.dexy
-    - $HOME/.composer/cache
-    - $HOME/.cache
-
-notifications:
-  email: false
-
 env:
   global:
     - secure: "oEnjQQc4E5fjIgAGCqVLRzyl5dula/dX5VMwwuKdlwZuzSa0lBp87R2i1pQTPub60XaxeKRkJoOfe/z2ULdQLRVbLnY+UcHt4h/T7EoebvffbKKv8Zv3NBqEV4oDVHiMUXauGYwi9riLxsgyUri62n1NCEhCp/imb1LE4pfT6Ao="
+
+notifications:
+  email: false
 
