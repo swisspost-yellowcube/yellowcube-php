@@ -17,6 +17,7 @@ script:
 after_success:
   - sudo apt-get update
   - sudo apt-get install python
+  - cd docs && bash ./generate.sh
 
 sudo: required
 
