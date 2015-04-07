@@ -7,7 +7,7 @@ use Prophecy\Argument;
 class SoapClientSpec extends ObjectBehavior
 {
     function let() {
-        $wsdl = __DIR__ . '/../../../YellowCubeService_009/YellowCubeService_extern_test.wsdl';
+        $wsdl = 'https://service.swisspost.ch/apache/yellowcube/?wsdl';
         $this->beConstructedWith($wsdl, array());
     }
 
