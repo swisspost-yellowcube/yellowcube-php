@@ -6,7 +6,6 @@
 
 namespace YellowCube\Util;
 
-use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -26,19 +25,22 @@ class WatchdogLogger extends AbstractLogger {
     );
 
     protected $type;
-    protected $minLevel;
 
-    public function __construct($moduleName = 'drupal-yellowcube', $minLevel = LogLevel::DEBUG)
-    {
+    /**
+     * @param string $moduleName Type that should be used for calling watchdog().
+     * @param string $minLevel The minimum level when to log to watchdog.
+     */
+    public function __construct($moduleName = 'drupal-yellowcube', $minLevel = LogLevel::INFO) {
+        parent::__construct($minLevel);
+
         $this->type = $moduleName;
-        $this->minLevel = $minLevel;
     }
 
     /**
      * @inheritdoc
      */
     public function log($level, $message, array $context = array()) {
-        if ($this->isLevelSmallerThanMinimum($level)) {
+        if ($this->isLevelLessThanMinimum($level)) {
             return;
         }
 
@@ -52,23 +54,4 @@ class WatchdogLogger extends AbstractLogger {
 
         watchdog($this->type, $message, $variables + $context, self::$levelMap[$level]);
     }
-
-    private function isLevelSmallerThanMinimum($level)
-    {
-        return $this->getLevelIndex($level) < $this->getLevelIndex($this->minLevel);
-    }
-
-    /**
-     * Returns the index of given level.
-     *
-     * @param string $level Level like LogLevel::DEBUG.
-     *
-     * @return integer Index of the level in the order.
-     */
-    private function getLevelIndex($level)
-    {
-        return array_search($level, array_keys(self::$levelMap));
-    }
-
-
 }
