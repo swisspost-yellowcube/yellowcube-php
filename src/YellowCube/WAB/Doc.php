@@ -2,7 +2,7 @@
 
 namespace YellowCube\WAB;
 
-use \Assert\AssertionChain;
+use Assert\Assertion;
 
 class Doc
 {
@@ -70,19 +70,19 @@ class Doc
      * @param $DocMimeType
      * @param $FilePath
      * @return Doc
+     *
+     * @throws \InvalidArgumentException If the file does not exist or is not readable.
      */
     public static function fromFile($DocType, $DocMimeType, $FilePath)
     {
-        $assertionChain = new AssertionChain($FilePath);
-        $assertionChain
-            ->file("{$FilePath} does not exist.")
-            ->readable("{$FilePath} is not readable.");
+        Assertion::file($FilePath, "{$FilePath} does not exist.");
+        Assertion::readable($FilePath, "{$FilePath} is not readable.");
 
-       return new self(
-           $DocType,
-           $DocMimeType,
-           base64_encode(file_get_contents($FilePath))
-       );
+        return new self(
+            $DocType,
+            $DocMimeType,
+            base64_encode(file_get_contents($FilePath))
+        );
     }
 
     /**

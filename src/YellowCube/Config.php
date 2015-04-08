@@ -2,7 +2,7 @@
 
 namespace YellowCube;
 
-use \Assert\AssertionChain;
+use \Assert\Assertion;
 
 /**
  * Contains credentials, wsdl to use and other configuration options.
@@ -66,11 +66,11 @@ class Config
      */
     function __construct($sender, $wsdl = null, $timeoutSec = null, $operatingMode = 'P', array $soapClientOptions = array(), $receiver = 'YELLOWCUBE')
     {
-        $this->assertionChain($sender)->notEmpty()->string('Sender must be set.');
-        $this->assertionChain($wsdl)->nullOr()->notEmpty()->string('WSDL must be set.');
-        $this->assertionChain($timeoutSec)->nullOr()->integer('Timeout must be null or an integer in seconds.');
-        $this->assertionChain($operatingMode)->choice(array('T', 'D', 'P'), 'Operating mode must be "T", "D" or "P".');
-        $this->assertionChain($receiver)->notEmpty()->string('Receiver must be set.');
+        Assertion::notEmpty($sender, 'Sender must be set.');
+        Assertion::nullOrNotEmpty($wsdl, 'WSDL must be set.');
+        Assertion::nullOrInteger($timeoutSec, 'Timeout must be null or an integer in seconds.');
+        Assertion::choice($operatingMode, array('T', 'D', 'P'), 'Operating mode must be "T", "D" or "P".');
+        Assertion::notEmpty($receiver, 'Receiver must be set.');
 
         $this->sender = $sender;
         $this->wsdl = $wsdl;
@@ -78,19 +78,6 @@ class Config
         $this->operatingMode = $operatingMode;
         $this->soapClientOptions = $soapClientOptions;
         $this->receiver = $receiver;
-    }
-
-    /**
-     * Return Assertion Chain object
-     *
-     * @param $value
-     * @param null $defaultMessage
-     * @param null $defaultPropertyPath
-     * @return AssertionChain
-     */
-    public function assertionChain($value, $defaultMessage = null, $defaultPropertyPath = null)
-    {
-        return new AssertionChain($value, $defaultMessage, $defaultPropertyPath);
     }
 
     /**
@@ -194,12 +181,17 @@ class Config
     }
 
     /**
-     * @param string $certificateFilePath
+     * Sets a certificate file path and optional passphrase to use.
+     *
+     * @param string $certificateFilePath Path to a certificate file.
      * @return Config
+     *
+     * @throws \InvalidArgumentException If certificate path is invalid.
      */
     public function setCertificateFilePath($certificateFilePath, $passphrase = null)
     {
-        $this->assertionChain($certificateFilePath)->file()->readable();
+        Assertion::file($certificateFilePath);
+        Assertion::readable($certificateFilePath);
         $this->certificateFilePath = $certificateFilePath;
 
         $this->soapClientOptions['local_cert'] = $certificateFilePath;
