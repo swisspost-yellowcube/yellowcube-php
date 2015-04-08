@@ -3,6 +3,7 @@
 namespace YellowCube;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use YellowCube\ART\Article;
 use YellowCube\Util\Logger\LoggerProxy;
 use YellowCube\Util\SoapClient;
@@ -39,7 +40,7 @@ class Service
     {
         $this->config = $config;
         $this->client = $client;
-        $this->logger = new LoggerProxy($logger);
+        $this->logger = $logger ?: new NullLogger();
     }
 
     /**

@@ -4,6 +4,7 @@
  * Implementation adapted from https://www.drupal.org/project/psr3_watchdog
  */
 
+namespace YellowCube\Util;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
@@ -37,7 +38,7 @@ class WatchdogLogger extends AbstractLogger {
      * @inheritdoc
      */
     public function log($level, $message, array $context = array()) {
-        if ($level < $this->minLevel) {
+        if ($this->isLevelSmallerThanMinimum($level)) {
             return;
         }
 
@@ -51,4 +52,23 @@ class WatchdogLogger extends AbstractLogger {
 
         watchdog($this->type, $message, $variables + $context, self::$levelMap[$level]);
     }
+
+    private function isLevelSmallerThanMinimum($level)
+    {
+        return $this->getLevelIndex($level) < $this->getLevelIndex($this->minLevel);
+    }
+
+    /**
+     * Returns the index of given level.
+     *
+     * @param string $level Level like LogLevel::DEBUG.
+     *
+     * @return integer Index of the level in the order.
+     */
+    private function getLevelIndex($level)
+    {
+        return array_search($level, array_keys(self::$levelMap));
+    }
+
+
 }
