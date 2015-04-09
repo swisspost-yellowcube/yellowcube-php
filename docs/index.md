@@ -29,7 +29,7 @@ To use the library in your project simply require it.
 
 # Requirements
 
- * PHP > 5.3
+ * PHP >= 5.3
  * PHP [SOAP extension](http://php.net/manual/en/book.soap.php)
  * [Composer](https://getcomposer.org/)
 
