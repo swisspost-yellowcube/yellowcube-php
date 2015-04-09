@@ -18,7 +18,7 @@ script:
   - vendor/phpspec/phpspec/bin/phpspec run
 
 after_success:
-  - cd docs && git diff --name-only HEAD~1 docs | grep . && bash ./bin/generate.sh
+  - git diff --name-only HEAD~1 docs | grep . && cd docs && bash ./bin/generate.sh
 
 env:
   global:
