@@ -12,6 +12,12 @@ use Wse\XMLSecurityKey;
  *
  * Also adds better error formatting.
  *
+ * @method \YellowCube\GEN_Response InsertArticleMasterData(\YellowCube\ART\Article $article) {}
+ * @method GetInsertArticleMasterDataStatus()
+ * @method CreateYCCustomerOrder()
+ * @method GetYCCustomerOrderStatus()
+ * @method GetYCCustomerOrderReply()
+ * @method GetInventory()
  * @package YellowCube\Util
  */
 class SoapClient extends \SoapClient

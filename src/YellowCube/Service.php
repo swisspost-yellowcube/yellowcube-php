@@ -5,7 +5,6 @@ namespace YellowCube;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use YellowCube\ART\Article;
-use YellowCube\Util\Logger\LoggerProxy;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 use YellowCube\WAR\GoodsIssue\GoodsIssue;
@@ -154,9 +153,15 @@ class Service
     {
         $this->logger->info(__METHOD__);
 
-        return $this->getClient()->GetInventory(array(
+        $inventory = $this->getClient()->GetInventory(array(
             'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
-        ))->ArticleList->Article;
+        ));
+
+        if (empty($inventory)) {
+            return array();
+        }
+
+        return $inventory->ArticleList->Article;
     }
 
     /**
@@ -176,7 +181,7 @@ class Service
     /**
      * Returns a SoapClient instance to use.
      *
-     * @return \SoapClient
+     * @return \YellowCube\Util\SoapClient|\SoapClient
      */
     protected function getClient()
     {
