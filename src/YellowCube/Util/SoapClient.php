@@ -2,6 +2,7 @@
 
 namespace YellowCube\Util;
 
+use Psr\Log\LoggerInterface;
 use Wse\WSASoap;
 use Wse\WSSESoap;
 use Wse\XMLSecurityKey;
@@ -11,6 +12,12 @@ use Wse\XMLSecurityKey;
  *
  * Also adds better error formatting.
  *
+ * @method \YellowCube\GEN_Response InsertArticleMasterData(\YellowCube\ART\Article $article) {}
+ * @method GetInsertArticleMasterDataStatus()
+ * @method CreateYCCustomerOrder()
+ * @method GetYCCustomerOrderStatus()
+ * @method GetYCCustomerOrderReply()
+ * @method GetInventory()
  * @package YellowCube\Util
  */
 class SoapClient extends \SoapClient
@@ -26,10 +33,16 @@ class SoapClient extends \SoapClient
     protected $certificateContent;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * @param mixed $wsdl
      * @param array $options
+     * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct($wsdl, $options)
+    public function __construct($wsdl, $options, LoggerInterface $logger)
     {
         $defaultOptions = array(
             'soap_version' => SOAP_1_1,
@@ -56,6 +69,7 @@ class SoapClient extends \SoapClient
         $this->options = array_merge($defaultOptions, $options);
 
         parent::__construct($wsdl, $this->options);
+        $this->logger = $logger;
     }
 
     /**
@@ -65,10 +79,15 @@ class SoapClient extends \SoapClient
     {
         if ($this->useCertificate()) {
             $request = $this->signRequest($request);
-
         }
 
-        return parent::__doRequest($request, $location, $action, $version, $oneWay);
+        $this->logger->debug('Request', array('request' => $request));
+
+        $response = parent::__doRequest($request, $location, $action, $version, $oneWay);
+
+        $this->logger->debug('Response', array('Response' => $response));
+
+        return $response;
     }
 
     /**
