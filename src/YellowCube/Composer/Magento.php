@@ -50,6 +50,11 @@ class Magento
                     self::_recursiveRmDir($magentoPath . 'lib/Wse');
                 }
                 self::_recurseCopy(dirname(__DIR__) . '/../../../../course-hero/wse-php/src/Wse', $magentoPath . 'lib/Wse');
+
+                if (is_dir($magentoPath . 'lib/Psr')) {
+                    self::_recursiveRmDir($magentoPath . 'lib/Psr');
+                }
+                self::_recurseCopy(dirname(__DIR__) . '/../../../../psr/log/Psr', $magentoPath . 'lib/Psr');
             }
         }
     }
@@ -73,6 +78,9 @@ class Magento
             }
             if (is_dir($magentoPath . 'lib/Wse')) {
                 self::_recursiveRmDir($magentoPath . 'lib/Wse');
+            }
+            if (is_dir($magentoPath . 'lib/Psr')) {
+                self::_recursiveRmDir($magentoPath . 'lib/Psr');
             }
         }
     }
