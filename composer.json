@@ -1,6 +1,6 @@
 {
     "name": "swisspost-yellowcube/yellowcube-php",
-    "licenses": ["MIT", "GPL-2.0+"],
+    "license": ["MIT", "GPL-2.0+"],
     "authors": [
         {
             "name": "Liip AG",
