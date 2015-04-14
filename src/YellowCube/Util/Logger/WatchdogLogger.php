@@ -4,9 +4,10 @@
  * Implementation adapted from https://www.drupal.org/project/psr3_watchdog
  */
 
-namespace YellowCube\Util;
+namespace YellowCube\Util\Logger;
 
 use Psr\Log\LogLevel;
+use YellowCube\Util\AbstractLogger;
 
 /**
  * Logs into drupals watchdog.
