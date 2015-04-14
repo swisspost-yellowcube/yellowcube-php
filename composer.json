@@ -1,5 +1,6 @@
 {
     "name": "swisspost-yellowcube/yellowcube-php",
+    "description": "Connect to the SOAP based YellowCube Solutions.",
     "license": ["MIT", "GPL-2.0+"],
     "authors": [
         {
