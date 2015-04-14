@@ -19,18 +19,17 @@
     "require": {
         "ext-soap": "*",
         "php": ">=5.3",
-        "beberlei/assert": "~2.0@dev",
-        "course-hero/wse-php": "dev-master",
-        "psr/log": "~1.0@dev"
+        "beberlei/assert": "~2.0",
+        "course-hero/wse-php": "~2.0",
+        "psr/log": "~1.0"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
-        "mikey179/vfsStream": "1.4.*@dev"
+        "mikey179/vfsStream": "~1.4"
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
