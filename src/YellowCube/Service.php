@@ -29,6 +29,11 @@ class Service
     protected $client;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * Creates a new Service used to connect to YellowCube.
      *
      * @param \YellowCube\Config $config Config containing user credentials, if not provided a test config is used.
@@ -196,4 +201,13 @@ class Service
         return $this->client;
     }
 
+    /**
+     * Sets a logger instance to use.
+     *
+     * @param LoggerInterface $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
 }
