@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>YellowCube PHP Library: GEN_Response</title>
+    <title>YellowCube PHP Library: Logging</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/yellowcube-php/assets/css/docs.css" rel="stylesheet">
@@ -13,7 +13,7 @@
         <div class="container">
             <a href="/"><img class="logo" src="/yellowcube-php/assets/img/post-logo.gif" alt="Post logo" /></a>
 
-            <h1 class="page-title">YellowCube GEN_Response</h1>
+            <h1 class="page-title">YellowCube Logging</h1>
         </div>
     </header>
 
@@ -58,20 +58,21 @@
             <main>
                 <!--<a href="/">PHP Library</a>-->
 
-                <p>Most service methods respond with a <code>YellowCube\GEN_Response</code> object.
-Use the following methods to get information about the response:</p>
+                <p>The <code>YellowCube\Service</code> takes a <a href="https://github.com/php-fig/log"><code>Psr\Log\LoggerInterface</code> logger</a> either as constructor argument:</p>
+<pre><code>$service = new YellowCube\Service($config, $soapClient, $logger);
+</code></pre>
+<p>or using a setter:</p>
+<pre><code>$service-&gt;setLogger($logger);
+</code></pre>
+<p>When not setting a logger instance, a NullLogger is used which ignores all logging.</p>
+<h3 id="log-levels"><a class="toclink" href="#log-levels">Log levels</a></h3>
+<p>Of the <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md#5-psrlogloglevel">available log levels</a>
+the following are implemented:</p>
 <ul>
-<li><code>$response-&gt;getReference()</code> returns a numeric ID which can be used for status requests.</li>
-<li><code>$response-&gt;isError()</code> can be used to check if an error occurred.</li>
-<li><code>$response-&gt;isPending()</code> returns <code>true</code>, if a request object is still processed.</li>
-<li><code>$response-&gt;isSuccess()</code> returns <code>true</code>, if a request was successful, <code>false</code> otherwise. Warning: This does not mean the requested object is processed, only that the request was successful.</li>
-<li><code>$response-&gt;getStatusCode()</code> Get numeric code for the status.</li>
-<li><code>$response-&gt;getStatusText()</code> Get a textual description of the requests status.</li>
+<li>DEBUG: Log every SOAP request and response.</li>
+<li>INFO: Log <code>YellowCube\Service</code> method calls.</li>
+<li>ERROR: Log SOAP errors.</li>
 </ul>
-<dl>
-<dt>Status codes</dt>
-<dd>The YellowCube SOAP Interface Manual contains a detailed list of possible status codes.</dd>
-</dl>
 
                 <footer>
                     <p class="issue">
