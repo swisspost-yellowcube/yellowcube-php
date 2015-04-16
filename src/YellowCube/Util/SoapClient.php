@@ -81,11 +81,11 @@ class SoapClient extends \SoapClient
             $request = $this->signRequest($request);
         }
 
-        $this->logger->debug('Request', array('request' => $request));
+        $this->logger->debug('Request to {location}: {request}', array('location' => $location, 'request' => $request));
 
         $response = parent::__doRequest($request, $location, $action, $version, $oneWay);
 
-        $this->logger->debug('Response', array('Response' => $response));
+        $this->logger->debug('Response to {location}: {response}', array('location' => $location, 'response' => $response));
 
         return $response;
     }
