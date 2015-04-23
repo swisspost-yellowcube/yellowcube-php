@@ -81,7 +81,7 @@ class Doc
         return new self(
             $DocType,
             $DocMimeType,
-            base64_encode(file_get_contents($FilePath))
+            file_get_contents($FilePath)
         );
     }
 
