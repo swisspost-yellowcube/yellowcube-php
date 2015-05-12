@@ -4,14 +4,19 @@
  * Implementation adapted from https://www.drupal.org/project/psr3_watchdog
  */
 
-namespace YellowCube\Util;
+namespace YellowCube\Util\Logger;
 
+use Assert\Assertion;
 use Psr\Log\AbstractLogger as PsrAbstractLogger;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
 /**
+ * Filters out all log messages which are less than a given minimum log level.
+ *
+ * @author Adrian Philipp <adrian.philipp@liip.ch>
  */
-abstract class AbstractLogger extends PsrAbstractLogger {
+class MinLevelFilterLogger extends PsrAbstractLogger {
 
     /**
      * @var array Stores levels in order of importance, low to high.
@@ -27,17 +32,40 @@ abstract class AbstractLogger extends PsrAbstractLogger {
         LogLevel::EMERGENCY,
     );
 
+    /**
+     * @var string Minimum log level.
+     */
     protected $minLevel;
 
-    public function __construct($minLevel)
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @param string $minLevel One of the \Psr\Log\LogLevel constants.
+     * @param \Psr\Log\LoggerInterface $logger
+     *
+     * @throws \InvalidArgumentException if log level is invalid.
+     */
+    public function __construct($minLevel, LoggerInterface $logger)
     {
+        Assertion::choice($minLevel, self::$levelOrder, "Level '{$minLevel}' is not defined.");
+
         $this->minLevel = $minLevel;
+        $this->logger = $logger;
     }
 
     /**
      * @inheritdoc
      */
-    public abstract function log($level, $message, array $context = array());
+    public function log($level, $message, array $context = array()) {
+        if ($this->isLevelLessThanMinimum($level)) {
+            return;
+        }
+
+        $this->logger->log($level, $message, $context);
+    }
 
     /**
      * Returns true if the given level is less important than
@@ -60,6 +88,6 @@ abstract class AbstractLogger extends PsrAbstractLogger {
      */
     protected function getLevelOrder($level)
     {
-        return array_search($level, array_keys(self::$levelOrder));
+        return array_search($level, self::$levelOrder);
     }
 }
