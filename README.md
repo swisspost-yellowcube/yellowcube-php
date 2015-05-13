@@ -31,6 +31,7 @@ Development
 2. Install dependencies `composer install`
 3. Run tests `vendor/phpspec/phpspec/bin/phpspec run`
 
+This project uses [semver](http://semver.org/) for versioning.
 
 License
 -------
