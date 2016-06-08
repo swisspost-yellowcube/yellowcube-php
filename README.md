@@ -1,4 +1,4 @@
-YellowCube PHP client API
+YellowCube PHP SDK
 =========================
 
 Connect to the SOAP based [YellowCube Solutions](http://yellowcube.ch/).
