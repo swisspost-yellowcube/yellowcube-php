@@ -16,4 +16,5 @@ class SoapClientSpec extends ObjectBehavior
     {
         $this->shouldHaveType('YellowCube\Util\SoapClient');
     }
+
 }

@@ -6,8 +6,8 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
 use YellowCube\ART\Article;
-use YellowCube\WAB\Order;
 use YellowCube\Util\SoapClient;
+use YellowCube\WAB\Order;
 
 class ServiceSpec extends ObjectBehavior
 {
@@ -22,12 +22,17 @@ class ServiceSpec extends ObjectBehavior
 
     function it_asserts_config_is_given()
     {
-        $this->shouldThrow('PhpSpec\Exception\Example\ErrorException')->during('__construct', array(''));
+        if (PHP_MAJOR_VERSION >= 7) {
+            $this->shouldThrow('\TypeError')->during('__construct', array(''));
+        }
+        else {
+            $this->shouldThrow('PhpSpec\Exception\Example\ErrorException')->during('__construct', array(''));
+        }
     }
 
-    function it_should_insert_article(Article $article, $client, $logger) {
+    function it_should_insert_article(Article $article, $client, $logger)
+    {
         $this->insertArticleMasterData($article);
-
         $client->InsertArticleMasterData(
             Argument::withEntry('ControlReference', Argument::type('YellowCube\ControlReference'))
         )->shouldHaveBeenCalled();
@@ -82,4 +87,3 @@ class ServiceSpec extends ObjectBehavior
         $logger->info(Argument::type('string'), Argument::any())->shouldHaveBeenCalled();
     }
 }
-
