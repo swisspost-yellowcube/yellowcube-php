@@ -51,10 +51,19 @@ class ConfigSpec extends ObjectBehavior
 
     function it_asserts_soapclientoptions_is_an_array()
     {
-        $this->shouldThrow('PhpSpec\Exception\Example\ErrorException')->during(
-            '__construct',
-            array('sender', 'wsdl', null, 'false', '')
-        );
+        if (PHP_MAJOR_VERSION >= 7) {
+            $this->shouldThrow('\TypeError')->during(
+              '__construct',
+              array('sender', 'wsdl', null, 'false', '')
+            );
+        }
+        else {
+            $this->shouldThrow('PhpSpec\Exception\Example\ErrorException')->during(
+              '__construct',
+              array('sender', 'wsdl', null, 'false', '')
+            );
+        }
+
     }
 
     function it_asserts_a_receiver_is_given()
