@@ -37,5 +37,4 @@ class EAN extends SimpleValue implements UnitOfMeasure
         $this->EANType = $EANType;
         return $this;
     }
-
 }

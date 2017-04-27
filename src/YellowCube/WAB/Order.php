@@ -2,7 +2,6 @@
 
 namespace YellowCube\WAB;
 
-
 use YellowCube\Util\ClassUtil;
 use YellowCube\WAB\AdditionalService\AdditionalService;
 

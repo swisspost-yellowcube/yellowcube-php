@@ -40,5 +40,4 @@ class ArticleDescription extends SimpleValue
         $this->ArticleDescriptionLC = $ArticleDescriptionLC;
         return $this;
     }
-
 }

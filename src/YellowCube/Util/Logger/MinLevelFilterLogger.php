@@ -16,7 +16,8 @@ use Psr\Log\LogLevel;
  *
  * @author Adrian Philipp <adrian.philipp@liip.ch>
  */
-class MinLevelFilterLogger extends PsrAbstractLogger {
+class MinLevelFilterLogger extends PsrAbstractLogger
+{
 
     /**
      * @var array Stores levels in order of importance, low to high.
@@ -59,7 +60,8 @@ class MinLevelFilterLogger extends PsrAbstractLogger {
     /**
      * @inheritdoc
      */
-    public function log($level, $message, array $context = array()) {
+    public function log($level, $message, array $context = array())
+    {
         if ($this->isLevelLessThanMinimum($level)) {
             return;
         }

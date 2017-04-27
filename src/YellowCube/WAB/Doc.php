@@ -141,5 +141,4 @@ class Doc
         $this->DocStream = $DocStream;
         return $this;
     }
-
 }

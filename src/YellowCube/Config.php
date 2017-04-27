@@ -17,12 +17,12 @@ class Config
     /**
      * @const string Path to YellowCubes production WSDL file.
      */
-    CONST WSDL_PRODUCTION = 'https://service.swisspost.ch/apache/yellowcube/?wsdl';
+    const WSDL_PRODUCTION = 'https://service.swisspost.ch/apache/yellowcube/?wsdl';
 
     /**
      * @const string Path to YellowCubes test WSDL file.
      */
-    CONST WSDL_TEST = 'https://service-test.swisspost.ch/apache/yellowcube-test/?wsdl';
+    const WSDL_TEST = 'https://service-test.swisspost.ch/apache/yellowcube-test/?wsdl';
 
     /**
      * @var string

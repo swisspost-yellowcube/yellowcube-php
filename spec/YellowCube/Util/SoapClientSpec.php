@@ -7,7 +7,8 @@ use Psr\Log\LoggerInterface;
 
 class SoapClientSpec extends ObjectBehavior
 {
-    function let(LoggerInterface $logger) {
+    function let(LoggerInterface $logger)
+    {
         $wsdl = 'https://service.swisspost.ch/apache/yellowcube/?wsdl';
         $this->beConstructedWith($wsdl, array(), $logger);
     }
@@ -16,5 +17,4 @@ class SoapClientSpec extends ObjectBehavior
     {
         $this->shouldHaveType('YellowCube\Util\SoapClient');
     }
-
 }
