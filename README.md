@@ -14,7 +14,7 @@ Integrations
 Requirements
 ------------
 
- * PHP >= 5.3
+ * PHP >= 5.6
  * PHP [SOAP extension](http://php.net/manual/en/book.soap.php)
 
 Manual Installation
