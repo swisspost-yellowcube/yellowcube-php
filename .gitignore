@@ -1,6 +1,6 @@
 # Managed by Composer
 /vendor/
-/bin/phpspec
+/bin/
 composer.lock
 
 # PHPUnit

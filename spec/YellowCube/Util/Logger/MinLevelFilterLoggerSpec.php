@@ -12,14 +12,15 @@ class MinLevelFilterLoggerSpec extends ObjectBehavior
     function let()
     {
         $this->beAnInstanceOf(
-          '\YellowCube\Util\Logger\MinLevelFilterLogger'
+            '\YellowCube\Util\Logger\MinLevelFilterLogger'
         );
     }
 
-    function it_should_fail_with_invalid_loglevel(LoggerInterface $logger) {
+    function it_should_fail_with_invalid_loglevel(LoggerInterface $logger)
+    {
         $this->shouldThrow('\InvalidArgumentException')->during(
-          '__construct',
-          array('wrong error level', $logger)
+            '__construct',
+            array('wrong error level', $logger)
         );
     }
 

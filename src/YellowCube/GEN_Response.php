@@ -97,8 +97,9 @@ class GEN_Response
      *
      * @return bool
      */
-    public function isPending() {
-       return !$this->isError()
+    public function isPending()
+    {
+        return !$this->isError()
             && $this->getStatusCode() < 100;
     }
 

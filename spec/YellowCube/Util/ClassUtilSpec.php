@@ -7,10 +7,12 @@ use YellowCube\Util\ClassUtil;
 
 class ClassUtilSpec extends ObjectBehavior
 {
-    function it_should_return_class_name_for_stdClass() {
+    function it_should_return_class_name_for_stdClass()
+    {
         $this::getClassName(new \stdClass())->shouldReturn('stdClass');
     }
-    function it_should_return_class_name_for_itself() {
+    function it_should_return_class_name_for_itself()
+    {
         $this::getClassName(new ClassUtil())->shouldReturn('ClassUtil');
     }
 }

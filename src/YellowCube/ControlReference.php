@@ -88,7 +88,8 @@ class ControlReference
      * @param $type
      * @return ControlReference
      */
-    public static function fromConfig($type, Config $config) {
+    public static function fromConfig($type, Config $config)
+    {
         $controlReference = new ControlReference();
         return $controlReference
             ->setType($type)
@@ -255,5 +256,4 @@ class ControlReference
         $this->TransMaxWait = $TransMaxWait;
         return $this;
     }
-
 }

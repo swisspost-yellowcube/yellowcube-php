@@ -7,14 +7,16 @@ use YellowCube\Config;
 
 class ControlReferenceSpec extends ObjectBehavior
 {
-    function let(Config $config) {
+    function let(Config $config)
+    {
         $config->getSender()->willReturn('SENDER');
         $config->getReceiver()->willReturn('RECEIVER');
         $config->getOperatingMode()->willReturn('P');
         $config->getTimeoutSec()->willReturn(null);
     }
 
-    function it_creates_a_control_reference_by_config(Config $config) {
+    function it_creates_a_control_reference_by_config(Config $config)
+    {
         $cr = $this::fromConfig('WAR', $config);
 
         $cr->shouldHaveType('YellowCube\ControlReference');
@@ -27,18 +29,19 @@ class ControlReferenceSpec extends ObjectBehavior
         $cr->getCommType()->shouldEqual('SOAP');
     }
 
-    function it_creates_a_control_reference_by_config_in_production_mode(Config $config) {
+    function it_creates_a_control_reference_by_config_in_production_mode(Config $config)
+    {
         $config->getOperatingMode()->willReturn('P');
 
         $this::fromConfig('WAR', $config)
             ->getOperatingMode()->shouldEqual('P');
     }
 
-    function it_creates_a_control_reference_with_timeout(Config $config) {
+    function it_creates_a_control_reference_with_timeout(Config $config)
+    {
         $config->getTimeoutSec()->willReturn(30);
 
         $this::fromConfig('WAR', $config)
             ->getTransMaxWait()->shouldEqual(30);
     }
-
 }

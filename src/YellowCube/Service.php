@@ -140,7 +140,7 @@ class Service
         }
 
         return array_map(
-            function($goodsIssue) {
+            function ($goodsIssue) {
                 return $goodsIssue->GoodsIssue;
             },
             $WAR->WAR
@@ -192,9 +192,9 @@ class Service
     {
         if (empty($this->client)) {
             $this->client = new SoapClient(
-              $this->getConfig()->getWsdl(),
-              $this->getConfig()->getSoapClientOptions(),
-              $this->logger
+                $this->getConfig()->getWsdl(),
+                $this->getConfig()->getSoapClientOptions(),
+                $this->logger
             );
         }
 

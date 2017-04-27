@@ -64,4 +64,3 @@ class GEN_STATUS
         return $this;
     }
 }
-

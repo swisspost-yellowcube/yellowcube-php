@@ -60,5 +60,4 @@ class GoodsIssueHeader
     {
         return $this->DepositorNo;
     }
-
 }

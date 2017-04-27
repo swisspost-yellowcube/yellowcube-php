@@ -12,4 +12,3 @@ use YellowCube\ART\UnitsOfMeasure\Dimension;
 class NetWeight extends Dimension
 {
 }
-
