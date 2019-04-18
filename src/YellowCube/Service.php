@@ -156,17 +156,26 @@ class Service
      */
     public function getInventory()
     {
+        $inventory = $this->getInventoryWithControlReference();
+        return !empty($inventory->ArticleList->Article) ? $inventory->ArticleList->Article : [];
+    }
+
+    /**
+     * Returns the current status of a customer order specified by its reference.
+     *
+     * @param string $reference Customer order reference.
+     *
+     * @return \stdclass Inventory with ControlReference and ArticleList properties.
+     */
+    public function getInventoryWithControlReference()
+    {
         $this->logger->info(__METHOD__);
 
         $inventory = $this->getClient()->GetInventory(array(
             'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
         ));
 
-        if (empty($inventory)) {
-            return array();
-        }
-
-        return $inventory->ArticleList->Article;
+        return $inventory;
     }
 
     /**
