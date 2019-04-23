@@ -6,6 +6,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
 use YellowCube\ART\Article;
+use YellowCube\BAR\Inventory;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 
@@ -84,11 +85,42 @@ class ServiceSpec extends ObjectBehavior
 
     function it_should_return_inventory($client, $logger)
     {
+        $inventory = new \stdClass();
+        $inventory->ArticleList = new \stdClass();
+        $inventory->ArticleList->Article = [];
+        $inventory->ControlReference = new \stdClass();
+        $inventory->ControlReference->Timestamp = date('YmdHi', strtotime('yesterday'));
+
+        $client->GetInventory(Argument::allOf(
+            Argument::withEntry('ControlReference', Argument::type('YellowCube\ControlReference'))
+        ))->willReturn($inventory);
+
         $this->getInventory()->shouldReturn(array());
 
         $client->GetInventory(Argument::allOf(
             Argument::withEntry('ControlReference', Argument::type('YellowCube\ControlReference'))
         ))->shouldHaveBeenCalled();
+
+        $logger->info(Argument::type('string'), Argument::any())->shouldHaveBeenCalled();
+    }
+
+    function it_should_return_inventory_metadata($client, $logger)
+    {
+        $inventory = new \stdClass();
+        $inventory->ArticleList = new \stdClass();
+        $inventory->ArticleList->Article = [];
+        $inventory->ControlReference = new \stdClass();
+        $inventory->ControlReference->Timestamp = date('YmdHi', strtotime('yesterday'));
+
+        $client->GetInventory(Argument::allOf(
+            Argument::withEntry('ControlReference', Argument::type('YellowCube\ControlReference'))
+        ))->willReturn($inventory);
+
+        $inventory_result = $this->getInventoryWithMetadata();
+        $inventory_result->shouldHaveType(Inventory::class);
+        $inventory_result->getArticles()->shouldReturn([]);
+        $inventory_result->getTimestamp()->shouldReturn($inventory->ControlReference->Timestamp);
+
         $logger->info(Argument::type('string'), Argument::any())->shouldHaveBeenCalled();
     }
 }

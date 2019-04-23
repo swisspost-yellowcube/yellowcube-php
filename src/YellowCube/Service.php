@@ -157,7 +157,7 @@ class Service
      */
     public function getInventory()
     {
-        $this->getInventoryWithMetadata()->getArticles();
+        return $this->getInventoryWithMetadata()->getArticles();
     }
 
     /**
