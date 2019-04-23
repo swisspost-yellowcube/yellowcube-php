@@ -28,7 +28,7 @@ class Inventory
      * @param \YellowCube\BAR\Article[] $articles
      * @param string $timestamp
      */
-    public function __construct(array $articles, string $timestamp)
+    public function __construct(array $articles, $timestamp)
     {
         $this->articles = $articles;
         $this->timestamp = $timestamp;
@@ -47,7 +47,7 @@ class Inventory
 
     /**
      * Set the articles in the inventory
-     * @param Article[] $articles
+     * @param \YellowCube\BAR\Article[] $articles
      *
      * @return \YellowCube\BAR\Inventory
      */
@@ -75,7 +75,7 @@ class Inventory
      *
      * @return \YellowCube\BAR\Inventory
      */
-    public function setTimestamp(string $timestamp)
+    public function setTimestamp($timestamp)
     {
         $this->timestamp = $timestamp;
         return $this;
