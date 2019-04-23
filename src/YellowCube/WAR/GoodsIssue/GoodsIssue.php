@@ -45,4 +45,39 @@ class GoodsIssue
     {
         return $this->CustomerOrderList->CustomerOrderDetail;
     }
+
+    /**
+     * @param GoodsIssueHeader $GoodsIssueHeader
+     * @return GoodsIssue
+     */
+    public function setGoodsIssueHeader(GoodsIssueHeader $GoodsIssueHeader)
+    {
+        $this->GoodsIssueHeader = $GoodsIssueHeader;
+        return $this;
+    }
+
+    /**
+     * @param CustomerOrderHeader $CustomerOrderHeader
+     * @return GoodsIssue
+     */
+    public function setCustomerOrderHeader(CustomerOrderHeader $CustomerOrderHeader)
+    {
+        $this->CustomerOrderHeader = $CustomerOrderHeader;
+        return $this;
+    }
+
+    /**
+     * @param \YellowCube\WAR\GoodsIssue\CustomerOrderDetail[] $CustomerOrderList
+     *
+     * @return GoodsIssue
+     */
+    public function setCustomerOrderList(array $CustomerOrderList)
+    {
+        $this->CustomerOrderList = new \stdClass();
+        $this->CustomerOrderList->CustomerOrderDetail = $CustomerOrderList;
+        return $this;
+    }
+
+
+
 }
