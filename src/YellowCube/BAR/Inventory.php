@@ -2,6 +2,9 @@
 
 namespace YellowCube\BAR;
 
+/**
+ * Represents the YellowCube article inventory.
+ */
 class Inventory
 {
 
