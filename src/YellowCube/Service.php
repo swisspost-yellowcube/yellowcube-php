@@ -5,6 +5,7 @@ namespace YellowCube;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use YellowCube\ART\Article;
+use YellowCube\BAR\Inventory;
 use YellowCube\Util\SoapClient;
 use YellowCube\WAB\Order;
 use YellowCube\WAR\GoodsIssue\GoodsIssue;
@@ -156,8 +157,7 @@ class Service
      */
     public function getInventory()
     {
-        $inventory = $this->getInventoryWithControlReference();
-        return !empty($inventory->ArticleList->Article) ? $inventory->ArticleList->Article : [];
+        $this->getInventoryWithMetadata()->getArticles();
     }
 
     /**
@@ -165,17 +165,16 @@ class Service
      *
      * @param string $reference Customer order reference.
      *
-     * @return \stdclass Inventory with ControlReference and ArticleList properties.
+     * @return \YellowCube\BAR\Inventory
      */
-    public function getInventoryWithControlReference()
+    public function getInventoryWithMetadata()
     {
         $this->logger->info(__METHOD__);
 
         $inventory = $this->getClient()->GetInventory(array(
             'ControlReference' => ControlReference::fromConfig('BAR', $this->getConfig()),
         ));
-
-        return $inventory;
+        return new Inventory(!empty($inventory->ArticleList->Article) ? $inventory->ArticleList->Article : [], $inventory->ControlReference->Timestamp);
     }
 
     /**
